@@ -69,6 +69,27 @@ class User {
         $this->role = $role;
     }
 
+    // Method to save the user in the database
+    public function save() {
+        $pdo = DBConnect::getInstance();
+
+        // Prepare the SQL query
+        $query = "INSERT INTO users (first_name, last_name, email, username, password, role)
+                  VALUES (:first_name, :last_name, :email, :username, :password, :role)";
+        $statement = $pdo->prepare($query);
+
+        // Bind the parameters
+        $statement->bindParam(':first_name', $this->first_name);
+        $statement->bindParam(':last_name', $this->last_name);
+        $statement->bindParam(':email', $this->email);
+        $statement->bindParam(':username', $this->username);
+        $statement->bindParam(':password', $this->password);
+        $statement->bindParam(':role', $this->role);
+
+        // Execute the query
+        $statement->execute();
+    }
+
     // Method to check if the user credentials are valid
     public function isCredentialsValid($username, $password) {
         $pdo = DBConnect::getInstance();
@@ -142,5 +163,20 @@ class User {
         $userId = $statement->fetchColumn();
     
         return $userId;
+    }
+
+    // Method to get all users from the database
+    public static function getAllUsers() {
+        $pdo = DBConnect::getInstance();
+
+        // Prepare the SQL query to select all users
+        $query = "SELECT * FROM users";
+        $statement = $pdo->prepare($query);
+        $statement->execute();
+
+        // Fetch all users records
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $users;
     }
 }

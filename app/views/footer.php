@@ -1,11 +1,25 @@
+<?php 
+use App\controllers\UserController;
+
+$userController = new UserController();
+?>
+
 </main>
 </div><!-- .container -->
 
 
 <footer class="border-top">
     <div class="container px-4 px-lg-5 list-inline text-center" style="margin-bottom:20px">
+        <?php if (isset($_SESSION['user_username'])): ?>
+            <p>Vous êtes connecté en tant que : <?= htmlspecialchars($_SESSION['user_username']) ?></p>
+            <?php if ($_SESSION['user_isAdmin']): ?>
+                <a href="/index.php?controller=Dashboard&action=index" class="list-inline-item" >Administration</a>
+            <?php endif; ?>
+            <a href="/app/views/logout.php" class="list-inline-item">Déconnexion</a>
+        <?php else: ?>
             <a href="/app/views/register.php" class="list-inline-item">S'enregistrer</a>
             <a href="/app/views/login.php" class="list-inline-item">Se connecter</a>
+        <?php endif; ?>
     </div><!-- .container -->
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
