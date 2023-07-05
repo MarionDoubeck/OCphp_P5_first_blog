@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/../controllers/UserController.php';
+use App\controllers\UserController;
+
 $userController = new UserController();
 $userController->logout();
 ?>
