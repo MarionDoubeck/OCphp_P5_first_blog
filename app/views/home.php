@@ -1,5 +1,10 @@
 <?php
 namespace App\views;
+use App\controllers\PostController;
+
+$postController = new PostController();
+$lastThreePosts = $postController->getRecentPosts();
+
 include 'header.php'; ?>
 
 	<div class="container">
@@ -9,7 +14,7 @@ include 'header.php'; ?>
 
 	<div class="container" id="latestPosts">
 		<h3>Derniers Posts !</h3>
-        <?php foreach ([1,2,3] as $post){
+        <?php foreach ($lastThreePosts as $post){
             require 'post-frame.php';
         }?>
 	</div>
