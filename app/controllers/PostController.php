@@ -14,6 +14,18 @@ class PostController {
         $this->pdo = DBConnect::getInstance();
     }
 
+    // Method to get all posts
+    public function getAllPosts() {
+        // Query to retrieve all posts
+        $query = "SELECT * FROM posts ORDER BY updated_at DESC";
+        $statement = $this->pdo->query($query);
+
+        // Fetch all posts as associative arrays
+        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $posts;
+    }
+    
     // Method to get the 3 most recent posts
     public function getRecentPosts() {
         // Query to retrieve the 3 most recent posts by creation date

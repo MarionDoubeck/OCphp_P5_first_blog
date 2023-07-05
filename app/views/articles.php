@@ -1,4 +1,8 @@
 <?php
+use App\controllers\PostController;
+$postController = new PostController();
+$posts = $postController->getAllPosts();
+
 include 'header.php'; ?>
 
 <div class="container">
