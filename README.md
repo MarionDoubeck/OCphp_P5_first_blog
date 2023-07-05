@@ -14,4 +14,6 @@ then in composer.json add:
     }
 then execute composer dumpautoload
 then execute composer require phpmailer/phpmailer
+then execute composer require vlucas/phpdotenv
+
 
