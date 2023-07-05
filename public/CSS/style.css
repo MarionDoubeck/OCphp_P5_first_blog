@@ -11121,7 +11121,7 @@ header.masthead .post-heading .meta a {
 }
 @font-face {
   font-family: "ailerons";
-  src: url("../font/Ailerons-TrialVersion/Ailerons-TrialVersion.otf") format("opentype");
+  src: url("../fonts/Ailerons-TrialVersion/Ailerons-TrialVersion.otf") format("opentype");
   font-style: normal;
   font-weight: normal;
 }
