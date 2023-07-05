@@ -2,7 +2,9 @@
     "name": "mariondoubeck/o-cphp_p5_first_blog",
     "autoload": {
         "psr-4": {
-            "Mariondoubeck\\OCphpP5FirstBlog\\": "app/"
+            "App\\": "app/",
+            "Config\\": "config/",
+            "Vendor\\": "vendor/"
         }
     },
     "authors": [
@@ -11,6 +13,7 @@
         }
     ],
     "require": {
-        "phpmailer/phpmailer": "^6.8"
+        "phpmailer/phpmailer": "^6.8",
+        "vlucas/phpdotenv": "^5.5"
     }
 }
