@@ -1,0 +1,16 @@
+{
+    "name": "mariondoubeck/o-cphp_p5_first_blog",
+    "autoload": {
+        "psr-4": {
+            "Mariondoubeck\\OCphpP5FirstBlog\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marion Doubeck"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    }
+}
