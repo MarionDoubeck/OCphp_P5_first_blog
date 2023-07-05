@@ -109,4 +109,32 @@ class UserController {
         }
     }
 
+    // Method to log out a user
+    public function logout() {
+        // Destroy the user session
+        session_unset();
+        session_destroy();
+
+        // Redirect to previous page
+        ?>
+        <script>
+            history.go(-1);
+        </script>
+        <?php
+        exit;
+    }
+
+    // Method to get all users
+    public function getAllUsers() {
+        $pdo = DBConnect::getInstance();
+
+        // Query to retrieve all users
+        $query = "SELECT * FROM users";
+        $stmt = $pdo->query($query);
+
+        // Fetch all users as associative arrays
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $users;
+    }
 }
