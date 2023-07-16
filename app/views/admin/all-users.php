@@ -1,9 +1,6 @@
 <?php
-
 include 'dashboard-header-and-menu.php';
 ?>
-
-
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -11,7 +8,7 @@ include 'dashboard-header-and-menu.php';
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Tous les articles publiés sur le blog</h3>
+                <h3 class="card-title">Tous les utilisateurs du blog</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -21,20 +18,20 @@ include 'dashboard-header-and-menu.php';
                     <!-- <th>Id</th> -->
                     <th>Nom d'utilisateur</th>
                     <th>Nombre de commentaires</th>
-                    <th>Prénom</th>
-                    <th>Nom</th>
-                    <th>email</th>
+                    <th>Email</th>
                   </tr>
                   </thead>
                   <tbody>
                     <!-- Loop through posts data and display each post in a row -->
-                    <?php foreach ([1,2,3,4] as $user) : 
-                        
+                    <?php foreach ($users as $user) : 
+                        $username = $user->getUsername();
+                        $email = $user->getEmail();
+                        $commentCount = $user->getCommentCount();
                     ?>
                     <tr>
-                        <td><?= 'USERNAME' ?></td>
-                        <td><?= 'NB DE COM'?></td>
-                        <td><?= 'EMAIL' ?></td>
+                        <td><?= $username ?></td>
+                        <td><?= $commentCount?></td>
+                        <td><?= $email ?></td>
                   </tr>
                   <?php endforeach ;?>
                   </tbody>
@@ -49,29 +46,8 @@ include 'dashboard-header-and-menu.php';
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../admin/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="../admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../admin/dist/js/adminlte.min.js"></script>
+      
+<?php include 'dashboard-scripts.php'; ?>
 
 <!-- Page specific script -->
 <script>

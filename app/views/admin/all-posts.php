@@ -1,4 +1,5 @@
 <?php
+use App\Models\Post;
 require_once __DIR__ .'../../../helpers/csrf.php';
 
 include 'dashboard-header-and-menu.php';
@@ -29,19 +30,26 @@ include 'dashboard-header-and-menu.php';
                   </thead>
                   <tbody>
                     <!-- Loop through posts data and display each post in a row -->
-                    <?php foreach ([1,2,3,4] as $post) : ?>
+                    <?php foreach ($posts as $post) : 
+                      $title = htmlspecialchars($post->getTitle());
+                      //No accents in title with this font
+                      $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));
+                      $created_at = htmlspecialchars($post->getFrenchCreationDate());
+                      $modified_at = htmlspecialchars($post->getFrenchModificationDate());
+                      $id = $post->getIdentifier();
+                      $nbOfComments=$newPost->retrieveNumberOfComments($id);
+                    ?>
                     <tr>
-                        <td><?= 'TITRE' ?></td>
-                        <td><?= 'CREE LE' ?></td>
-                        <td><?= 'MODIFIE LE' ?></td>
-                        <td><?= 'NB DE COMMENTAIRES' ?></td>
+                        <td><?= $title ?></td>
+                        <td><?= $created_at ?></td>
+                        <td><?= $modified_at ?></td>
+                        <td><?= $nbOfComments ?></td>
                         <td>
                             <div style="width:100%; display:flex; justify-content: space-around;">
                               <a href=# class="btn btn-success" target="_blank">Voir</a>
                               <a href=# class="btn btn-primary" >Modifier</a>
                               <?php generateCsrfToken();?>
-                              <form action="delete-post.php" method="post" style="display: inline;">
-                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                              <form  method="post" style="display: inline;">
                                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
                                 <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
                               </form>
@@ -61,29 +69,8 @@ include 'dashboard-header-and-menu.php';
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="../admin/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="../admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../admin/dist/js/adminlte.min.js"></script>
+<?php include 'dashboard-scripts.php'; ?>
 
 <!-- Page specific script -->
 <script>

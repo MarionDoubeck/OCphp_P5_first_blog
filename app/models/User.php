@@ -45,8 +45,39 @@ class User
 
     private string $email;
 
+    private int $commentCount;
+
     //Connect to database
     public DatabaseConnection $connection;
+
+    /**
+     * Method to retrieve data from  all users 
+     *
+     * @return array
+     */
+    public function getUsers(): array
+    {
+        // Query to retrieve all users
+        $query = "SELECT u.*, COUNT(c.id) AS comment_count
+        FROM users u
+        LEFT JOIN comments c ON u.id = c.author_id
+        GROUP BY u.id";
+        $statement = $this->connection->getConnection()->query($query);
+
+        $users = [];
+
+        while (($row = $statement->fetch())) {
+            $user = new User();
+            $user->setUsername($row['username']);
+            $user->setEmail($row['email']);
+            $commentCount = $row['comment_count'] ?? 0;
+            $user->setCommentCount($commentCount);
+
+            $users[] = $user;
+        }
+        
+        return $users;
+    }
 
     /**
      * Method to check user username and get this user data
@@ -203,6 +234,16 @@ class User
     }
 
     /**
+     * Get the value of user's nb of comments
+     * 
+     * @return string
+     */ 
+    public function getCommentCount()
+    {
+        return $this->commentCount;
+    }
+
+    /**
      * Set the value of email
      *
      * @return self
@@ -210,6 +251,22 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Set the user's number of comments
+     *
+     * @return self
+     */ 
+    public function setCommentCount($commentCount)
+    {
+        if ($commentCount== null){
+            $this->commentCount = 0;
+        }else{
+            $this->commentCount = $commentCount;
+        }
 
         return $this;
     }

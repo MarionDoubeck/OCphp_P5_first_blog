@@ -12,6 +12,11 @@ use App\services\Session;
 use App\Controllers\Register;
 use App\Controllers\SinglePost;
 use App\Controllers\AddComment;
+use App\Controllers\AdminAllPosts;
+use App\Controllers\AdminAddPost;
+use App\Controllers\AdminPendingComments;
+use App\Controllers\AdminValidatedComments;
+use App\Controllers\AdminAllUsers;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -65,6 +70,21 @@ try{
             } else {
                 throw new Exception('Seul l\'administrateur a accès à cette page');
             }
+            break;
+        case "adminAllPosts":
+            (new AdminAllPosts())->execute();
+            break;
+        case "adminAddPost":
+            (new AdminAddPost())->execute();
+            break;
+        case "adminPendingComments":
+            (new AdminPendingComments())->execute();
+            break;
+        case "adminValidatedComments":
+            (new AdminValidatedComments())->execute();
+            break;
+        case "adminAllUsers":
+            (new AdminAllUsers())->execute();
             break;
         default:
             include 'app/views/404.php';

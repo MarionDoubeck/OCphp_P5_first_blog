@@ -1,16 +1,3 @@
-<?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-/* use App\services\Session;
-
-// Check if user is authenticated and has admin privileges
-// Redirect to login page if not authenticated or authorized
-if (Session::isParamSet('role')==false || Session::get('role')!=="admin") {
-  header("Location: index.php?action=login");
-  exit;
-} */
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -49,7 +36,7 @@ if (Session::isParamSet('role')==false || Session::get('role')!=="admin") {
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-            <a href="/index.php?controller=Dashboard&action=index" class="nav-link">
+            <a href="index.php?action=administration" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -67,12 +54,12 @@ if (Session::isParamSet('role')==false || Session::get('role')!=="admin") {
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/app/views/admin/all-posts.php" class="nav-link">
+                <a href="index.php?action=adminAllPosts" class="nav-link">
                   <p>Tous les articles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/app/views/admin/add-post.php" class="nav-link">
+                <a href="index.php?action=adminAddPost" class="nav-link">
                   <p>Nouvel article</p>
                 </a>
               </li>
@@ -89,12 +76,12 @@ if (Session::isParamSet('role')==false || Session::get('role')!=="admin") {
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/app/views/admin/pending-comments.php" class="nav-link">
+                <a href="index.php?action=adminPendingComments" class="nav-link">
                   <p>Commentaires en attente de validation</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/app/views/admin/validated-comments.php" class="nav-link">
+                <a href="index.php?action=adminValidatedComments" class="nav-link">
                   <p>Tous les commentaires publiés</p>
                 </a>
               </li>
@@ -111,7 +98,7 @@ if (Session::isParamSet('role')==false || Session::get('role')!=="admin") {
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/app/views/admin/all-users.php" class="nav-link">
+                <a href="index.php?action=adminAllUsers" class="nav-link">
                   <p>Tous les utilisateurs</p>
                 </a>
               </li>
