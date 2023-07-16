@@ -3,7 +3,7 @@
 <h2>Login</h2>
 
 <?php generateCsrfToken();?>
-<form method="post" action="login.php">
+<form method="post">
     <label for="username">Username</label>
     <input type="text" name="username" id="username" required>
 

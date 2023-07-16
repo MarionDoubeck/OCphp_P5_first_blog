@@ -4,15 +4,15 @@
 
 <footer class="border-top">
     <div class="container px-4 px-lg-5 list-inline text-center" style="margin-bottom:20px">
-        <?php if (isset($_SESSION['user_username'])): ?>
-            <p>Vous êtes connecté en tant que : <?= htmlspecialchars($_SESSION['user_username']) ?></p>
-            <?php if ($_SESSION['user_isAdmin']): ?>
-                <a href="/app/views/admin/acompleter" class="list-inline-item" >Administration</a>
+        <?php if (isset($_SESSION['username'])): ?>
+            <p>Vous êtes connecté en tant que : <?= htmlspecialchars($_SESSION['username']) ?></p>
+            <?php if ($_SESSION['role']=="admin"): ?>
+                <a href="index.php?action=administration" class="list-inline-item" >Administration</a>
             <?php endif; ?>
-            <a href="/app/views/logout.php" class="list-inline-item">Déconnexion</a>
+            <a href="index.php?action=logout" class="list-inline-item">Déconnexion</a>
         <?php else: ?>
-            <a href="/app/views/register.php" class="list-inline-item">S'enregistrer</a>
-            <a href="/app/views/login.php" class="list-inline-item">Se connecter</a>
+            <a href="index.php?action=register" class="list-inline-item">S'enregistrer</a>
+            <a href="index.php?action=login" class="list-inline-item">Se connecter</a>
         <?php endif; ?>
     </div><!-- .container -->
     <div class="container px-4 px-lg-5">

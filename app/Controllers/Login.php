@@ -8,8 +8,8 @@ use App\db\DatabaseConnection;
 require_once __DIR__ .'/../helpers/csrf.php';
 
 /**
- * Class logon
- * To logon the user
+ * Class login
+ * To login the user
  */
 class Login
 {
