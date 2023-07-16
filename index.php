@@ -59,6 +59,13 @@ try{
                     throw new Exception('aucun identifiant envoyé');
             }
             break;
+        case "administration":
+            if (null !== Session::get('user_id') && Session::get('role') == 'admin') {
+                include 'app/views/admin/dashboard.php';
+            } else {
+                throw new Exception('Seul l\'administrateur a accès à cette page');
+            }
+            break;
         default:
             include 'app/views/404.php';
         }
