@@ -1,19 +1,21 @@
 {
-    "name": "mariondoubeck/o-cphp_p5_first_blog",
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Config\\": "config/",
-            "Vendor\\": "vendor/"
-        }
-    },
+    "name": "33766/blogopc",
     "authors": [
         {
-            "name": "Marion Doubeck"
+            "name": "benytto888Z",
+            "email": "benamos111@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "vendor\\": "vendor/"
+        }
+    },
     "require": {
+        "symfony/var-dumper": "^6.2",
         "phpmailer/phpmailer": "^6.8",
         "vlucas/phpdotenv": "^5.5"
+        
     }
 }

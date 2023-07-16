@@ -1,9 +1,3 @@
-<?php 
-use App\controllers\UserController;
-
-$userController = new UserController();
-?>
-
 </main>
 </div><!-- .container -->
 
@@ -13,7 +7,7 @@ $userController = new UserController();
         <?php if (isset($_SESSION['user_username'])): ?>
             <p>Vous êtes connecté en tant que : <?= htmlspecialchars($_SESSION['user_username']) ?></p>
             <?php if ($_SESSION['user_isAdmin']): ?>
-                <a href="/index.php?controller=Dashboard&action=index" class="list-inline-item" >Administration</a>
+                <a href="/app/views/admin/acompleter" class="list-inline-item" >Administration</a>
             <?php endif; ?>
             <a href="/app/views/logout.php" class="list-inline-item">Déconnexion</a>
         <?php else: ?>
