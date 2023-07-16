@@ -84,113 +84,6 @@ class Comment
 
 
     /**
-     * Method to retrieve unvalidated comments
-     *
-     * @return array
-     */
-
-
-    public function getUnvalidatedComments()
-    {
-        $statement= $this->connection->getConnection()->prepare(
-            "SELECT comment, comment_id, post_id, DATE_FORMAT(commentDate, '%d-%m-%Y à %Hh%imin%ss') AS 
-            french_creation_date FROM comments WHERE validation='n' "
-        );
-        $statement->execute();
-
-        $comments = [];
-        while (($row = $statement->fetch())) {
-            $comment = new Comment();
-            $comment->getFrenchCreationDate = $row['french_creation_date'];
-            $comment->getComment = $row['comment'];
-            $comment->getIdentifier = $row['comment_id'];
-            $comment->getPost = $row['post_id'];
-
-                $comments[] = $comment;
-        }
-        
-            return $comments;
-    }
-
-
-    /**
-     * Method to validate a comment
-     *
-     * @param int $identifier
-     *
-     * @return boolean
-     */
-
-
-    public function validatedComment(int $identifier)
-    {
-        $statement = $this->connection->getConnection()->prepare(
-            "UPDATE comments SET  validation='y' WHERE comment_id=?"
-        );
-        $affectedLines = $statement->execute([$identifier]);
-
-        return($affectedLines > 0);
-    }
-
-
-    /**
-     * Method to delete a comment
-     *
-     * @param int $identifier
-     *
-     * @return boolean
-     */
-
-
-    public function deleteComment(int $identifier)
-    {
-        $statement = $this->connection->getConnection()->prepare(
-            'DELETE FROM comments WHERE comment_id=?'
-        );
-        $affectedLines = $statement->execute([$identifier]);
-        return($affectedLines > 0);
-    }
-
-
-    /**
-     * Method to retrieve a single comment based on its id
-     *
-     * @param int $identifier
-     *
-     * @return Comment|null
-     */
-
-
-    public function getOneComment(int $identifier): ?Comment
-    {
-        $query = "SELECT c.*, u.username FROM comments c INNER JOIN users u ON c.author_id = u.id WHERE c.id = ?";
-        /* $statement = $this->connection->getConnection()->prepare(
-            "SELECT comments.comment_id, comments.comment, 
-            DATE_FORMAT(comments.commentDate, '%d-%m-%Y à %Hh%imin%ss') AS 
-            french_creation_date, comments.post_id, users.username FROM comments 
-            INNER JOIN users ON comments.user_id = users.user_id 
-            WHERE comments.comment_id = ?"
-        ); */
-        $statement = $this->connection->getConnection()->prepare($query);
-        $statement->execute([$identifier]);
-
-        $row = $statement->fetch();
-        if ($row === false) {
-            return null;
-        }
-
-        $comment = new Comment();
-        $comment->getIdentifier = $row['id'];
-        $comment->getUsername = $row['author_id'];
-        $comment->getFrenchCreationDate = $row['creation_date'];
-        $comment->getComment = $row['content'];
-        $comment->getPost = $row['post_id'];
-
-        return $comment;
-    }
-
-
-    /**
      * Method to add a new comment
      *
      * @param string $post
@@ -204,10 +97,10 @@ class Comment
     public function createComment(string $post, int $user_id, string $comment): bool
     {
         $statement = $this->connection->getConnection()->prepare(
-            'INSERT INTO comments(post_id, user_id, comment, commentDate) 
-            VALUES(?, ?, ?, NOW())'
+            'INSERT INTO comments(post_id, author_id, content, creation_date, status) 
+            VALUES(?, ?, ?, NOW(), ?)'
         );
-        $affectedLines = $statement->execute([$post, $user_id, $comment]);
+        $affectedLines = $statement->execute([$post, $user_id, $comment, 'pending']);
 
         return($affectedLines > 0);
     }

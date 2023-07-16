@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Post;
 use App\Models\Comment;
 use App\db\DatabaseConnection;
+require_once 'app/helpers/csrf.php';
 
 /**
  * SinglePost class
@@ -42,6 +43,7 @@ class SinglePost
         $content = htmlspecialchars($post->getContent());
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
+
         include 'app/views/single-post.php';
     }
 
