@@ -10,6 +10,7 @@ use App\Controllers\Login;
 use App\Controllers\Logout;
 use App\services\Session;
 use App\Controllers\Register;
+use App\Controllers\SinglePost;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -40,6 +41,14 @@ try{
                 );
             }
             (new Register())->execute();
+            break;
+        case "article":
+            if (null !== Get::get('id') && get::get('id') > 0) {
+                $identifier = Get::get('id');
+                (new SinglePost())->execute($identifier);
+            } else {
+                    throw new Exception('aucun identifiant envoyé');
+            }
             break;
         default:
             include 'app/views/404.php';

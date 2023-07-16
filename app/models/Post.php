@@ -68,7 +68,7 @@ class Post
      * @return Post
      */
     
-    public function getPost(int $identifier): Post
+    public function getPost(int $postId): Post
     {
         // Prepare the SQL query
         $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.author_id = u.id WHERE p.id = :postId";
@@ -79,14 +79,16 @@ class Post
         $row = $statement->fetch();
 
         $post = new Post();
-        if ($post->getIdentifier = $row['id']){
-            $post->getTitle = $row['title'];
-            $post->getFrench_creation_date = $row['created_at'];
-            $post->getContent = $row['content'];
-            $post->getIdentifier = $row['id'];
-            $post->getChapo = $row['chapo'];
-            $post->getUsername = $row['username'];
-        return $post;
+        if ($row){
+            $post->setTitle($row['title']);
+            $post->setFrenchCreationDate($row['created_at']);
+            $post->setContent($row['content']);
+            $post->setIdentifier($row['id']);
+            $post->setChapo($row['chapo']);
+            $post->setUsername($row['username']);
+            $post->setImageData($row['image_data']);
+            $post->setImageType($row['image_type']);
+            return $post;
         } else {
             throw new Exception('Cette page n\'existe pas');
         }
