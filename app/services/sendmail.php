@@ -11,49 +11,47 @@ $dotenv = Dotenv::createImmutable('../../');
 $dotenv->load();
 
 
-if (null !==PostGlobal::get('firstname') && null !==PostGlobal::get('surname') && null !==PostGlobal::get('email')
-    && null !==PostGlobal::get('object') && null !==PostGlobal::get('message') && null !==PostGlobal::get('surname')
+if (null !==PostGlobal::get('firstname') && null !==PostGlobal::get('name') && null !==PostGlobal::get('email')
+     && null !==PostGlobal::get('message') && null !==PostGlobal::get('name')
     && !empty(PostGlobal::get('firstname')) && !empty(PostGlobal::get('email'))
-    && !empty(PostGlobal::get('object')) && !empty(PostGlobal::get('message'))
+    && !empty(PostGlobal::get('message'))
 ) {
         $firstname = strip_tags(trim(PostGlobal::get('firstname')));
-        $surname = strip_tags(trim(PostGlobal::get('surname')));
-        $name = $firstname." ".$surname;
-        $object = strip_tags(trim(PostGlobal::get('object')));
+        $name = strip_tags(trim(PostGlobal::get('name')));
         $message = strip_tags(trim(PostGlobal::get('message')));
+        $email = strip_tags(trim(PostGlobal::get('email')));
 
+        // PHPMailer configuration
         $mail = new PHPMailer(true);
-
         $mail->isSMTP();
-        $mail->Host ='smtp.gmail.com';
+        $mail->Host = Env::get('MAIL_HOST');
         $mail->SMTPAuth = true;
-        $mail->Username = Env::get('MAIL_ADD');
-        $mail->Password = Env::get('MAIL_PASS');
-        $mail->SMTP ='tls';
-        $mail->Port = 587;
-        $mail->setFrom(Env::get('MAIL_ADD'), $name);
-        $mail->addReplyTo(PostGlobal::get('email'));
-        $mail->addAddress(Env::get('MAIL_SEND'));
+        $mail->Username = Env::get('MAIL_USERNAME');
+        $mail->Password = Env::get('MAIL_PASSWORD');
+        $mail->SMTPSecure = Env::get('MAIL_SMTPSECURE');
+        $mail->Port = Env::get('MAIL_PORT');
+        $mail->setFrom(PostGlobal::get('email'), $name);
+        $mail->addAddress(Env::get('MAIL_DESTINATION'));
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
-        $mail->Encoding = 'base64';
-        $mail->Subject = $object;
+        $mail->Encoding = 'base64'; 
+        $mail->Subject = 'Un message de mon blog';
         $mail->WordWrap = 20;
-        $mail->Body = $message;
+        $mail->Body = "Name: $name\n\nEmail: $email\n\nMessage: $message";
 
     if (!$mail->send()) {
-        throw new \Exception('Mail non envoyé !');
+        throw new \Exception('Mail non envoyé, veuillez réessayer');
     } else {
         ?>
         <script language="javascript"> 
         alert("Merci de m\'avoir contactée. Je vous répondrai très bientôt.");
-        document.location.href = '../../index.php?';</script>
+        document.location.href = '../../';</script>
         <?php
     }
 } else {
     ?>
     <script language="javascript"> 
-    alert("Vous devez remplir tous les champs !");
-    document.location.href = '../../index.php?';</script>
+    alert("Merci de remplir tous les champs !");
+    document.location.href = '../../';</script>
     <?php
 }
