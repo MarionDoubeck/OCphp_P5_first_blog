@@ -1,5 +1,5 @@
 
-<form method="post">
+<form method="post" action="app/services/sendmail.php">
     <div class="form-floating">
         <label for="name"  class="form-label">Nom</label>
         <input type="text" name="name" id="name" class="form-control" value="" required>
