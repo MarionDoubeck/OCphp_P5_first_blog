@@ -118,9 +118,9 @@ class User
     public function addUser(string $username, string $password, string $email): bool
     {
         $statement = $this->connection->getConnection()->prepare(
-            'INSERT INTO users( username, password, email) VALUES(?, ?, ?)'
+            'INSERT INTO users( username, password, email, role) VALUES(?, ?, ?, ?)'
         );
-        $affectedLines = $statement->execute([$username, $password, $email]);
+        $affectedLines = $statement->execute([$username, $password, $email, 'user']);
 
         return($affectedLines > 0);
     }
