@@ -11,6 +11,7 @@ use App\Controllers\Logout;
 use App\services\Session;
 use App\Controllers\Register;
 use App\Controllers\SinglePost;
+use App\Controllers\AddComment;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -46,6 +47,14 @@ try{
             if (null !== Get::get('id') && get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new SinglePost())->execute($identifier);
+            } else {
+                    throw new Exception('aucun identifiant envoyé');
+            }
+            break;
+        case "addComment":
+            if (null !== Get::get('id') && Get::get('id') > 0) {
+                $identifier = Get::get('id');
+                (new AddComment())->execute($identifier);
             } else {
                     throw new Exception('aucun identifiant envoyé');
             }
