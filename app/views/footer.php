@@ -9,7 +9,7 @@
             <?php if ($_SESSION['role']=="admin"): ?>
                 <a href="index.php?action=administration" class="list-inline-item" >Administration</a>
             <?php endif; ?>
-            <a href="app/views/logout.php" class="list-inline-item">Déconnexion</a>
+            <a href="index.php?action=logout" class="list-inline-item">Déconnexion</a>
         <?php else: ?>
             <a href="index.php?action=register" class="list-inline-item">S'enregistrer</a>
             <a href="index.php?action=login" class="list-inline-item">Se connecter</a>
