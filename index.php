@@ -8,6 +8,8 @@ use App\Controllers\HomePosts;
 use App\Controllers\PostList;
 use App\Controllers\Login;
 use App\Controllers\Logout;
+use App\services\Session;
+use App\Controllers\Register;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -29,6 +31,15 @@ try{
             break;
         case "logout":
             (new Logout())->execute();
+            break;
+        case "register":
+            if (null !==Session::get('user_id')) {
+                throw new Exception(
+                'Vous êtes déjà connecté, 
+                vous ne pouvez pas vous inscrire à nouveau'
+                );
+            }
+            (new Register())->execute();
             break;
         default:
             include 'app/views/404.php';

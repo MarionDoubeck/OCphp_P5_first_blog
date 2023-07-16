@@ -1,26 +1,10 @@
-<?php
-use App\controllers\UserController;
-
-$userController = new UserController();
-
-// Process the registration form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userController->register();
-}
-?>
-
 <?php include 'header.php'; ?>
 
 <div class="container">
 <h2>S'enregistrer</h2>
 
 <?php generateCsrfToken();?>
-<form method="post" action="register.php">
-    <label for="last_name">Nom</label>
-    <input type="text" name="last_name" id="last_name" required>
-
-    <label for="firt_name">Prénom</label>
-    <input type="text" name="first_name" id="first_name" required>
+<form method="post">
 
     <label for="email">Email</label>
     <input type="email" name="email" id="email" required>
