@@ -1,11 +1,4 @@
-<?php
-namespace App\views;
-use App\controllers\PostController;
-
-$postController = new PostController();
-$lastThreePosts = $postController->getRecentPosts();
-
-include 'header.php'; ?>
+<?php include 'header.php'; ?>
 
 	<div class="container">
 		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat eligendi quaerat cumque molestiae enim est voluptatibus inventore ullam? Ullam optio aut autem alias tempora laboriosam magnam voluptatem iste, excepturi commodi praesentium quae ducimus, quis placeat nam culpa molestias officiis dolorum quasi omnis nostrum eos soluta cum? Quibusdam eveniet quos animi, pariatur aut cumque commodi praesentium assumenda minima tenetur quidem optio!</p>
@@ -15,9 +8,16 @@ include 'header.php'; ?>
 	<div class="container" id="latestPosts">
 		<h3>Derniers Posts !</h3>
         <?php foreach ($lastThreePosts as $post){
+			$str = htmlspecialchars($post->getTitle());
+			// Supprimez les accents
+			$str = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($str, Normalizer::FORM_D));
+			$created_at = htmlspecialchars($post->getFrenchCreationDate());
+			$chapo = htmlspecialchars($post->getChapo());
+			$imageData = $post->getImageData();
+			$imageType = $post->getImageType();
             require 'post-frame.php';
         }?>
-	</div>
+	</div> 
 
 	<div class="container" id="CV">
 		<h3>Curriculum Vitae</h3>
