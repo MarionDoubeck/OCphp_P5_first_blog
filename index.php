@@ -4,8 +4,9 @@ session_start();
 
 use Dotenv\Dotenv;
 use App\services\Get;
-use App\Controllers\PostList;
 use App\Controllers\HomePosts;
+use App\Controllers\PostList;
+use App\Controllers\Login;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -17,10 +18,13 @@ $dotenv->load();
 // Router
 try{
 
-    if (null !==Get::get('action') && Get::get('action') !== '') {
+    if (Get::get('action') !== null && Get::get('action') !== '') {
         switch (Get::get('action')) {
         case "archive":
             (new PostList())->execute();
+            break;
+        case "login":
+            (new Login())->execute();
             break;
         default:
             include 'app/views/404.php';

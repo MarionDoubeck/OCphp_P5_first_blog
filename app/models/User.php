@@ -1,182 +1,238 @@
 <?php
-namespace App\models;
-use Config\DBConnect;
 
-class User {
-    private $first_name;
-    private $last_name;
-    private $email;
-    private $username;
-    private $password;
-    private $role;
-    private $id;
+namespace App\Models;
 
-    // Getters and setters for the user properties
+use App\db\DatabaseConnection;
 
-    public function getId() {
-        return $this->id;
-    }
+/**
+ * User class
+ */
+class User
+{
+    /**
+     * Role of user
+     *
+     * @var string
+     */
 
-    public function getFirstName() {
-        return $this->first_name;
-    }
+    private string $role;
+    /**
+     * Username of user
+     *
+     * @var string
+     */
 
-    public function setFirstName($first_name) {
-        $this->first_name = htmlspecialchars($first_name, ENT_QUOTES, 'UTF-8');
-    }
+    private string $username;
+    /**
+     * Password of user
+     *
+     * @var string
+     */
 
-    public function getLastName() {
-        return $this->last_name;
-    }
+    private string $password;
+    /**
+     * Id of user
+     *
+     * @var int
+     */
 
-    public function setLastName($last_name) {
-        $this->last_name = htmlspecialchars($last_name, ENT_QUOTES, 'UTF-8');
-    }
+    private int $user_id;
+    /**
+     * email of user
+     *
+     * @var int
+     */
 
-    public function getEmail() {
-        return $this->email;
-    }
+    private string $email;
 
-    public function setEmail($email) {
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $this->email = strtolower($email);
-        } else {
-            echo "<script>alert('Adresse e-mail non valide');</script>";
+    //Connect to database
+    public DatabaseConnection $connection;
+
+    /**
+     * Method to check user username and get this user data
+     *
+     * @param string $username
+     *
+     * @return user|null
+     */
+
+
+    public function checkUserUsername(string $username): ?user
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            'SELECT * FROM users WHERE username=? '
+        );
+
+            $statement->execute([$username]);
+
+        $row = $statement->fetch();
+        if ($row === false) {
+            return null;
         }
+        $user = new User();
+            $user->setUsername($row['username']);
+            $user->setPassword($row['password']);
+            $user->setUser_id($row['id']);
+            $user->setRole($row['role']);
+            $user->setEmail($row['email']);
+        return $user;
     }
 
-    public function getUsername() {
-        return $this->username;
+
+    /**
+     * Method to check user email
+     *
+     * @param string $email
+     *
+     * @return void
+     */
+
+
+    public function checkUserEmail(string $email)
+    {
+        $statement= $this->connection->getConnection()->prepare(
+            'SELECT * FROM users WHERE email=? '
+        );
+
+            $statement->execute([$email]);
+
+        $row = $statement->fetch();
+        if ($row === false) {
+            return null;
+        }
+        return $row;
     }
 
-    public function setUsername($username) {
-        $this->username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+
+    /**
+     * Method to add data of a new user
+     *
+     * @param string $username
+     * @param string $password
+     * @param string $email
+     * 
+     * @return boolean
+     */
+
+
+    public function addUser(string $username, string $password, string $email): bool
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            'INSERT INTO users( username, password, email) VALUES(?, ?, ?)'
+        );
+        $affectedLines = $statement->execute([$username, $password, $email]);
+
+        return($affectedLines > 0);
     }
 
-    public function getPassword() {
-        return $this->password;
-    }
 
-    public function setPassword($password) {
-        $this->password = $password;
-    }
-
-    public function getRole() {
+    /**
+     * Get the value of role
+     * 
+     * @return string
+     */
+    public function getRole()
+    {
         return $this->role;
     }
 
-    public function setRole($role) {
+    /**
+     * Set the value of role
+     *
+     * @return self
+     */
+    public function setRole($role)
+    {
         $this->role = $role;
+
+        return $this;
     }
 
-    // Method to save the user in the database
-    public function save() {
-        $pdo = DBConnect::getInstance();
-
-        // Prepare the SQL query
-        $query = "INSERT INTO users (first_name, last_name, email, username, password, role)
-                  VALUES (:first_name, :last_name, :email, :username, :password, :role)";
-        $statement = $pdo->prepare($query);
-
-        // Bind the parameters
-        $statement->bindParam(':first_name', $this->first_name);
-        $statement->bindParam(':last_name', $this->last_name);
-        $statement->bindParam(':email', $this->email);
-        $statement->bindParam(':username', $this->username);
-        $statement->bindParam(':password', $this->password);
-        $statement->bindParam(':role', $this->role);
-
-        // Execute the query
-        $statement->execute();
+    /**
+     * Get the value of password
+     * 
+     * @return string
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
     }
 
-    // Method to check if the user credentials are valid
-    public function isCredentialsValid($username, $password) {
-        $pdo = DBConnect::getInstance();
+    /**
+     * Set the value of password
+     *
+     * @return self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
 
-        // Prepare the SQL query to check the credentials
-        $query = "SELECT * FROM users WHERE username = :username";
-        $statement = $pdo->prepare($query);
-        $statement->bindParam(':username', $username);
-        $statement->execute();
-
-        // Fetch the user record
-        $user = $statement->fetch(PDO::FETCH_ASSOC);
-
-        // Verify the password
-        if ($user && password_verify(trim($password), trim($user['password']))) {
-            return true; // Credentials are valid
-        } else {
-            return false; // Credentials are invalid
-        }
+        return $this;
     }
 
-    // Method to check if a user is an admin
-    public function isAdmin($username) {
-        $pdo = DBConnect::getInstance();
-
-        // Prepare the SQL query to fetch the user role
-        $query = "SELECT role FROM users WHERE username = :username";
-        $statement = $pdo->prepare($query);
-        $statement->bindParam(':username', $username);
-        $statement->execute();
-
-        // Fetch the user role
-        $userRole = $statement->fetchColumn();
-
-        // Check if the user is an admin based on the role
-        // Modify this condition based on your database structure and logic
-        if ($userRole === 'admin') {
-            return true; // User is an admin
-        }
-
-        return false; // User is not an admin or not found
+    /**
+     * Get the value of user_id
+     * 
+     * @return int
+     */ 
+    public function getUser_id()
+    {
+        return $this->user_id;
     }
 
-    // Method to get the username by ID
-    public static function getUsernameByUserId($id) {
-        $pdo = DBConnect::getInstance();
+    /**
+     * Set the value of user_id
+     *
+     * @return self
+     */ 
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
 
-        // Prepare the SQL query to fetch the username by ID
-        $query = "SELECT username FROM users WHERE id = :id";
-        $statement = $pdo->prepare($query);
-        $statement->bindParam(':id', $id);
-        $statement->execute();
-
-        // Fetch the username
-        $username = $statement->fetchColumn();
-
-        return $username;
+        return $this;
     }
 
-    //get user's id from username
-    public static function getIdFromUsername($username) {
-        $pdo = DBConnect::getInstance();
-    
-        // Prepare the SQL query to fetch the user ID by username
-        $query = "SELECT id FROM users WHERE username = :username";
-        $statement = $pdo->prepare($query);
-        $statement->bindParam(':username', $username);
-        $statement->execute();
-    
-        // Fetch the user ID
-        $userId = $statement->fetchColumn();
-    
-        return $userId;
+    /**
+     * Get the value of email
+     * 
+     * @return string
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
     }
 
-    // Method to get all users from the database
-    public static function getAllUsers() {
-        $pdo = DBConnect::getInstance();
+    /**
+     * Set the value of email
+     *
+     * @return self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $email;
 
-        // Prepare the SQL query to select all users
-        $query = "SELECT * FROM users";
-        $statement = $pdo->prepare($query);
-        $statement->execute();
+        return $this;
+    }
 
-        // Fetch all users records
-        $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    /**
+     * Get the value of username
+     * 
+     * @return string
+     */ 
+    public function getUsername()
+    {
+        return $this->username;
+    }
 
-        return $users;
+    /**
+     * Set the value of username
+     *
+     * @return self
+     */ 
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
     }
 }
