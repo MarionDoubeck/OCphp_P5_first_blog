@@ -7,6 +7,7 @@ use App\services\Get;
 use App\Controllers\HomePosts;
 use App\Controllers\PostList;
 use App\Controllers\Login;
+use App\Controllers\Logout;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -25,6 +26,9 @@ try{
             break;
         case "login":
             (new Login())->execute();
+            break;
+        case "logout":
+            (new Logout())->execute();
             break;
         default:
             include 'app/views/404.php';
