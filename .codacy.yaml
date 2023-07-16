@@ -1,0 +1,6 @@
+tools:
+  codacy:
+    ignore:
+      - app/views/admin/dist
+      - app/views/admin/plugins
+      - vendor
