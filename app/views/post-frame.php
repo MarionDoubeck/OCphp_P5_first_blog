@@ -12,6 +12,6 @@
             <?php endif ;?>
             <p><?= htmlspecialchars($chapo) ?></p>
         </div>
-        <button style="width:fit-content;"><a href="#">Lire plus...</a></button>
+        <button style="width:fit-content;"><a href="index.php?action=article&id=<?= $post->getIdentifier() ?>">Lire plus...</a></button>
     </div>
 </div>

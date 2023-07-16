@@ -2,17 +2,14 @@
 
 <div class="container">
     <!-- Article details -->
-    <h2><?php 
-        $str = htmlspecialchars('TITRE') ;
-        //remove accents
-        $str = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($str, Normalizer::FORM_D));
-        echo $str;
-    ?></h2>
-    <p>Auteur: <?= htmlspecialchars("AUTEUR") ?></p>
-    <p>Dernière mise à jour: <?= htmlspecialchars("DATE") ?></p>
-    <img src="" style="max-width: 600px;" alt="Image de l'article">
-    <p><?= htmlspecialchars("CHAPO") ?></p>
-    <p><?= htmlspecialchars("CONTENU") ?></p>
+    <h2><?= $str ?></h2>
+    <p>Auteur: <?= $author ?></p>
+    <p>Dernière mise à jour: <?= $created_at ?></p>
+    <?php if (!empty($imageData) && !empty($imageType)): ?>
+        <img src="data:<?= $imageType ?>;base64,<?= $imageData ?>" style="max-width: 600px;" alt="Image de l'article">
+    <?php endif ;?>
+    <p><?= $chapo ?></p>
+    <p><?= $content ?></p>
 </div>
 
 <div class="container">
