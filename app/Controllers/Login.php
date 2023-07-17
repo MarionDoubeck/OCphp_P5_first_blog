@@ -30,7 +30,7 @@ class Login
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
                 }else{
                     $username = null;
-                    if (PostGlobal::isset('username') &&  PostGlobal::isset('password')
+                    if (PostGlobal::isParamSet('username') &&  PostGlobal::isParamSet('password')
                         && !empty(trim(PostGlobal::get('username'))) && !empty(PostGlobal::get('password'))
                     ) {
                         $username = htmlspecialchars(trim(PostGlobal::get('username')));

@@ -29,6 +29,7 @@ class Comment
      */
 
     private string $comment;
+
     /**
      * Comment id
      *
@@ -36,6 +37,7 @@ class Comment
      */
 
     private int $identifier;
+
     /**
      * Post id
      *
@@ -43,6 +45,13 @@ class Comment
      */
 
     private int $post;
+    /**
+     * Post title
+     *
+     * @var string
+     */
+
+    private string $postTitle;
 
     //Connect to the data base
     public DatabaseConnection $connection;
@@ -106,7 +115,40 @@ class Comment
     }
 
 
- 
+    /**
+     * Method to retrieve unvalidated comments
+     *
+     * @return array
+     */
+
+
+    public function getCommentsStatus($status)
+    {
+        $statement= $this->connection->getConnection()->prepare(
+            "SELECT c.*, u.username, p.title
+            FROM comments c
+            JOIN users u ON c.author_id = u.id
+            JOIN posts p ON c.post_id = p.id
+            WHERE c.status = :status"
+        );
+        $statement->bindParam(':status', $status);
+        $statement->execute();
+
+        $comments = [];
+        while (($row = $statement->fetch())) {
+            $comment = new Comment();
+            $comment->setFrenchCreationDate($row['creation_date']);
+            $comment->setComment($row['content']);
+            $comment->setIdentifier($row['id']);
+            $comment->setPost($row['post_id']);
+            $comment->setPostTitle($row['title']);
+            $comment->setUserName($row['username']);
+
+            $comments[] = $comment;
+        }
+        
+            return $comments;
+    }
 
 
     /**
@@ -189,6 +231,27 @@ class Comment
 
         return $this;
     }
+
+    /**
+     * Get the value of post title
+     */ 
+    public function getPostTitle()
+    {
+        return $this->postTitle;
+    }
+
+    /**
+     * Set the value of post title
+     *
+     * @return self
+     */ 
+    public function setPostTitle($postTitle)
+    {
+        $this->postTitle = $postTitle;
+
+        return $this;
+    }
+
 
     /**
      * Get the value of username
