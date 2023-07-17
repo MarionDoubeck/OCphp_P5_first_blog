@@ -1,15 +1,15 @@
 <?php 
 use App\services\Session;
 use App\helpers\Helpers;
-include 'header.php'; ?>
+
+$helper = new Helpers;
+$helper->renderView('app/views/header.php',[]);
+?>
 
 <div class="container">
 <h2>S'enregistrer</h2>
 
-<?php 
-$helper = new Helpers;
-$helper->generateCsrfToken();
-?>
+<?php $helper->generateCsrfToken();?>
 <form method="post">
 
     <label for="email">Email</label>
@@ -25,5 +25,5 @@ $helper->generateCsrfToken();
     <button type="submit">S'enregistrer</button>
 </form>
 </div>
-<?php include 'footer.php'; ?>
+<?php $helper->renderView('app/views/footer.php',[]); ?>
 

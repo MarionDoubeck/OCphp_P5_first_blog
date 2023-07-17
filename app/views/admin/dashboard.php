@@ -1,4 +1,9 @@
-<?php include 'dashboard-header-and-menu.php'; ?>
+<?php 
+use App\helpers\Helpers;
+
+$helper = new Helpers;
+$helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
+?>
 
 <!-- Main content -->
 <section class="content">
@@ -43,6 +48,6 @@
         </div>
     </div>
 
-<?php include 'dashboard-scripts.php'; ?>
+    <?php $helper->renderView('app/views/admin/dashboard-scripts.php',[]);?>
 </body>
 </html>

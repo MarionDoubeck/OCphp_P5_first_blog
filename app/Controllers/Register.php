@@ -5,7 +5,8 @@ use App\Models\user;
 use App\services\Session;
 use App\services\PostGlobal;
 use App\db\DatabaseConnection;
-require_once 'app/helpers/csrf.php';
+use App\helpers\Helpers;
+
 
 /**
  * Register class
@@ -24,10 +25,11 @@ class Register
 
 public function execute()
 {
+$helper = new Helpers;
 if (!empty(PostGlobal::getAllPostVars())) {
     try{
         /* Check if the CSRF token is valid */
-        if (!validateCsrfToken(PostGlobal::get('csrf_token'))) {
+        if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
             throw new \Exception("Erreur : Jeton CSRF invalide.");
         }else{
             if (PostGlobal::isParamSet('username') && PostGlobal::isParamSet('password')
@@ -110,7 +112,7 @@ if (!empty(PostGlobal::getAllPostVars())) {
         echo "une erreur s'est produite : ". $e->getMessage();
     }
 }
-include 'app/views/register.php';
+$helper->renderView('app/views/register.php',[]);
 }
 
 

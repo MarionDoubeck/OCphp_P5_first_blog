@@ -1,7 +1,9 @@
 <?php
 use App\services\Session;
 use App\helpers\Helpers;
-include 'dashboard-header-and-menu.php';
+
+$helper = new Helpers;
+$helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
 ?>
 
 
@@ -17,10 +19,7 @@ include 'dashboard-header-and-menu.php';
               <!-- /.card-header -->
               <div class="card-body">
                     <!-- Form containing the editor textarea -->
-                    <?php 
-                    $helper = new Helpers;
-                    $helper->generateCsrfToken();
-                    ?>
+                    <?php $helper->generateCsrfToken();?>
                     <form id="editor-form" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="title">Titre</label>
@@ -80,7 +79,7 @@ include 'dashboard-header-and-menu.php';
       </div>
       <!-- /.container-fluid -->
 
-<?php include 'dashboard-scripts.php'; ?>
+      <?php $helper->renderView('app/views/admin/dashboard-scripts.php',[]);?>
 <!-- Page specific script -->
 <script src="../admin/plugins/add-post/add-post.js"></script>
 

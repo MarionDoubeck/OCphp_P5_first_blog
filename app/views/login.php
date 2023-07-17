@@ -2,15 +2,14 @@
 use App\services\Session;
 use App\helpers\Helpers;
 
-include 'header.php'; ?>
+$helper = new Helpers;
+$helper->renderView('app/views/header.php',[]);
+?>
 
 <div class="container">
 <h2>Login</h2>
 
-<?php 
-$helper = new Helpers;
-$helper->generateCsrfToken();
-?>
+<?php $helper->generateCsrfToken();?>
 
 <form method="post">
     <label for="username">Username</label>
@@ -23,4 +22,4 @@ $helper->generateCsrfToken();
     <button type="submit">Login</button>
 </form>
 </div>
-<?php include 'footer.php'; ?>
+<?php $helper->renderView('app/views/footer.php',[]); ?>

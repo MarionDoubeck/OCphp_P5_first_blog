@@ -19,6 +19,7 @@ use App\Controllers\AdminValidatedComments;
 use App\Controllers\AdminAllUsers;
 use App\Controllers\DeleteComment;
 use App\Controllers\ValidateComment;
+use App\helpers\Helpers;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -26,6 +27,7 @@ require 'vendor/autoload.php';
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+$helper = new Helpers;
 
 // Router
 try{
@@ -68,7 +70,7 @@ try{
             break;
         case "administration":
             if (null !== Session::get('user_id') && Session::get('role') == 'admin') {
-                include 'app/views/admin/dashboard.php';
+                $helper->renderView('app/views/admin/dashboard.php',[]);
             } else {
                 throw new Exception('Seul l\'administrateur a accès à cette page');
             }
@@ -105,7 +107,7 @@ try{
             }
             break;
         default:
-            include 'app/views/404.php';
+        $helper->renderView('app/views/404.php',[]);
         }
     
     

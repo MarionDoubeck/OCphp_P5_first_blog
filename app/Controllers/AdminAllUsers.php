@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\User;
 use App\services\Session;
 use App\db\DatabaseConnection;
+use App\helpers\Helpers;
 
 /**
  * AdminUserlist class
@@ -28,6 +29,7 @@ class AdminAllUsers
         $repository->connection = new DatabaseConnection();
         $users = $repository->getUsers();
 
-        include 'app/views/admin/all-users.php';        
+        $helper = new Helpers;
+        $helper->renderView('app/views/admin/all-users.php',['users'=>$users]);
     }
 }

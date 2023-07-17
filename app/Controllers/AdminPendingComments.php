@@ -3,6 +3,7 @@ namespace App\Controllers;
 use App\Models\Comment;
 use App\services\Session;
 use App\db\DatabaseConnection;
+use App\helpers\Helpers;
 
 class AdminPendingComments {
     /**
@@ -23,6 +24,7 @@ class AdminPendingComments {
         $repository->connection = new DatabaseConnection();
         $comments = $repository->getCommentsStatus('pending');
 
-        include 'app/views/admin/pending-comments.php';   
+        $helper = new Helpers;
+        $helper->renderView('app/views/admin/pending-comments.php',['comments'=>$comments]);
     }
 }
