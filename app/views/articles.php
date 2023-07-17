@@ -6,7 +6,7 @@ $helper->renderView('app/views/header.php',[]);
 
 <div class="container">
     <h2>Liste des articles</h2>
-    <?php foreach ($posts as $post){
+    <?php foreach ($posts as $post) {
         $title = htmlspecialchars($post->getTitle());
         // Supprimez les accents
         $title = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($title, Normalizer::FORM_D));

@@ -11,7 +11,7 @@ $helper->renderView('app/views/header.php',[]);
     <h2><?= htmlspecialchars($title) ?></h2>
     <p>Auteur: <?= htmlspecialchars($author) ?></p>
     <p>Dernière mise à jour: <?= htmlspecialchars($created_at) ?></p>
-    <?php if (!empty($imageData) && !empty($imageType)): ?>
+    <?php if (!empty($imageData) && !empty($imageType)) : ?>
         <img src="data:<?= htmlspecialchars($imageType) ?>;base64,<?= htmlspecialchars($imageData) ?>" style="max-width: 600px;" alt="Image de l'article">
     <?php endif ;?>
     <p><?= htmlspecialchars($chapo) ?></p>
@@ -23,7 +23,7 @@ $helper->renderView('app/views/header.php',[]);
     <h3>Commentaires</h3>
     <ul>
         <?php 
-        foreach ($comments as $comment): 
+        foreach ($comments as $comment) : 
             $commentAuthor=$comment->getUsername();
             $commentContent=$comment->getComment();
             ?>
@@ -34,11 +34,11 @@ $helper->renderView('app/views/header.php',[]);
         <?php endforeach; ?>
     </ul>
 
-    <?php if (session_status() === PHP_SESSION_DISABLED || !Session::isParamSet('csrf_token')): ?>
+    <?php if (session_status() === PHP_SESSION_DISABLED || !Session::isParamSet('csrf_token')) : ?>
         <!-- User not logged in -->
         <p>Veuillez vous connecter pour poster un commentaire.</p>
         <a href="index.php?action=login" class="btn">Se connecter</a>
-    <?php else: ?>
+    <?php else : ?>
         <!-- User logged in -->
         <h5>Ajouter un commentaire</h4>
         <?php $helper->generateCsrfToken();?>

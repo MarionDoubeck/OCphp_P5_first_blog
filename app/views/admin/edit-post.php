@@ -28,7 +28,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
 
                         <!-- Image -->
                         <?php $ilyauneimage=false;?>
-                        <?php if ($ilyauneimage): ?>
+                        <?php if ($ilyauneimage) : ?>
                           <div class="form-group">
                             <label>Image actuelle :</label>
                             <img src="data:<?= htmlspecialchars($post['image_type']) ?>;base64,<?= htmlspecialchars(base64_encode($post['image_data'])) ?>" style="max-width: 200px;" alt="Image de l'article">

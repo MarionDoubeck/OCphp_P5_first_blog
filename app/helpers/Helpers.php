@@ -16,7 +16,7 @@ class Helpers
  */
 function generateCsrfToken()
 {
-    if(!isset($_SESSION)){
+    if (!isset($_SESSION)) {
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -33,7 +33,7 @@ function generateCsrfToken()
  */
 function validateCsrfToken($token)
 {
-    if(!isset($_SESSION)){
+    if (!isset($_SESSION)) {
         if (!isset($_SESSION)) {
             session_start();
         }

@@ -18,7 +18,7 @@ class DatabaseConnection
      */
 
 
-    public function getConnection(): \PDO
+    public function getConnection() : \PDO
     {
         if ($this->database === null) {
             $this->database = new \PDO(

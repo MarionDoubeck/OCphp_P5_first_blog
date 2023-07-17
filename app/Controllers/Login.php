@@ -25,12 +25,12 @@ class Login
     {
         $helper = new Helpers;
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            try{
+            try {
                 /* Check if the CSRF token is valid */
 
                 if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
-                }else{
+                } else{
                     $username = null;
                     if (PostGlobal::isParamSet('username') &&  PostGlobal::isParamSet('password')
                         && !empty(trim(PostGlobal::get('username'))) && !empty(PostGlobal::get('password'))
@@ -77,7 +77,7 @@ class Login
                         <?php
                     }
                 }
-            }catch (Exception $e){
+            } catch (Exception $e) {
                 echo "une erreur s'est produite : ". $e->getMessage();
             }
         }

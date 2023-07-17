@@ -37,7 +37,7 @@ class Session
      * @param  string $param
      * @return boolean
      */
-    public static function isParamSet($param): bool
+    public static function isParamSet($param) : bool
     {
         return isset($_SESSION[$param]);
     }

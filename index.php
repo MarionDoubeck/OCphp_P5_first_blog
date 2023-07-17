@@ -30,7 +30,7 @@ $dotenv->load();
 $helper = new Helpers;
 
 // Router
-try{
+try {
 
     if (Get::get('action') !== null && Get::get('action') !== '') {
         switch (Get::get('action')) {
@@ -44,7 +44,7 @@ try{
             (new Logout())->execute();
             break;
         case "register":
-            if (null !==Session::get('user_id')) {
+            if (null !== Session::get('user_id')) {
                 throw new Exception(
                 'Vous êtes déjà connecté, 
                 vous ne pouvez pas vous inscrire à nouveau'
@@ -69,7 +69,7 @@ try{
             }
             break;
         case "administration":
-            if (null !== Session::get('user_id') && Session::get('role') == 'admin') {
+            if (null !== Session::get('user_id') && Session::get('role') === 'admin') {
                 $helper->renderView('app/views/admin/dashboard.php',[]);
             } else {
                 throw new Exception('Seul l\'administrateur a accès à cette page');
@@ -107,19 +107,12 @@ try{
             }
             break;
         default:
-        $helper->renderView('app/views/404.php',[]);
-        }
-    
-    
+            $helper->renderView('app/views/404.php',[]);
+        }//end try
     } else {
         (new HomePosts())->execute();
     }
-
-}catch (Exception $e) {
+} catch (Exception $e) {
     $errorMessage = $e->getMessage();
-
     echo htmlspecialchars($errorMessage);
 }
-
-
-
