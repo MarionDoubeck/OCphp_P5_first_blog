@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use App\db\DatabaseConnection;
+use App\helpers\Helpers;
 
 /**
  * PostList class
@@ -21,7 +22,8 @@ class PostList
         $repository = new Post();
         $repository->connection = new DatabaseConnection();
         $posts = $repository->getPosts();
-        include 'app/views/articles.php';
+        $helper = new Helpers;
+        $helper->renderView('app/views/articles.php',['posts'=>$posts]);
     }
 
 

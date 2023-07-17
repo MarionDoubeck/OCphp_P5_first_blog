@@ -5,7 +5,7 @@ use App\Models\User;
 use App\services\Session;
 use App\services\PostGlobal;
 use App\db\DatabaseConnection;
-require_once 'app/helpers/csrf.php';
+use App\helpers\Helpers;
 
 /**
  * Class login
@@ -23,10 +23,12 @@ class Login
 
     public function execute()
     {
+        $helper = new Helpers;
         if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
             try{
                 /* Check if the CSRF token is valid */
-                if (!validateCsrfToken(PostGlobal::get('csrf_token'))) {
+
+                if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
                 }else{
                     $username = null;
@@ -79,7 +81,7 @@ class Login
                 echo "une erreur s'est produite : ". $e->getMessage();
             }
         }
-        include 'app/views/login.php';
+        $helper->renderView('app/views/login.php',[]);
     }
 
 

@@ -1,4 +1,8 @@
-<?php include 'header.php'; ?>
+<?php
+use App\helpers\Helpers;
+$helper = new Helpers;
+$helper->renderView('app/views/header.php',[]);
+?>
 
 	<div class="container">
 		<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat eligendi quaerat cumque molestiae enim est voluptatibus inventore ullam? Ullam optio aut autem alias tempora laboriosam magnam voluptatem iste, excepturi commodi praesentium quae ducimus, quis placeat nam culpa molestias officiis dolorum quasi omnis nostrum eos soluta cum? Quibusdam eveniet quos animi, pariatur aut cumque commodi praesentium assumenda minima tenetur quidem optio!</p>
@@ -27,7 +31,7 @@
 	<div class="container" id="contact">
 		<h3>Formulaire de contact</h3>
 		<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum corporis magnam et sequi temporibus, ratione necessitatibus, molestiae commodi ipsam labore vero, itaque optio! Perferendis maiores inventore fuga iste eos quos!</p>
-		<?php include 'contact.php'; ?>
+		<?php $helper->renderView('app/views/contact.php',[]); ?>
 	</div>
 
-<?php include 'footer.php'; ?>
+<?php $helper->renderView('app/views/footer.php',[]); ?>

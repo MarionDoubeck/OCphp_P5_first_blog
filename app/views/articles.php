@@ -1,10 +1,8 @@
 <?php
-/* use App\controllers\PostController;
-
-$postController = new PostController();
-$posts = $postController->getAllPosts(); */
-
-include 'header.php'; ?>
+use App\helpers\Helpers;
+$helper = new Helpers;
+$helper->renderView('app/views/header.php',[]);
+?>
 
 <div class="container">
     <h2>Liste des articles</h2>
@@ -20,4 +18,4 @@ include 'header.php'; ?>
     }?>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php $helper->renderView('app/views/footer.php',[]); ?>

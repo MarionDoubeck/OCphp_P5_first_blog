@@ -1,8 +1,10 @@
 <?php
 use App\services\Session;
 use App\models\Comment;
-require_once __DIR__ .'../../../helpers/csrf.php';
-include 'dashboard-header-and-menu.php';
+use App\helpers\Helpers;
+
+$helper = new Helpers;
+$helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
 ?>
 
 
@@ -45,12 +47,12 @@ include 'dashboard-header-and-menu.php';
                         <td><?= htmlspecialchars($commentContent)?></td>
                         <td>
                             <div style="width:100%; display:flex; justify-content: space-around;">
-                              <?php generateCsrfToken();?>
+                            <?php $helper->generateCsrfToken();?>
                               <form method="post" action="index.php?action=validateComment&id=<?= htmlspecialchars($commentId)?>" style="display: inline;">
                                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                                 <button type="submit" class="btn btn-success">Publier</button>
                               </form>
-                              <?php generateCsrfToken();?>
+                              <?php $helper->generateCsrfToken();?>
                               <form  method="post" action="index.php?action=deleteComment&id=<?= htmlspecialchars($commentId)?>" style="display: inline;">
                                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                                 <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
@@ -72,7 +74,7 @@ include 'dashboard-header-and-menu.php';
       </div>
       <!-- /.container-fluid -->
 
-<?php include 'dashboard-scripts.php'; ?>
+      <?php $helper->renderView('app/views/admin/dashboard-scripts.php',[]);?>
 
 <!-- Page specific script -->
 <script>

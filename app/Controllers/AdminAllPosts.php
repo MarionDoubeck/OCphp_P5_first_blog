@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Models\Post;
 use App\services\Session;
 use App\db\DatabaseConnection;
+use App\helpers\Helpers;
 
 /**
  * AdminPostlist class
@@ -29,6 +30,8 @@ class AdminAllPosts
         $posts = $repository->getPosts();
         $newPost = new Post();
         $newPost->connection = new DatabaseConnection();
-        include 'app/views/admin/all-posts.php';        
+
+        $helper = new Helpers;
+        $helper->renderView('app/views/admin/all-posts.php', ['posts'=> $posts, 'newPost' => $newPost]);  
     }
 }

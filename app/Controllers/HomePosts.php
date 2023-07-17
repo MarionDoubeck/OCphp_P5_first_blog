@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Post;
 use App\db\DatabaseConnection;
+use App\helpers\Helpers;
 
 /**
  * HomePosts class
@@ -21,7 +22,8 @@ class HomePosts
         $repository = new Post();
         $repository->connection = new DatabaseConnection();
         $lastThreePosts = $repository->getRecentPosts();
-        include 'app/views/home.php';
+        $helper = new Helpers;
+        $helper->renderView('app/views/home.php',['lastThreePosts'=>$lastThreePosts]);
     }
 
 

@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\Post;
 use App\Models\Comment;
 use App\db\DatabaseConnection;
-require_once 'app/helpers/csrf.php';
+use App\helpers\Helpers;
 
 /**
  * SinglePost class
@@ -34,9 +34,9 @@ class SinglePost
         $comments = $commentRepository->getComments($identifier);
 
         //Prepare post's data for display
-        $str = htmlspecialchars($post->getTitle());
+        $title = htmlspecialchars($post->getTitle());
         //No accents in title with this font
-        $str = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($str, \Normalizer::FORM_D));
+        $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));
         $author = htmlspecialchars($post->getUsername());
         $created_at = htmlspecialchars($post->getFrenchCreationDate());
         $chapo = htmlspecialchars($post->getChapo());
@@ -44,7 +44,18 @@ class SinglePost
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
 
-        include 'app/views/single-post.php';
+        $helper = new Helpers;
+        $helper->renderView('app/views/single-post.php',array(
+            'comments'=>$comments,
+            'post'=>$post,
+            'title'=>$title,
+            'author'=>$author,
+            'created_at'=>$created_at,
+            'chapo'=>$chapo,
+            'content'=>$content,
+            'image data'=>$imageData,
+            'image type'=>$imageType
+        ));
     }
 
 

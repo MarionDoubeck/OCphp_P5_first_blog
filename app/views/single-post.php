@@ -1,10 +1,14 @@
 <?php 
 use App\services\Session;
-include 'header.php'; ?>
+use App\helpers\Helpers;
+
+$helper = new Helpers;
+$helper->renderView('app/views/header.php',[]);
+?>
 
 <div class="container">
     <!-- Article details -->
-    <h2><?= htmlspecialchars($str) ?></h2>
+    <h2><?= htmlspecialchars($title) ?></h2>
     <p>Auteur: <?= htmlspecialchars($author) ?></p>
     <p>Dernière mise à jour: <?= htmlspecialchars($created_at) ?></p>
     <?php if (!empty($imageData) && !empty($imageType)): ?>
@@ -37,7 +41,7 @@ include 'header.php'; ?>
     <?php else: ?>
         <!-- User logged in -->
         <h5>Ajouter un commentaire</h4>
-        <?php generateCsrfToken();?>
+        <?php $helper->generateCsrfToken();?>
         <form method="post" action="index.php?action=addComment&id=<?= htmlspecialchars($post->getIdentifier())?>" class="d-flex row gap-3" style="max-width:400px;">
             <label>Commentaire</label>
             <textarea name="commentContent" rows="6"></textarea>
@@ -47,4 +51,4 @@ include 'header.php'; ?>
     <?php endif; ?>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php $helper->renderView('app/views/footer.php',[]); ?>

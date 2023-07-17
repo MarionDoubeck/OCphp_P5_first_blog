@@ -1,5 +1,8 @@
 <?php
-include 'dashboard-header-and-menu.php';
+use App\helpers\Helpers;
+
+$helper = new Helpers;
+$helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
 ?>
     <!-- Main content -->
     <section class="content">
@@ -47,7 +50,7 @@ include 'dashboard-header-and-menu.php';
       </div>
       <!-- /.container-fluid -->
       
-<?php include 'dashboard-scripts.php'; ?>
+      <?php $helper->renderView('app/views/admin/dashboard-scripts.php',[]);?>
 
 <!-- Page specific script -->
 <script>

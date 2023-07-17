@@ -5,7 +5,7 @@ use App\Models\Comment;
 use App\services\Session;
 use App\db\DatabaseConnection;
 use App\services\PostGlobal;
-require_once 'app/helpers/csrf.php';
+use App\helpers\Helpers;
 
 /**
  * AddComment class
@@ -24,11 +24,13 @@ class AddComment
     {
         $user_id = Session::get('user_id');
         $commentContent = null;
+
+        $helper = new Helpers;
         // We do the checks.
         if (!empty(PostGlobal::get('commentContent'))) {
             try{
                 /* Check if the CSRF token is valid */
-                if (!validateCsrfToken(PostGlobal::get('csrf_token'))) {
+                if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
                 }else{
                     $commentContent = strip_tags(PostGlobal::get('commentContent'));

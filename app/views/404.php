@@ -1,6 +1,10 @@
-<?php include 'header.php'; ?>
+<?php
+use App\helpers\Helpers;
+$helper = new Helpers;
+$helper->renderView('app/views/header.php',[]);
+?>
 
 <div class="container">
-<h2>Cette page n'existe pas</h2>
+<h2>Erreur 404 : Cette page n'existe pas</h2>
 </div>
-<?php include 'footer.php'; ?>
+<?php $helper->renderView('app/views/footer.php',[]); ?>

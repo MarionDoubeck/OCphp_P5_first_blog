@@ -3,6 +3,7 @@ namespace App\Controllers;
 use App\Models\Comment;
 use App\services\Session;
 use App\db\DatabaseConnection;
+use App\helpers\Helpers;
 
 class AdminValidatedComments {
     /**
@@ -23,6 +24,7 @@ class AdminValidatedComments {
         $repository->connection = new DatabaseConnection();
         $comments = $repository->getCommentsStatus('approved');
 
-        include 'app/views/admin/validated-comments.php';   
+        $helper = new Helpers;
+        $helper->renderView('app/views/admin/validated-comments.php',['comments'=>$comments]);
     }
 }
