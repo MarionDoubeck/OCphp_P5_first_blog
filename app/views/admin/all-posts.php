@@ -51,7 +51,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                           <a href=# class="btn btn-success" target="_blank">Voir</a>
                           <a href=# class="btn btn-primary" >Modifier</a>
                           <?php $helper->generateCsrfToken();?>
-                          <form  method="post" style="display: inline;">
+                          <form  method="post" action="index.php?action=deletePost&id=<?= htmlspecialchars($id)?>" style="display: inline;">
                             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                             <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
                           </form>

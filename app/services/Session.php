@@ -63,7 +63,7 @@ class Session
     }
 
     /**
-     * Unset all the datat and destroy session
+     * Unset all the data and destroy session
      *
      * @return void
      */

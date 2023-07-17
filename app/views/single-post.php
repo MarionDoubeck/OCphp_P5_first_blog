@@ -34,7 +34,7 @@ $helper->renderView('app/views/header.php',[]);
         <?php endforeach; ?>
     </ul>
 
-    <?php if (session_status() === PHP_SESSION_DISABLED || Session::isParamSet('csrf_token') === FALSE) : ?>
+    <?php if (session_status() === PHP_SESSION_DISABLED || Session::isParamSet('username') === FALSE) : ?>
         <!-- User not logged in -->
         <p>Veuillez vous connecter pour poster un commentaire.</p>
         <a href="index.php?action=login" class="btn">Se connecter</a>
