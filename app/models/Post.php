@@ -185,6 +185,34 @@ class Post
     }
 
     /**
+     * Method to add data of a new post
+     *
+     * @param string $title
+     * @param string $content
+     * @param string $chapo
+     * @param int    $user_id
+     * @param $image_data
+     * @param $image_type
+     *
+     * @return boolean
+     */
+    public function addPost(string $title, string $content, string $chapo, int $user_id, $image_data, $image_type)
+    {  
+        $query = 'INSERT INTO posts (title, content, chapo, author_id, created_at, updated_at, image_data, image_type, comment_count) 
+        VALUES (:title, :content, :chapo, :authorId, NOW(), NOW(), :imageData, :imageType, 0)';
+        $statement = $this->connection->getConnection()->prepare($query);
+        $statement->bindParam(':title', $title);
+        $statement->bindParam(':content', $content);
+        $statement->bindParam(':chapo', $chapo);
+        $statement->bindParam(':authorId', $user_id);
+        $statement->bindParam(':imageData', $image_data);
+        $statement->bindParam(':imageType', $image_type);
+        $affectedLines = $statement->execute();
+
+        return($affectedLines > 0);    
+    }
+
+    /**
      * Method to delete data of a post
      *
      * @param int $identifier
