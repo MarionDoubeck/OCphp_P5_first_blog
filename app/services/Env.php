@@ -7,7 +7,6 @@ namespace App\services;
  */
 class Env
 {
-
     /**
      * Put the $_ENV values
      *
@@ -30,6 +29,4 @@ class Env
     {
         return (isset($_ENV[$key]) ? $_ENV[$key] : null);
     }
-
-   
 }

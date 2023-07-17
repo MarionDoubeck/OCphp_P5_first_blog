@@ -7,7 +7,6 @@ namespace App\services;
  */
 class Session
 {
-
     /**
      * Put the session values
      *

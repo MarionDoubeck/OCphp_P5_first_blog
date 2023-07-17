@@ -7,7 +7,6 @@ namespace App\services;
  */
 class Get
 {
-
     /**
      * Put the $_GET values
      *
@@ -30,6 +29,4 @@ class Get
     {
         return (isset($_GET[$key]) ? $_GET[$key] : null);
     }
-
-   
 }

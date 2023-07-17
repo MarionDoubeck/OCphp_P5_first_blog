@@ -13,21 +13,20 @@ class Comment
      *
      * @var string
      */
-
     private string $username;
+
     /**
      * Comment date modification
      *
      * @var string
      */
-
     private string $frenchCreationDate;
+
     /**
      * Detail of the comment
      *
      * @var string
      */
-
     private string $comment;
 
     /**
@@ -35,7 +34,6 @@ class Comment
      *
      * @var int
      */
-
     private int $identifier;
 
     /**
@@ -43,14 +41,13 @@ class Comment
      *
      * @var int
      */
-
     private int $post;
+
     /**
      * Post title
      *
      * @var string
      */
-
     private string $postTitle;
 
     // Connect to the data base.
@@ -63,8 +60,6 @@ class Comment
      *
      * @return array
      */
-
-
     public function getComments(string $post) : array
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -101,8 +96,6 @@ class Comment
      *
      * @return boolean
      */
-
-
     public function createComment(string $post, int $user_id, string $comment) : bool
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -121,8 +114,6 @@ class Comment
      *
      * @return boolean
      */
-
-
     public function deleteComment(int $identifier)
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -139,10 +130,8 @@ class Comment
      *
      * @return boolean
      */
-
-
-     public function validateComment(int $identifier)
-     {
+    public function validateComment(int $identifier)
+    {
         $statement = $this->connection->getConnection()->prepare(
             "UPDATE comments SET status = 'approved' WHERE id = :identifier"
         );
@@ -157,8 +146,6 @@ class Comment
      *
      * @return array
      */
-
-
     public function getCommentsStatus($status)
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -188,7 +175,6 @@ class Comment
             return $comments;
     }
 
-
     /**
      * Get the value of frenchCreationDate
      */
@@ -196,7 +182,6 @@ class Comment
     {
         return $this->frenchCreationDate;
     }
-
 
     /**
      * Set the value of frenchCreationDate

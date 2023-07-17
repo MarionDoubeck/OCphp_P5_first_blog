@@ -14,35 +14,34 @@ class User
      *
      * @var string
      */
-
     private string $role;
+
     /**
      * Username of user
      *
      * @var string
      */
-
     private string $username;
+
     /**
      * Password of user
      *
      * @var string
      */
-
     private string $password;
+
     /**
      * Id of user
      *
      * @var int
      */
-
     private int $user_id;
+
     /**
      * email of user
      *
      * @var int
      */
-
     private string $email;
 
     private int $commentCount;
@@ -86,8 +85,6 @@ class User
      *
      * @return user|null
      */
-
-
     public function checkUserUsername(string $username)
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -117,8 +114,6 @@ class User
      *
      * @return void
      */
-
-
     public function checkUserEmail(string $email)
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -144,8 +139,6 @@ class User
      * 
      * @return boolean
      */
-
-
     public function addUser(string $username, string $password, string $email) : bool
     {
         $statement = $this->connection->getConnection()->prepare(

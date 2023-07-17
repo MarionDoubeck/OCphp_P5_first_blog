@@ -8,7 +8,6 @@ namespace App\services;
  */
 class PostGlobal
 {
-
     /**
      * Put the $_POST values
      *
@@ -52,5 +51,4 @@ class PostGlobal
     {
         return $_POST;
     }
-
 }

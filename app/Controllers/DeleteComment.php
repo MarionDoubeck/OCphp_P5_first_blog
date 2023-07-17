@@ -18,8 +18,6 @@ class DeleteComment
      *
      * @return void
      */
-
-
     public function execute(int $identifier)
     {
         $role = Session::get('role');

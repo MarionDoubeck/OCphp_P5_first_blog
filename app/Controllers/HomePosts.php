@@ -16,7 +16,6 @@ class HomePosts
      *
      * @return void
      */
-
     public function execute()
     {
         $repository = new Post();
@@ -25,6 +24,4 @@ class HomePosts
         $helper = new Helpers;
         $helper->renderView('app/views/home.php',['lastThreePosts' =>$lastThreePosts]);
     }
-
-
 }

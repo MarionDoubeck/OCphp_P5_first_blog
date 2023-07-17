@@ -112,5 +112,4 @@ class Register
             throw new \Exception('Le mot de passe doit contenir au moins 1 minuscule!');
         }
     }
-
 }

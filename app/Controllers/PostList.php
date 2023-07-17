@@ -16,7 +16,6 @@ class PostList
      *
      * @return void
      */
-
     public function execute()
     {
         $repository = new Post();
@@ -25,6 +24,4 @@ class PostList
         $helper = new Helpers;
         $helper->renderView('app/views/articles.php',['posts' =>$posts]);
     }
-
-
 }

@@ -14,8 +14,6 @@ class Logout
      *
      * @return void
      */
-
-
     public function execute()
     {
         $session = new Session;
@@ -26,6 +24,4 @@ class Logout
         </script>
         <?php
     }
-
-
 }
