@@ -48,8 +48,8 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                     <td><?= htmlspecialchars($nbOfComments) ?></td>
                     <td>
                         <div style="width:100%; display:flex; justify-content: space-around;">
-                          <a href=# class="btn btn-success" target="_blank">Voir</a>
-                          <a href=# class="btn btn-primary" >Modifier</a>
+                          <a href="index.php?action=article&id=<?= htmlspecialchars($post->getIdentifier()) ?>" class="btn btn-success" target="_blank">Voir</a>
+                          <a href="index.php?action=editPost&id=<?= htmlspecialchars($id)?>" class="btn btn-primary" >Modifier</a>
                           <?php $helper->generateCsrfToken();?>
                           <form  method="post" action="index.php?action=deletePost&id=<?= htmlspecialchars($id)?>" style="display: inline;">
                             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">

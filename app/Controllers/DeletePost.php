@@ -47,7 +47,7 @@ class DeletePost
                     ?>
                     <script language="javascript"> 
                     alert("article supprimé");
-                    document.location.href = 'index.php?action=adminAllPosts';
+                    document.location.href = '/index.php?action=adminAllPosts';
                     </script>
                     <?php
                 }

@@ -19,6 +19,7 @@ use App\Controllers\AdminAllUsers;
 use App\Controllers\DeleteComment;
 use App\Controllers\ValidateComment;
 use App\Controllers\DeletePost;
+use App\Controllers\EditPost;
 use App\helpers\Helpers;
 
 // Autoload
@@ -112,6 +113,18 @@ try {
                 (new DeletePost())->execute($identifier);
             } else {
                 throw new Exception('aucun identifiant envoyé');
+            }
+            break;
+        case "editPost":
+            if (null !== Get::get('id') && Get::get('id') > 0) {
+                $identifier = Get::get('id');
+                $input = null;
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $input = $_POST;
+                }
+                (new EditPost())->execute($identifier, $input);
+            } else {
+                    throw new Exception('aucun identifiant envoyé');
             }
             break;
         default:

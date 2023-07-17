@@ -52,7 +52,7 @@ class AdminAddPost {
                     ?>
                     <script language="javascript"> 
                         alert("les données du formulaire sont invalides");
-                        document.location.href = 'index.php?action=adminAddPost';
+                        document.location.href = '/index.php?action=adminAddPost';
                     </script>
                     <?php
                 }
@@ -67,7 +67,7 @@ class AdminAddPost {
                     ?>
                     <script language="javascript"> 
                     alert("article ajouté");
-                    document.location.href = 'index.php?action=adminAllPosts';
+                    document.location.href = '/index.php?action=adminAllPosts';
                     </script>
                     <?php
                 }

@@ -191,12 +191,12 @@ class Post
      * @param string $content
      * @param string $chapo
      * @param int    $user_id
-     * @param $image_data
-     * @param $image_type
+     * @param string|null $image_data
+     * @param string|null $image_type
      *
      * @return boolean
      */
-    public function addPost(string $title, string $content, string $chapo, int $user_id, $image_data, $image_type)
+    public function addPost(string $title, string $content, string $chapo, int $user_id, ?string $image_data, ?string $image_type)
     {  
         $query = 'INSERT INTO posts (title, content, chapo, author_id, created_at, updated_at, image_data, image_type, comment_count) 
         VALUES (:title, :content, :chapo, :authorId, NOW(), NOW(), :imageData, :imageType, 0)';
@@ -211,6 +211,34 @@ class Post
 
         return($affectedLines > 0);    
     }
+
+        /**
+     * Method to edit data of a new post
+     *
+     * @param int $postId
+     * @param string $title
+     * @param string $content
+     * @param string $chapo
+     * @param string|null $image_data
+     * @param string|null $image_type
+     *
+     * @return boolean
+     */
+    public function editPost(int $postId, string $content, string $title, string $chapo, ?string $image_data, ?string $image_type)
+    {  
+        $query = 'UPDATE posts SET title = :title, content = :content, chapo = :chapo, updated_at = NOW(), image_data = :imageData, image_type = :imageType WHERE id = :postId';
+        $statement = $this->connection->getConnection()->prepare($query);
+        $statement->bindParam(':title', $title);
+        $statement->bindParam(':content', $content);
+        $statement->bindParam(':chapo', $chapo);
+        $statement->bindParam(':imageData', $image_data);
+        $statement->bindParam(':imageType', $image_type);
+        $statement->bindParam(':postId', $postId);
+        $affectedLines = $statement->execute();
+    
+        return ($affectedLines > 0);    
+    }
+    
 
     /**
      * Method to delete data of a post
