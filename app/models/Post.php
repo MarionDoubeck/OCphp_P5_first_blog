@@ -185,61 +185,6 @@ class Post
     }
 
     /**
-     * Method to add data of a new post
-     *
-     * @param string $title
-     * @param string $content
-     * @param string $chapo
-     * @param int    $user_id
-     *
-     * @return boolean
-     */
-    public function addPost(string $title, string $content, string $chapo,
-        int $user_id
-    ) {
-       
-            $statement = $this->connection->getConnection()->prepare(
-                'INSERT INTO posts( title, content, chapo, author_id, created_at) 
-                VALUES(?, ?, ?, ?, NOW())'
-            );
-            $affectedLines = $statement->execute(
-                [$title, $content, $chapo,
-                $user_id]
-            );
-    
-            return($affectedLines > 0);
-        
-    }
-
-    /**
-     * Method to update data of a post
-     *
-     * @param int    $identifier
-     * @param string $content
-     * @param string $title
-     * @param string $chapo
-     * 
-     * @return void
-     */
-    public function updatePost(int $identifier, string $content, string $title,
-        string $chapo
-    ) {
-        $statement = $this->connection->getConnection()->prepare(
-            'UPDATE posts SET  content=?, title=?, chapo=?, created_at=NOW() 
-            WHERE id=?'
-        );
-       
-        $affectedLines = $statement->execute(
-            [$content, $title, $chapo,
-            $identifier]
-        );
-       
-        return($affectedLines > 0);
-        
-    }
-
-
-    /**
      * Method to delete data of a post
      *
      * @param int $identifier

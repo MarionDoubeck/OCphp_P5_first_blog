@@ -124,6 +124,22 @@ class Comment
     }
 
     /**
+     * Method to delete all  comments of a post
+     *
+     * @param int $identifier
+     *
+     * @return boolean
+     */
+    public function deleteAllComments(int $postId)
+    {
+        $query = 'DELETE FROM comments WHERE post_id= :postId';
+        $statement = $this->connection->getConnection()->prepare($query);
+        $statement->bindParam(':postId', $postId);
+        $affectedLines = $statement->execute();
+        return($affectedLines > 0);
+    }
+
+    /**
      * Method to validate a comment
      *
      * @param int $identifier

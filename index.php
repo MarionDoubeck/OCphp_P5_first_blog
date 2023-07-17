@@ -18,6 +18,7 @@ use App\Controllers\AdminValidatedComments;
 use App\Controllers\AdminAllUsers;
 use App\Controllers\DeleteComment;
 use App\Controllers\ValidateComment;
+use App\Controllers\DeletePost;
 use App\helpers\Helpers;
 
 // Autoload
@@ -101,6 +102,14 @@ try {
             if (null !== Get::get('id') && Get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new ValidateComment())->execute($identifier);
+            } else {
+                    throw new Exception('aucun identifiant envoyé');
+            }
+            break;
+        case "deletePost":
+            if (null !== Get::get('id') && Get::get('id') > 0) {
+                $identifier = Get::get('id');
+                (new DeletePost())->execute($identifier);
             } else {
                     throw new Exception('aucun identifiant envoyé');
             }
