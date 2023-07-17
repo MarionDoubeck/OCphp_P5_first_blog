@@ -8,11 +8,11 @@
 	<div class="container" id="latestPosts">
 		<h3>Derniers Posts !</h3>
         <?php foreach ($lastThreePosts as $post){
-			$str = esc_html($post->getTitle());
+			$str = htmlspecialchars($post->getTitle());
 			// Supprimez les accents
 			$str = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($str, Normalizer::FORM_D));
-			$created_at = esc_html($post->getFrenchCreationDate());
-			$chapo = esc_html($post->getChapo());
+			$created_at = htmlspecialchars($post->getFrenchCreationDate());
+			$chapo = htmlspecialchars($post->getChapo());
 			$imageData = $post->getImageData();
 			$imageType = $post->getImageType();
             require 'post-frame.php';

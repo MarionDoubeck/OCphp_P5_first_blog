@@ -17,7 +17,7 @@ include 'header.php'; ?>
     <label for="password">Mot de passe</label>
     <input type="password" name="password" id="password" required>
 
-    <input type="hidden" name="csrf_token" value="<?= esc_html(Session::get('csrf_token')) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
     <button type="submit">S'enregistrer</button>
 </form>
 </div>

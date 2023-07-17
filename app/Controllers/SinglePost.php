@@ -34,13 +34,13 @@ class SinglePost
         $comments = $commentRepository->getComments($identifier);
 
         //Prepare post's data for display
-        $str = esc_html($post->getTitle());
+        $str = htmlspecialchars($post->getTitle());
         //No accents in title with this font
         $str = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($str, \Normalizer::FORM_D));
-        $author = esc_html($post->getUsername());
-        $created_at = esc_html($post->getFrenchCreationDate());
-        $chapo = esc_html($post->getChapo());
-        $content = esc_html($post->getContent());
+        $author = htmlspecialchars($post->getUsername());
+        $created_at = htmlspecialchars($post->getFrenchCreationDate());
+        $chapo = htmlspecialchars($post->getChapo());
+        $content = htmlspecialchars($post->getContent());
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
 

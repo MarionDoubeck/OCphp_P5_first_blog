@@ -20,7 +20,7 @@ include 'dashboard-header-and-menu.php';
                     <form id="editor-form" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="title">Titre</label>
-                            <input class="form-control" type="text" name="title" id="title" value="<?= esc_html('TITRE') ?>">
+                            <input class="form-control" type="text" name="title" id="title" value="<?= htmlspecialchars('TITRE') ?>">
                         </div>
 
                         <!-- Image -->
@@ -28,7 +28,7 @@ include 'dashboard-header-and-menu.php';
                         <?php if ($ilyauneimage): ?>
                           <div class="form-group">
                             <label>Image actuelle :</label>
-                            <img src="data:<?= esc_html($post['image_type']) ?>;base64,<?= esc_html(base64_encode($post['image_data'])) ?>" style="max-width: 200px;" alt="Image de l'article">
+                            <img src="data:<?= htmlspecialchars($post['image_type']) ?>;base64,<?= htmlspecialchars(base64_encode($post['image_data'])) ?>" style="max-width: 200px;" alt="Image de l'article">
                           </div>
                           <div class="form-group">
                             <label for="delete_image">Supprimer l'image actuelle</label>
@@ -56,13 +56,13 @@ include 'dashboard-header-and-menu.php';
                         
                         <div class="form-group">
                             <label for="chapo">Chapo (Max 255 caractères)</label>
-                            <textarea class="form-control" name="chapo" id="chapo" maxlength="255"><?= esc_html('chapo') ?></textarea>
+                            <textarea class="form-control" name="chapo" id="chapo" maxlength="255"><?= htmlspecialchars('chapo') ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="content">Contenu de l'article</label>
-                            <textarea class="form-control" name="content" id="content"><?= esc_html('content')?></textarea>
+                            <textarea class="form-control" name="content" id="content"><?= htmlspecialchars('content')?></textarea>
                         </div>
-                        <input type="hidden" name="csrf_token" value="<?= esc_html(Session::get('csrf_token')) ?>">
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                         <input type="submit" value="Publier">
                     </form>
                 </div>

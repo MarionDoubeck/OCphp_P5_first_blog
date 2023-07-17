@@ -5,7 +5,7 @@
 <footer class="border-top">
     <div class="container px-4 px-lg-5 list-inline text-center" style="margin-bottom:20px">
         <?php if (Session::isParamSet('username')): ?>
-            <p>Vous êtes connecté en tant que : <?= esc_html(Session::get('username')) ?></p>
+            <p>Vous êtes connecté en tant que : <?= htmlspecialchars(Session::get('username')) ?></p>
             <?php if (Session::get('role')=="admin") : ?>
                 <a href="index.php?action=administration" class="list-inline-item" >Administration</a>
             <?php endif; ?>

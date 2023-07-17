@@ -32,14 +32,14 @@ include 'dashboard-header-and-menu.php';
                     <!-- Loop through posts data and display each post in a row -->
                     <?php foreach ([1,2,3,4] as $comment) : ?>
                     <tr>
-                        <td><?= esc_html('TITRE')?></td>
-                        <td><?= esc_html('CREE LE')?></td>
-                        <td><?= esc_html('AUTEUR') ?></td>
-                        <td><?= esc_html('CONTENU') ?></td>
+                        <td><?= htmlspecialchars('TITRE')?></td>
+                        <td><?= htmlspecialchars('CREE LE')?></td>
+                        <td><?= htmlspecialchars('AUTEUR') ?></td>
+                        <td><?= htmlspecialchars('CONTENU') ?></td>
                         <td>
                             <?php generateCsrfToken();?>
                             <form  method="post" style="display: inline;">
-                              <input type="hidden" name="csrf_token" value="<?= esc_html(Session::get('csrf_token')) ?>">
+                              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                               <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
                             </form>
                         </td>
