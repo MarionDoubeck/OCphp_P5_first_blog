@@ -30,7 +30,6 @@ class Post
      */
     private $frenchModificationDate;
 
-
     /**
      * Post content
      *
@@ -59,7 +58,6 @@ class Post
      */
     private string $username;
 
-    
     private $imageData;
     private $imageType;
 
@@ -74,7 +72,6 @@ class Post
      *
      * @return Post
      */
-    
     public function getPost(int $postId) : Post
     {
         // Prepare the SQL query.
@@ -157,8 +154,6 @@ class Post
         return $posts;
     }
 
-
-
     /**
      * Method to retrieve data from last 3 articles
      * 
@@ -199,8 +194,6 @@ class Post
      *
      * @return boolean
      */
-
-
     public function addPost(string $title, string $content, string $chapo,
         int $user_id
     ) {
@@ -218,7 +211,6 @@ class Post
         
     }
 
-
     /**
      * Method to update data of a post
      *
@@ -229,8 +221,6 @@ class Post
      * 
      * @return void
      */
-
-
     public function updatePost(int $identifier, string $content, string $title,
         string $chapo
     ) {
@@ -256,8 +246,6 @@ class Post
      * 
      * @return void
      */
-
-
     public function deletePost(int $identifier)
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -302,7 +290,7 @@ class Post
         return $this->frenchCreationDate;
     }
 
-        /**
+    /**
      * Get post modification date
      *
      * @return string
@@ -322,6 +310,7 @@ class Post
     {
         return $this->imageData;
     }
+
     /**
      * Set image data
      *
@@ -338,6 +327,7 @@ class Post
         }
         return $this;
     }
+
     /**
      * Get image type
      *
@@ -347,6 +337,7 @@ class Post
     {
         return $this->imageType;
     }
+
     /**
      * Set image type
      *
@@ -360,6 +351,7 @@ class Post
 
         return $this;
     }
+
     /**
      * Set post date
      *
@@ -373,6 +365,7 @@ class Post
 
         return $this;
     }
+    
     /**
      * Set post modification date
      *

@@ -20,8 +20,6 @@ class SinglePost
       *
       * @return void
       */
-
-
     public function execute(int $identifier)
     {
         $connection = new DatabaseConnection();
@@ -57,6 +55,4 @@ class SinglePost
             'imageType' =>$imageType
         ));
     }
-
-
 }

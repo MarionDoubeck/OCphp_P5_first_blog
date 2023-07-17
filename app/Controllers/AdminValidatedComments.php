@@ -12,8 +12,6 @@ class AdminValidatedComments {
      *
      * @return void
      */
-
-
     public function execute()
     {
         $role = Session::get('role');

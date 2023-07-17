@@ -17,8 +17,6 @@ class AdminAllPosts
      *
      * @return void
      */
-
-
     public function execute()
     {
         $role = Session::get('role');

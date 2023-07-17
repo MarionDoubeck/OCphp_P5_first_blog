@@ -19,8 +19,6 @@ class Login
      *
      * @return void
      */
-
-
     public function execute()
     {
         $helper = new Helpers;
@@ -75,7 +73,5 @@ class Login
     }
         $helper->renderView('app/views/login.php',[]);
     }
-
-
 }
  

@@ -16,8 +16,6 @@ class DatabaseConnection
      *
      * @return \PDO
      */
-
-
     public function getConnection() : \PDO
     {
         if ($this->database === null) {
@@ -28,6 +26,4 @@ class DatabaseConnection
         }
         return $this->database;
     }
-
-
 }

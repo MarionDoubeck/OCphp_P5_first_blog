@@ -50,10 +50,8 @@ class Helpers
      * 
      * @param string $viewPath
      * @param $data
-     * 
-     * 
+     *
      */
-
     function renderView($viewPath, $data = []) {
         extract($data); // Extrait les données pour les rendre accessibles dans la vue
         include $viewPath;
