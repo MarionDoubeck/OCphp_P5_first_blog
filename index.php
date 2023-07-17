@@ -57,7 +57,7 @@ try {
                 $identifier = Get::get('id');
                 (new SinglePost())->execute($identifier);
             } else {
-                    throw new Exception('aucun identifiant envoyé');
+                throw new Exception('aucun identifiant envoyé');
             }
             break;
         case "addComment":
@@ -65,7 +65,7 @@ try {
                 $identifier = Get::get('id');
                 (new AddComment())->execute($identifier);
             } else {
-                    throw new Exception('aucun identifiant envoyé');
+                throw new Exception('aucun identifiant envoyé');
             }
             break;
         case "administration":
@@ -95,7 +95,7 @@ try {
                 $identifier = Get::get('id');
                 (new DeleteComment())->execute($identifier);
             } else {
-                    throw new Exception('aucun identifiant envoyé');
+                throw new Exception('aucun identifiant envoyé');
             }
             break;
         case "validateComment":
@@ -103,7 +103,7 @@ try {
                 $identifier = Get::get('id');
                 (new ValidateComment())->execute($identifier);
             } else {
-                    throw new Exception('aucun identifiant envoyé');
+                throw new Exception('aucun identifiant envoyé');
             }
             break;
         case "deletePost":
@@ -111,7 +111,7 @@ try {
                 $identifier = Get::get('id');
                 (new DeletePost())->execute($identifier);
             } else {
-                    throw new Exception('aucun identifiant envoyé');
+                throw new Exception('aucun identifiant envoyé');
             }
             break;
         default:

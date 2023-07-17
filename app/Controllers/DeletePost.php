@@ -34,7 +34,7 @@ class DeletePost
             $commentRepository = new Comment();
             $commentRepository->connection = new DatabaseConnection();
             $commentsSuccess = $commentRepository->deleteAllComments($identifier);
-            if ($ommentsSuccess === FALSE) {
+            if ($commentsSuccess === FALSE) {
                 throw new \Exception('Impossible de supprimer les commentaires de l\'article !');
             } else {
                 $postRepository = new Post();
@@ -47,7 +47,7 @@ class DeletePost
                     ?>
                     <script language="javascript"> 
                     alert("article supprimé");
-                    history(-1);
+                    document.location.href = 'index.php?action=adminAllPosts';
                     </script>
                     <?php
                 }

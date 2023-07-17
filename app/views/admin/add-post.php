@@ -18,7 +18,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
           <div class="card-body">
                 <!-- Form containing the editor textarea -->
                 <?php $helper->generateCsrfToken(); ?>
-                <form id="editor-form" method="post" enctype="multipart/form-data">
+                <form id="editor-form" method="post" enctype="multipart/form-data" action="index.php?action=adminAddPost">
                     <div class="form-group">
                         <label for="title">Titre</label>
                         <input class="form-control" type="text" name="title" id="title">
