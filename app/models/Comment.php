@@ -114,6 +114,43 @@ class Comment
         return($affectedLines > 0);
     }
 
+    /**
+     * Method to delete a comment
+     *
+     * @param int $identifier
+     *
+     * @return boolean
+     */
+
+
+    public function deleteComment(int $identifier)
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            'DELETE FROM comments WHERE id=?'
+        );
+        $affectedLines = $statement->execute([$identifier]);
+        return($affectedLines > 0);
+    }
+
+    /**
+     * Method to validate a comment
+     *
+     * @param int $identifier
+     *
+     * @return boolean
+     */
+
+
+     public function validateComment(int $identifier)
+     {
+        $statement = $this->connection->getConnection()->prepare(
+            "UPDATE comments SET status = 'approved' WHERE id = :identifier"
+        );
+        $statement->bindParam(':identifier', $identifier);
+        $affectedLines = $statement->execute();
+        return($affectedLines > 0);
+     }
+
 
     /**
      * Method to retrieve unvalidated comments
@@ -143,6 +180,7 @@ class Comment
             $comment->setPost($row['post_id']);
             $comment->setPostTitle($row['title']);
             $comment->setUserName($row['username']);
+            $comment->setIdentifier($row['id']);
 
             $comments[] = $comment;
         }

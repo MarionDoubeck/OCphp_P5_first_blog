@@ -36,6 +36,7 @@ include 'dashboard-header-and-menu.php';
                       $commentDate=$comment->getFrenchCreationDate();
                       $commentAuthor=$comment->getUsername();
                       $commentContent=$comment->getComment();
+                      $commentId=$comment->getIdentifier();
                     ?>
                     <tr>
                         <td><?= htmlspecialchars($commentPost.' : '.$commentPostTitle) ?></td>
@@ -44,7 +45,7 @@ include 'dashboard-header-and-menu.php';
                         <td><?= htmlspecialchars($commentContent)?></td>
                         <td>
                             <?php generateCsrfToken();?>
-                            <form  method="post" style="display: inline;">
+                            <form  method="post" action="index.php?action=deleteComment&id=<?= htmlspecialchars($commentId)?>" style="display: inline;">
                               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                               <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
                             </form>
@@ -83,6 +84,16 @@ include 'dashboard-header-and-menu.php';
       "responsive": true,
     });
   });
+
+  function confirmDelete(event) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet article et tous ses commentaires ?')) {
+        // User confirmed the deletion, proceed with the form submission
+        document.getElementById('delete-form').submit();
+    } else {
+        // User canceled the deletion, prevent form submission
+        event.preventDefault();
+    }
+  }
 </script>
 </body>
 </html>
