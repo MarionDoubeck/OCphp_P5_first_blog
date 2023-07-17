@@ -4,9 +4,9 @@
 
 <footer class="border-top">
     <div class="container px-4 px-lg-5 list-inline text-center" style="margin-bottom:20px">
-        <?php if (Session::isParamSet('username')) : ?>
+        <?php if (Session::isParamSet('username') === TRUE) : ?>
             <p>Vous êtes connecté en tant que : <?= htmlspecialchars(Session::get('username')) ?></p>
-            <?php if (Session::get('role')=="admin") : ?>
+            <?php if (Session::get('role') === "admin") : ?>
                 <a href="index.php?action=administration" class="list-inline-item" >Administration</a>
             <?php endif; ?>
             <a href="index.php?action=logout" class="list-inline-item">Déconnexion</a>

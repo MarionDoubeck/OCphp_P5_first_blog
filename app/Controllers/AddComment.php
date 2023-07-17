@@ -27,10 +27,10 @@ class AddComment
 
         $helper = new Helpers;
         // We do the checks.
-        if (!empty(PostGlobal::get('commentContent'))) {
+        if (empty(PostGlobal::get('commentContent')) === false) {
             try {
                 /* Check if the CSRF token is valid */
-                if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
+                if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
                 } else{
                     $commentContent = strip_tags(PostGlobal::get('commentContent'));
@@ -51,7 +51,7 @@ class AddComment
         $commentRepository = new Comment();
         $commentRepository->connection = new DatabaseConnection();
         $success = $commentRepository->createComment($post, $user_id, $commentContent);
-        if (!$success) {
+        if ($success === FALSE) {
             throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
             ?>

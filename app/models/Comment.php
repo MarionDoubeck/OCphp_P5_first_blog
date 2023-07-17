@@ -161,7 +161,7 @@ class Comment
 
     public function getCommentsStatus($status)
     {
-        $statement= $this->connection->getConnection()->prepare(
+        $statement = $this->connection->getConnection()->prepare(
             "SELECT c.*, u.username, p.title
             FROM comments c
             JOIN users u ON c.author_id = u.id
