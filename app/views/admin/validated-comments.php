@@ -30,12 +30,18 @@ include 'dashboard-header-and-menu.php';
                   </thead>
                   <tbody>
                     <!-- Loop through posts data and display each post in a row -->
-                    <?php foreach ([1,2,3,4] as $comment) : ?>
+                    <?php foreach ($comments as $comment) : 
+                      $commentPost=$comment->getPost();
+                      $commentPostTitle=$comment->getPostTitle();
+                      $commentDate=$comment->getFrenchCreationDate();
+                      $commentAuthor=$comment->getUsername();
+                      $commentContent=$comment->getComment();
+                    ?>
                     <tr>
-                        <td><?= htmlspecialchars('TITRE')?></td>
-                        <td><?= htmlspecialchars('CREE LE')?></td>
-                        <td><?= htmlspecialchars('AUTEUR') ?></td>
-                        <td><?= htmlspecialchars('CONTENU') ?></td>
+                        <td><?= htmlspecialchars($commentPost.' : '.$commentPostTitle) ?></td>
+                        <td><?= htmlspecialchars($commentDate)?></td>
+                        <td><?= htmlspecialchars($commentAuthor) ?></td>
+                        <td><?= htmlspecialchars($commentContent)?></td>
                         <td>
                             <?php generateCsrfToken();?>
                             <form  method="post" style="display: inline;">
