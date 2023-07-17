@@ -26,16 +26,20 @@ class AddComment
         $commentContent = null;
         // We do the checks.
         if (!empty(PostGlobal::get('commentContent'))) {
-            /* Check if the CSRF token is valid */
-            if (!validateCsrfToken($_POST['csrf_token'])) {
-                die("Erreur : Jeton CSRF invalide.");
-            }else{
-                $commentContent = strip_tags(PostGlobal::get('commentContent'));
+            try{
+                /* Check if the CSRF token is valid */
+                if (!validateCsrfToken(PostGlobal::get('csrf_token'))) {
+                    throw new \Exception("Erreur : Jeton CSRF invalide.");
+                }else{
+                    $commentContent = strip_tags(PostGlobal::get('commentContent'));
+                }
+            }catch (Exception $e){
+                echo "une erreur s'est produite : ". $e->getMessage();
             }
         } else {
             ?>
             <script language="javascript"> 
-            var numpost = <?php echo $post?>;
+            var numpost = <?= $post?>;
             alert("les données du commentaires sont invalides");
             document.location.href = 'index.php?action=article&id='+numpost;</script>
             <?php
@@ -50,7 +54,7 @@ class AddComment
         } else {
             ?>
             <script language="javascript"> 
-            var numpost = <?php echo $post?>;
+            var numpost = <?= $post?>;
             alert("Commentaire envoyé, celui-ci sera visible après validation.");
             document.location.href = 'index.php?action=article&id='+numpost;</script>
             <?php

@@ -1,4 +1,5 @@
 <?php
+use App\services\Session;
 include 'dashboard-header-and-menu.php';
 ?>
 
@@ -19,7 +20,7 @@ include 'dashboard-header-and-menu.php';
                     <form id="editor-form" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="title">Titre</label>
-                            <input class="form-control" type="text" name="title" id="title" value="<?= 'TITRE' ?>">
+                            <input class="form-control" type="text" name="title" id="title" value="<?= htmlspecialchars('TITRE') ?>">
                         </div>
 
                         <!-- Image -->
@@ -27,7 +28,7 @@ include 'dashboard-header-and-menu.php';
                         <?php if ($ilyauneimage): ?>
                           <div class="form-group">
                             <label>Image actuelle :</label>
-                            <img src="data:<?= $post['image_type']?>;base64,<?= base64_encode($post['image_data']) ?>" style="max-width: 200px;" alt="Image de l'article">
+                            <img src="data:<?= htmlspecialchars($post['image_type']) ?>;base64,<?= htmlspecialchars(base64_encode($post['image_data'])) ?>" style="max-width: 200px;" alt="Image de l'article">
                           </div>
                           <div class="form-group">
                             <label for="delete_image">Supprimer l'image actuelle</label>
@@ -55,13 +56,13 @@ include 'dashboard-header-and-menu.php';
                         
                         <div class="form-group">
                             <label for="chapo">Chapo (Max 255 caractères)</label>
-                            <textarea class="form-control" name="chapo" id="chapo" maxlength="255"><?= 'chapo' ?></textarea>
+                            <textarea class="form-control" name="chapo" id="chapo" maxlength="255"><?= htmlspecialchars('chapo') ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="content">Contenu de l'article</label>
-                            <textarea class="form-control" name="content" id="content"><?= 'content'?></textarea>
+                            <textarea class="form-control" name="content" id="content"><?= htmlspecialchars('content')?></textarea>
                         </div>
-                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                         <input type="submit" value="Publier">
                     </form>
                 </div>
@@ -74,19 +75,8 @@ include 'dashboard-header-and-menu.php';
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="../admin/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../admin/dist/js/adminlte.min.js"></script>
+<?php include 'dashboard-scripts.php'; ?>
 <!-- Page specific script -->
 <script src="../admin/plugins/add-post/add-post.js"></script>
 

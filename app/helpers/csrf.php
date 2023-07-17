@@ -1,4 +1,5 @@
 <?php
+use App\services\Session;
 
 /**
  * Generate a CSRF token and store it in the session
@@ -10,8 +11,8 @@ function generateCsrfToken()
             session_start();
         }
     }
-    if (!isset($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    if (!Session::isParamSet('csrf_token')) {
+        Session::put('csrf_token', bin2hex(random_bytes(32)));
     }
 }
 
@@ -27,11 +28,11 @@ function validateCsrfToken($token)
             session_start();
         }
     }
-    if (!isset($_SESSION['csrf_token'])) {
+    if (!Session::isParamSet('csrf_token')) {
         return false;
     }
 
     // Check if the submitted token matches the one stored in the session
-    return hash_equals($_SESSION['csrf_token'], $token);
+    return hash_equals(Session::get('csrf_token'), $token);
 }
 

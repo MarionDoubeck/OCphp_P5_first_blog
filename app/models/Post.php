@@ -5,8 +5,6 @@ namespace App\Models;
 use App\db\DatabaseConnection;
 use Exception;
 
-//error_reporting(E_ALL ^ E_DEPRECATED);
-
 /**
  * Post class
  */
@@ -19,13 +17,23 @@ class Post
      */
 
     private string $title;
+
     /**
-     * Post date modification
+     * Post date 
      *
      * @var string
      */
 
      private string $frenchCreationDate;
+
+    /**
+     * Post modification date 
+     *
+     */
+
+     private $frenchModificationDate;
+
+
     /**
      * Post content
      *
@@ -52,13 +60,15 @@ class Post
      *
      * @var string
      */
-
     private string $username;
+
+    
     private $imageData;
     private $imageType;
+
+
     //Connect to the database
     public DatabaseConnection $connection;
-
 
     /**
      * Method to retrieve data from a single article according to its id
@@ -82,6 +92,7 @@ class Post
         if ($row){
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);
+            $post->setFrenchModificationDate($row['updated_at']);
             $post->setContent($row['content']);
             $post->setIdentifier($row['id']);
             $post->setChapo($row['chapo']);
@@ -95,14 +106,35 @@ class Post
             
     }
 
+    /**
+     * Method to retrieve data from a single article according to its id
+     *
+     * @param int $identifier
+     *
+     * @return int
+     */
+    public function retrieveNumberOfComments(int $postId)
+    {
+        $query = "SELECT COUNT(*) as total_comments FROM comments WHERE post_id = :postId";
+        $statement = $this->connection->getConnection()->prepare($query);
+        $statement->bindParam(':postId', $postId);
+        $statement->execute();
+        // Fetch the post record
+        $row = $statement->fetch();
+        $total = $row['total_comments'] ?? 0;
+
+        return $total;
+    }
+
+
+
+
 
     /**
      * Method to retrieve data from  all articles
      *
      * @return array
      */
-
-
     public function getPosts(): array
     {
         // Query to retrieve all posts
@@ -115,6 +147,7 @@ class Post
             $post = new Post();
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);
+            $post->setFrenchModificationDate($row['updated_at']);
             $post->setIdentifier($row['id']);
             $post->setChapo($row['chapo']);
             $post->setUsername($row['username']);
@@ -126,6 +159,8 @@ class Post
         
         return $posts;
     }
+
+
 
     /**
      * Method to retrieve data from last 3 articles
@@ -144,6 +179,7 @@ class Post
             $post = new Post();
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);
+            $post->setFrenchModificationDate($row['updated_at']);
             $post->setIdentifier($row['id']);
             $post->setChapo($row['chapo']);
             $post->setUsername($row['username']);
@@ -269,6 +305,17 @@ class Post
         return $this->frenchCreationDate;
     }
 
+        /**
+     * Get post modification date
+     *
+     * @return string
+     */
+    public function getFrenchModificationDate()
+    {
+        return $this->frenchModificationDate;
+    }
+
+
     /**
      * Get image data
      *
@@ -326,6 +373,19 @@ class Post
     public function setFrenchCreationDate(string $frenchCreationDate)
     {
         $this->frenchCreationDate = $frenchCreationDate;
+
+        return $this;
+    }
+    /**
+     * Set post modification date
+     *
+     * @param string $frenchModificationDate post date
+     *
+     * @return self
+     */ 
+    public function setFrenchModificationDate(string $frenchModificationDate)
+    {
+        $this->frenchModificationDate = $frenchModificationDate;
 
         return $this;
     }

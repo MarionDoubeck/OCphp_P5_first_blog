@@ -1,4 +1,5 @@
 <?php
+use App\services\Session;
 require_once __DIR__ .'../../../helpers/csrf.php';
 
 include 'dashboard-header-and-menu.php';
@@ -31,14 +32,14 @@ include 'dashboard-header-and-menu.php';
                     <!-- Loop through posts data and display each post in a row -->
                     <?php foreach ([1,2,3,4] as $comment) : ?>
                     <tr>
-                        <td><?= 'TITRE'?></td>
-                        <td><?= 'CREE LE'?></td>
-                        <td><?= 'AUTEUR' ?></td>
-                        <td><?= 'CONTENU' ?></td>
+                        <td><?= htmlspecialchars('TITRE')?></td>
+                        <td><?= htmlspecialchars('CREE LE')?></td>
+                        <td><?= htmlspecialchars('AUTEUR') ?></td>
+                        <td><?= htmlspecialchars('CONTENU') ?></td>
                         <td>
                             <?php generateCsrfToken();?>
                             <form  method="post" style="display: inline;">
-                              <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                              <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                               <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
                             </form>
                         </td>
@@ -56,29 +57,8 @@ include 'dashboard-header-and-menu.php';
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-</div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="../admin/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="../admin/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../admin/dist/js/adminlte.min.js"></script>
+<?php include 'dashboard-scripts.php'; ?>
 
 <!-- Page specific script -->
 <script>
