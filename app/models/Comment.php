@@ -53,7 +53,7 @@ class Comment
 
     private string $postTitle;
 
-    //Connect to the data base
+    // Connect to the data base.
     public DatabaseConnection $connection;
 
     /**

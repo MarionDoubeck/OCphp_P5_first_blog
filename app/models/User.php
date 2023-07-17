@@ -47,7 +47,7 @@ class User
 
     private int $commentCount;
 
-    //Connect to database
+    // Connect to database.
     public DatabaseConnection $connection;
 
     /**
@@ -57,7 +57,7 @@ class User
      */
     public function getUsers() : array
     {
-        // Query to retrieve all users
+        // Query to retrieve all users.
         $query = "SELECT u.*, COUNT(c.id) AS comment_count
         FROM users u
         LEFT JOIN comments c ON u.id = c.author_id

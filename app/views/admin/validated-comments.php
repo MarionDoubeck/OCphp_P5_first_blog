@@ -88,10 +88,10 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
 
   function confirmDelete(event) {
     if (confirm('Êtes-vous sûr de vouloir supprimer cet article et tous ses commentaires ?')) {
-        // User confirmed the deletion, proceed with the form submission
+        // User confirmed the deletion, proceed with the form submission.
         document.getElementById('delete-form').submit();
     } else {
-        // User canceled the deletion, prevent form submission
+        // User canceled the deletion, prevent form submission.
         event.preventDefault();
     }
   }
