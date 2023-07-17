@@ -23,19 +23,19 @@ class Register
     public function execute()
     {
         $helper = new Helpers;
-        if (!empty(PostGlobal::getAllPostVars())) {
+        if (empty(PostGlobal::getAllPostVars()) === FALSE) {
             try {
                 /* Check if the CSRF token is valid */
-                if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
+                if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
                 } else{
-                    if (PostGlobal::isParamSet('username') && PostGlobal::isParamSet('password') && !empty(PostGlobal::get('username')) && !empty(PostGlobal::get('password'))){
+                    if (PostGlobal::isParamSet('username') === TRUE && PostGlobal::isParamSet('password') === TRUE && empty(PostGlobal::get('username')) === FALSE && empty(PostGlobal::get('password')) === FALSE ){
                         $username = strip_tags(trim(PostGlobal::get('username')));
-                        if (strlen($username) <5) {
+                        if (strlen($username) < 5) {
                             throw new \Exception('pseudo trop court!');
                         }
 
-                        if (!filter_var(PostGlobal::get('email'), FILTER_VALIDATE_EMAIL)) {
+                        if (filter_var(PostGlobal::get('email'), FILTER_VALIDATE_EMAIL) === FALSE) {
                             throw new \Exception('adresse mail incorrecte !');
                         }
                         $email = PostGlobal::get('email');
@@ -60,15 +60,15 @@ class Register
                         }
                         $passtest = PostGlobal::get('password');
 
-                        if (!preg_match("#[0-9]+#", $passtest)) {
+                        if (preg_match("#[0-9]+#", $passtest) === FALSE) {
                             throw new \Exception('Le mot de passe doit contenir au moins 1 chiffre!');
                         }
 
-                        if (!preg_match("#[A-Z]+#", $passtest)) {
+                        if (preg_match("#[A-Z]+#", $passtest) === FALSE) {
                             throw new \Exception('Le mot de passe doit contenir au moins 1 majuscule!');
                         }
 
-                        if (!preg_match("#[a-z]+#", $passtest)) {
+                        if (preg_match("#[a-z]+#", $passtest) === FALSE) {
                             throw new \Exception('Le mot de passe doit contenir au moins 1 minuscule!');
                         }
                         $pass = password_hash(PostGlobal::get('password'), PASSWORD_DEFAULT);
@@ -77,7 +77,7 @@ class Register
                         $userRepository = new User();
                         $userRepository->connection = new DatabaseConnection();
                         $success = $userRepository->addUser($username, $pass, $email);
-                        if (!$success) {
+                        if ($success === FALSE) {
                             throw new \Exception('Impossible d\'ajouter l\'utilisateur !');
                         } else{
                             $usersession = new User();

@@ -23,13 +23,13 @@ class ValidateComment
     public function execute(int $identifier)
     {
         $role = Session::get('role');
-        if ($role !='admin') {
+        if ($role !== 'admin') {
             throw new \Exception('Page résevée à l\'administration !');
         }
         $postRepository = new Comment();
         $postRepository->connection = new DatabaseConnection();
         $success = $postRepository->validateComment($identifier);
-        if (!$success) {
+        if ($success === FALSE) {
             throw new \Exception('Impossible de valider le commentaire !');
         } else {
             ?>

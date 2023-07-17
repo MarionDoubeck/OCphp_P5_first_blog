@@ -121,7 +121,7 @@ class User
 
     public function checkUserEmail(string $email)
     {
-        $statement= $this->connection->getConnection()->prepare(
+        $statement = $this->connection->getConnection()->prepare(
             'SELECT * FROM users WHERE email=? '
         );
 
@@ -262,7 +262,7 @@ class User
      */ 
     public function setCommentCount($commentCount)
     {
-        if ($commentCount== null) {
+        if ($commentCount === null) {
             $this->commentCount = 0;
         } else{
             $this->commentCount = $commentCount;

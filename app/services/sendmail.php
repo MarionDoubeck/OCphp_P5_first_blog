@@ -39,7 +39,7 @@ if (null !==PostGlobal::get('firstname') && null !==PostGlobal::get('name') && n
         $mail->WordWrap = 20;
         $mail->Body = "Name: $name\n\nEmail: $email\n\nMessage: $message";
 
-    if (!$mail->send()) {
+    if ($mail->send() === FALSE) {
         throw new \Exception('Mail non envoyé, veuillez réessayer');
     } else {
         ?>

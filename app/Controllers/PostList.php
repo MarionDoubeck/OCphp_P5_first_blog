@@ -23,7 +23,7 @@ class PostList
         $repository->connection = new DatabaseConnection();
         $posts = $repository->getPosts();
         $helper = new Helpers;
-        $helper->renderView('app/views/articles.php',['posts'=>$posts]);
+        $helper->renderView('app/views/articles.php',['posts' =>$posts]);
     }
 
 

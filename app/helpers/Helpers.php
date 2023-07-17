@@ -15,12 +15,12 @@ class Helpers
      */
     function generateCsrfToken()
     {
-        if (!isset($_SESSION)) {
-            if (!isset($_SESSION)) {
+        if (isset($_SESSION) === FALSE) {
+            if (isset($_SESSION) === FALSE) {
                 session_start();
             }
         }
-        if (!Session::isParamSet('csrf_token')) {
+        if (Session::isParamSet('csrf_token') === FALSE) {
             Session::put('csrf_token', bin2hex(random_bytes(32)));
         }
     }
@@ -32,12 +32,12 @@ class Helpers
      */
     function validateCsrfToken($token)
     {
-        if (!isset($_SESSION)) {
-            if (!isset($_SESSION)) {
+        if (isset($_SESSION) === FALSE) {
+            if (isset($_SESSION) === FALSE) {
                 session_start();
             }
         }
-        if (!Session::isParamSet('csrf_token')) {
+        if (Session::isParamSet('csrf_token') === FALSE) {
             return false;
         }
 

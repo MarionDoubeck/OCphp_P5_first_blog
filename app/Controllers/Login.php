@@ -24,23 +24,21 @@ class Login
     public function execute()
     {
         $helper = new Helpers;
-        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_SERVER['REQUEST_METHOD']) === TRUE && $_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 /* Check if the CSRF token is valid */
 
-                if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
+                if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
                 } else{
                     $username = null;
-                    if (PostGlobal::isParamSet('username') &&  PostGlobal::isParamSet('password')
-                        && !empty(trim(PostGlobal::get('username'))) && !empty(PostGlobal::get('password'))
-                    ) {
+                    if (PostGlobal::isParamSet('username') === TRUE &&  PostGlobal::isParamSet('password') === TRUE
+                        && empty(trim(PostGlobal::get('username'))) === FALSE && empty(PostGlobal::get('password')) === FALSE ) {
                         $username = htmlspecialchars(trim(PostGlobal::get('username')));
-                    
                         $userRepository = new User();
                         $userRepository->connection = new DatabaseConnection();
                         $connectedUser = $userRepository->checkUserUsername($username);
-                        if (!$connectedUser) {
+                        if ($connectedUser === null) {
                             ?>
                             <script language="javascript"> 
                             alert("Mauvais pseudo");

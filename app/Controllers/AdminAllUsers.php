@@ -22,7 +22,7 @@ class AdminAllUsers
     public function execute()
     {
         $role = Session::get('role');
-        if ($role !='admin') {
+        if ($role !== 'admin') {
             throw new \Exception('Page résevée à l\'administration !');
         }
         $repository = new User();
@@ -30,6 +30,6 @@ class AdminAllUsers
         $users = $repository->getUsers();
 
         $helper = new Helpers;
-        $helper->renderView('app/views/admin/all-users.php',['users'=>$users]);
+        $helper->renderView('app/views/admin/all-users.php',['users' =>$users]);
     }
 }

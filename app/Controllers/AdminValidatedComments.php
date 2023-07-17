@@ -17,7 +17,7 @@ class AdminValidatedComments {
     public function execute()
     {
         $role = Session::get('role');
-        if ($role !='admin') {
+        if ($role !== 'admin') {
             throw new \Exception('Page résevée à l\'administration !');
         }
         $repository = new Comment();
@@ -25,6 +25,6 @@ class AdminValidatedComments {
         $comments = $repository->getCommentsStatus('approved');
 
         $helper = new Helpers;
-        $helper->renderView('app/views/admin/validated-comments.php',['comments'=>$comments]);
+        $helper->renderView('app/views/admin/validated-comments.php',['comments' =>$comments]);
     }
 }

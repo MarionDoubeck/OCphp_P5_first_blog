@@ -22,7 +22,7 @@ class AdminAllPosts
     public function execute()
     {
         $role = Session::get('role');
-        if ($role !='admin') {
+        if ($role !== 'admin') {
             throw new \Exception('Page résevée à l\'administration !');
         }
         $repository = new Post();
@@ -32,6 +32,6 @@ class AdminAllPosts
         $newPost->connection = new DatabaseConnection();
 
         $helper = new Helpers;
-        $helper->renderView('app/views/admin/all-posts.php', ['posts'=> $posts, 'newPost' => $newPost]);  
+        $helper->renderView('app/views/admin/all-posts.php', ['posts' => $posts, 'newPost' => $newPost]);  
     }
 }

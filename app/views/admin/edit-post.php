@@ -27,7 +27,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                         </div>
 
                         <!-- Image -->
-                        <?php $ilyauneimage=false;?>
+                        <?php $ilyauneimage = false;?>
                         <?php if ($ilyauneimage) : ?>
                           <div class="form-group">
                             <label>Image actuelle :</label>
