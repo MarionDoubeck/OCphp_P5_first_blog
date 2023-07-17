@@ -17,6 +17,8 @@ use App\Controllers\AdminAddPost;
 use App\Controllers\AdminPendingComments;
 use App\Controllers\AdminValidatedComments;
 use App\Controllers\AdminAllUsers;
+use App\Controllers\DeleteComment;
+use App\Controllers\ValidateComment;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -85,6 +87,22 @@ try{
             break;
         case "adminAllUsers":
             (new AdminAllUsers())->execute();
+            break;
+        case "deleteComment":
+            if (null !== Get::get('id') && Get::get('id') > 0) {
+                $identifier = Get::get('id');
+                (new DeleteComment())->execute($identifier);
+            } else {
+                    throw new Exception('aucun identifiant envoyé');
+            }
+            break;
+        case "validateComment":
+            if (null !== Get::get('id') && Get::get('id') > 0) {
+                $identifier = Get::get('id');
+                (new ValidateComment())->execute($identifier);
+            } else {
+                    throw new Exception('aucun identifiant envoyé');
+            }
             break;
         default:
             include 'app/views/404.php';
