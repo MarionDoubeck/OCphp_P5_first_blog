@@ -1,7 +1,8 @@
 <?php
 use App\Models\Post;
 use App\services\Session;
-require_once __DIR__ .'../../../helpers/csrf.php';
+use App\helpers\Helpers;
+
 
 include 'dashboard-header-and-menu.php';
 ?>
@@ -49,7 +50,9 @@ include 'dashboard-header-and-menu.php';
                             <div style="width:100%; display:flex; justify-content: space-around;">
                               <a href=# class="btn btn-success" target="_blank">Voir</a>
                               <a href=# class="btn btn-primary" >Modifier</a>
-                              <?php generateCsrfToken();?>
+                              <?php 
+                              $helper = new Helpers;
+                              $helper->generateCsrfToken();?>
                               <form  method="post" style="display: inline;">
                                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                                 <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>

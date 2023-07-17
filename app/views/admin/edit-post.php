@@ -1,5 +1,6 @@
 <?php
 use App\services\Session;
+use App\helpers\Helpers;
 include 'dashboard-header-and-menu.php';
 ?>
 
@@ -16,7 +17,10 @@ include 'dashboard-header-and-menu.php';
               <!-- /.card-header -->
               <div class="card-body">
                     <!-- Form containing the editor textarea -->
-                    <?php generateCsrfToken();?>
+                    <?php 
+                    $helper = new Helpers;
+                    $helper->generateCsrfToken();
+                    ?>
                     <form id="editor-form" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="title">Titre</label>

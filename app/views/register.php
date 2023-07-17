@@ -1,11 +1,15 @@
 <?php 
 use App\services\Session;
+use App\helpers\Helpers;
 include 'header.php'; ?>
 
 <div class="container">
 <h2>S'enregistrer</h2>
 
-<?php generateCsrfToken();?>
+<?php 
+$helper = new Helpers;
+$helper->generateCsrfToken();
+?>
 <form method="post">
 
     <label for="email">Email</label>

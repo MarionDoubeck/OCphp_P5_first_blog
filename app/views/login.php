@@ -1,11 +1,17 @@
 <?php
 use App\services\Session;
+use App\helpers\Helpers;
+
 include 'header.php'; ?>
 
 <div class="container">
 <h2>Login</h2>
 
-<?php generateCsrfToken();?>
+<?php 
+$helper = new Helpers;
+$helper->generateCsrfToken();
+?>
+
 <form method="post">
     <label for="username">Username</label>
     <input type="text" name="username" id="username" required>

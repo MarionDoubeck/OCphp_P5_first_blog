@@ -1,5 +1,6 @@
 <?php 
 use App\services\Session;
+use App\helpers\Helpers;
 include 'header.php'; ?>
 
 <div class="container">
@@ -37,7 +38,10 @@ include 'header.php'; ?>
     <?php else: ?>
         <!-- User logged in -->
         <h5>Ajouter un commentaire</h4>
-        <?php generateCsrfToken();?>
+        <?php 
+        $helper = new Helpers;
+        $helper->generateCsrfToken();
+        ?>
         <form method="post" action="index.php?action=addComment&id=<?= htmlspecialchars($post->getIdentifier())?>" class="d-flex row gap-3" style="max-width:400px;">
             <label>Commentaire</label>
             <textarea name="commentContent" rows="6"></textarea>

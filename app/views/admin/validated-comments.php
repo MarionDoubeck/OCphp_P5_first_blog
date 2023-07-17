@@ -1,6 +1,6 @@
 <?php
 use App\services\Session;
-require_once __DIR__ .'../../../helpers/csrf.php';
+use App\helpers\Helpers;
 
 include 'dashboard-header-and-menu.php';
 ?>
@@ -44,7 +44,10 @@ include 'dashboard-header-and-menu.php';
                         <td><?= htmlspecialchars($commentAuthor) ?></td>
                         <td><?= htmlspecialchars($commentContent)?></td>
                         <td>
-                            <?php generateCsrfToken();?>
+                          <?php 
+                          $helper = new Helpers;
+                          $helper->generateCsrfToken();
+                          ?>
                             <form  method="post" action="index.php?action=deleteComment&id=<?= htmlspecialchars($commentId)?>" style="display: inline;">
                               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                               <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
