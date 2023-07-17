@@ -27,11 +27,11 @@ public function execute()
 {
 $helper = new Helpers;
 if (!empty(PostGlobal::getAllPostVars())) {
-    try{
+    try {
         /* Check if the CSRF token is valid */
         if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
             throw new \Exception("Erreur : Jeton CSRF invalide.");
-        }else{
+        } else{
             if (PostGlobal::isParamSet('username') && PostGlobal::isParamSet('password')
                 && !empty(PostGlobal::get('username')) && !empty(PostGlobal::get('password'))
             ) {
@@ -84,7 +84,7 @@ if (!empty(PostGlobal::getAllPostVars())) {
                 $success = $userRepository->addUser($username, $pass, $email);
                 if (!$success) {
                     throw new \Exception('Impossible d\'ajouter l\'utilisateur !');
-                }else{
+                } else{
                     $usersession = new User();
                     $usersession->connection = new DatabaseConnection();
                     $sessionResult = $usersession->checkUserUsername($username);
@@ -108,7 +108,7 @@ if (!empty(PostGlobal::getAllPostVars())) {
                 <?php
             }
         }
-    }catch (Exception $e){
+    } catch (Exception $e) {
         echo "une erreur s'est produite : ". $e->getMessage();
     }
 }

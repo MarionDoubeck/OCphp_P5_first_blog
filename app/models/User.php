@@ -55,7 +55,7 @@ class User
      *
      * @return array
      */
-    public function getUsers(): array
+    public function getUsers() : array
     {
         // Query to retrieve all users
         $query = "SELECT u.*, COUNT(c.id) AS comment_count
@@ -88,7 +88,7 @@ class User
      */
 
 
-    public function checkUserUsername(string $username): ?user
+    public function checkUserUsername(string $username)
     {
         $statement = $this->connection->getConnection()->prepare(
             'SELECT * FROM users WHERE username=? '
@@ -146,7 +146,7 @@ class User
      */
 
 
-    public function addUser(string $username, string $password, string $email): bool
+    public function addUser(string $username, string $password, string $email) : bool
     {
         $statement = $this->connection->getConnection()->prepare(
             'INSERT INTO users( username, password, email, role) VALUES(?, ?, ?, ?)'
@@ -262,9 +262,9 @@ class User
      */ 
     public function setCommentCount($commentCount)
     {
-        if ($commentCount== null){
+        if ($commentCount== null) {
             $this->commentCount = 0;
-        }else{
+        } else{
             $this->commentCount = $commentCount;
         }
 

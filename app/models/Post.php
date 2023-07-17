@@ -78,7 +78,7 @@ class Post
      * @return Post
      */
     
-    public function getPost(int $postId): Post
+    public function getPost(int $postId) : Post
     {
         // Prepare the SQL query
         $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.author_id = u.id WHERE p.id = :postId";
@@ -89,7 +89,7 @@ class Post
         $row = $statement->fetch();
 
         $post = new Post();
-        if ($row){
+        if ($row) {
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);
             $post->setFrenchModificationDate($row['updated_at']);
@@ -135,7 +135,7 @@ class Post
      *
      * @return array
      */
-    public function getPosts(): array
+    public function getPosts() : array
     {
         // Query to retrieve all posts
         $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.author_id = u.id ORDER BY updated_at DESC";
@@ -167,7 +167,7 @@ class Post
      * 
      * @return array
      */
-    public function getRecentPosts(): array
+    public function getRecentPosts() : array
     {
         // Query to retrieve all posts
         $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.author_id = u.id ORDER BY created_at DESC LIMIT 3";
@@ -334,9 +334,9 @@ class Post
      */ 
     public function setImageData( $imageData)
     {
-        if ($imageData !== null){
+        if ($imageData !== null) {
             $this->imageData = base64_encode($imageData);
-        }else{
+        } else{
             $this->imageData = null;
         }
         return $this;

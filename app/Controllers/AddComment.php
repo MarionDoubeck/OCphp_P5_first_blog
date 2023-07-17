@@ -28,14 +28,14 @@ class AddComment
         $helper = new Helpers;
         // We do the checks.
         if (!empty(PostGlobal::get('commentContent'))) {
-            try{
+            try {
                 /* Check if the CSRF token is valid */
                 if (!$helper->validateCsrfToken(PostGlobal::get('csrf_token'))) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
-                }else{
+                } else{
                     $commentContent = strip_tags(PostGlobal::get('commentContent'));
                 }
-            }catch (Exception $e){
+            } catch (Exception $e) {
                 echo "une erreur s'est produite : ". $e->getMessage();
             }
         } else {

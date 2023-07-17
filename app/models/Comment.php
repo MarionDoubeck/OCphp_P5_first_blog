@@ -65,7 +65,7 @@ class Comment
      */
 
 
-    public function getComments(string $post): array
+    public function getComments(string $post) : array
     {
         $statement = $this->connection->getConnection()->prepare(
             "SELECT comments.*, users.username FROM comments 
@@ -103,7 +103,7 @@ class Comment
      */
 
 
-    public function createComment(string $post, int $user_id, string $comment): bool
+    public function createComment(string $post, int $user_id, string $comment) : bool
     {
         $statement = $this->connection->getConnection()->prepare(
             'INSERT INTO comments(post_id, author_id, content, creation_date, status) 

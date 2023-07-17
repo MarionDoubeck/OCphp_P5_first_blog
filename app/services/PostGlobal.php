@@ -38,7 +38,7 @@ class PostGlobal
      * @param  void $param
      * @return boolean
      */
-    public static function isParamSet($param): bool
+    public static function isParamSet($param) : bool
     {
         return isset($_POST[$param]);
     }

@@ -11,7 +11,7 @@ $helper->renderView('app/views/header.php',[]);
 
 	<div class="container" id="latestPosts">
 		<h3>Derniers Posts !</h3>
-        <?php foreach ($lastThreePosts as $post){
+        <?php foreach ($lastThreePosts as $post) {
 			$title = htmlspecialchars($post->getTitle());
 			// Supprimez les accents
 			$title = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($title, Normalizer::FORM_D));
