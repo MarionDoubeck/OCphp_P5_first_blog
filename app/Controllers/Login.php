@@ -33,7 +33,7 @@ class Login
                     if (PostGlobal::isset('username') &&  PostGlobal::isset('password')
                         && !empty(trim(PostGlobal::get('username'))) && !empty(PostGlobal::get('password'))
                     ) {
-                        $username = htmlspecialchars(trim(PostGlobal::get('username')));
+                        $username = esc_html(trim(PostGlobal::get('username')));
                     
                         $userRepository = new User();
                         $userRepository->connection = new DatabaseConnection();

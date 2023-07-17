@@ -9,11 +9,11 @@ include 'header.php'; ?>
 <div class="container">
     <h2>Liste des articles</h2>
     <?php foreach ($posts as $post){
-        $str = htmlspecialchars($post->getTitle());
+        $str = esc_html($post->getTitle());
         // Supprimez les accents
         $str = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($str, Normalizer::FORM_D));
-        $created_at = htmlspecialchars($post->getFrenchCreationDate());
-        $chapo = htmlspecialchars($post->getChapo());
+        $created_at = esc_html($post->getFrenchCreationDate());
+        $chapo = esc_html($post->getChapo());
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
         require 'post-frame.php';

@@ -41,17 +41,17 @@ include 'dashboard-header-and-menu.php';
                       $nbOfComments=$newPost->retrieveNumberOfComments($id);
                     ?>
                     <tr>
-                        <td><?= htmlspecialchars($title) ?></td>
-                        <td><?= htmlspecialchars($created_at) ?></td>
-                        <td><?= htmlspecialchars($modified_at) ?></td>
-                        <td><?= htmlspecialchars($nbOfComments) ?></td>
+                        <td><?= esc_html($title) ?></td>
+                        <td><?= esc_html($created_at) ?></td>
+                        <td><?= esc_html($modified_at) ?></td>
+                        <td><?= esc_html($nbOfComments) ?></td>
                         <td>
                             <div style="width:100%; display:flex; justify-content: space-around;">
                               <a href=# class="btn btn-success" target="_blank">Voir</a>
                               <a href=# class="btn btn-primary" >Modifier</a>
                               <?php generateCsrfToken();?>
                               <form  method="post" style="display: inline;">
-                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
+                                <input type="hidden" name="csrf_token" value="<?= esc_html(Session::get('csrf_token')) ?>">
                                 <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
                               </form>
                             </div>

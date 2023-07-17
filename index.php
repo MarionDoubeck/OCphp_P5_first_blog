@@ -98,7 +98,7 @@ try{
 }catch (Exception $e) {
     $errorMessage = $e->getMessage();
 
-    echo htmlspecialchars($errorMessage);
+    echo esc_html($errorMessage);
 }
 
 

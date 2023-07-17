@@ -29,9 +29,9 @@ include 'dashboard-header-and-menu.php';
                         $commentCount = $user->getCommentCount();
                     ?>
                     <tr>
-                        <td><?= htmlspecialchars($username) ?></td>
-                        <td><?= htmlspecialchars($commentCount) ?></td>
-                        <td><?= htmlspecialchars($email) ?></td>
+                        <td><?= esc_html($username) ?></td>
+                        <td><?= esc_html($commentCount) ?></td>
+                        <td><?= esc_html($email) ?></td>
                   </tr>
                   <?php endforeach ;?>
                   </tbody>
