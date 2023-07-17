@@ -13,7 +13,7 @@ $helper->renderView('app/views/header.php',[]);
 	<h3>Derniers Posts !</h3>
 	<?php foreach ($lastThreePosts as $post) {
 		$title = htmlspecialchars($post->getTitle());
-		// Supprimez les accents
+		// Suppress accents with this font.
 		$title = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($title, Normalizer::FORM_D));
 		$created_at = htmlspecialchars($post->getFrenchCreationDate());
 		$chapo = htmlspecialchars($post->getChapo());

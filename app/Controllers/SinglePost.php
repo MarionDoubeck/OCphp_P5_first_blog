@@ -33,9 +33,9 @@ class SinglePost
         $post = $postRepository->getPost($identifier);
         $comments = $commentRepository->getComments($identifier);
 
-        //Prepare post's data for display
+        // Prepare post's data for display.
         $title = htmlspecialchars($post->getTitle());
-        //No accents in title with this font
+        // No accents in title with this font.
         $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));
         $author = htmlspecialchars($post->getUsername());
         $created_at = htmlspecialchars($post->getFrenchCreationDate());

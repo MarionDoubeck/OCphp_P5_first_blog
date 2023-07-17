@@ -8,7 +8,7 @@ $helper->renderView('app/views/header.php',[]);
     <h2>Liste des articles</h2>
     <?php foreach ($posts as $post) {
         $title = htmlspecialchars($post->getTitle());
-        // Supprimez les accents
+        // Suppress accents with this font.
         $title = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($title, Normalizer::FORM_D));
         $created_at = htmlspecialchars($post->getFrenchCreationDate());
         $chapo = htmlspecialchars($post->getChapo());

@@ -21,7 +21,7 @@ if (null !==PostGlobal::get('firstname') && null !==PostGlobal::get('name') && n
         $message = strip_tags(trim(PostGlobal::get('message')));
         $email = strip_tags(trim(PostGlobal::get('email')));
 
-        // PHPMailer configuration
+        // PHPMailer configuration.
         $mail = new PHPMailer(true);
         $mail->isSMTP();
         $mail->Host = Env::get('MAIL_HOST');

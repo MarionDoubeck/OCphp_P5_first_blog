@@ -64,7 +64,7 @@ class Post
     private $imageType;
 
 
-    //Connect to the database
+    // Connect to the database.
     public DatabaseConnection $connection;
 
     /**
@@ -77,12 +77,12 @@ class Post
     
     public function getPost(int $postId) : Post
     {
-        // Prepare the SQL query
+        // Prepare the SQL query.
         $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.author_id = u.id WHERE p.id = :postId";
         $statement = $this->connection->getConnection()->prepare($query);
         $statement->bindParam(':postId', $postId);
         $statement->execute();
-        // Fetch the post record
+        // Fetch the post record.
         $row = $statement->fetch();
 
         $post = new Post();
@@ -116,7 +116,7 @@ class Post
         $statement = $this->connection->getConnection()->prepare($query);
         $statement->bindParam(':postId', $postId);
         $statement->execute();
-        // Fetch the post record
+        // Fetch the post record.
         $row = $statement->fetch();
         $total = $row['total_comments'] ?? 0;
 
@@ -134,7 +134,7 @@ class Post
      */
     public function getPosts() : array
     {
-        // Query to retrieve all posts
+        // Query to retrieve all posts.
         $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.author_id = u.id ORDER BY updated_at DESC";
         $statement = $this->connection->getConnection()->query($query);
 
@@ -166,7 +166,7 @@ class Post
      */
     public function getRecentPosts() : array
     {
-        // Query to retrieve all posts
+        // Query to retrieve all posts.
         $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.author_id = u.id ORDER BY created_at DESC LIMIT 3";
         $statement = $this->connection->getConnection()->query($query);
 

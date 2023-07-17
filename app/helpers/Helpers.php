@@ -41,7 +41,7 @@ class Helpers
             return false;
         }
 
-        // Check if the submitted token matches the one stored in the session
+        // Check if the submitted token matches the one stored in the session.
         return hash_equals(Session::get('csrf_token'), $token);
     }
 

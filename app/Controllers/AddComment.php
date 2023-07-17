@@ -36,7 +36,8 @@ class AddComment
                     $commentContent = strip_tags(PostGlobal::get('commentContent'));
                 }
             } catch (Exception $e) {
-                echo "une erreur s'est produite : ". $e->getMessage();
+                $errorMessage = "Une erreur s'est produite : " . $e->getMessage();
+                echo htmlspecialchars($errorMessage);
             }
         } else {
             ?>

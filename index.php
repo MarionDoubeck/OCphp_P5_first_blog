@@ -1,6 +1,5 @@
 <?php
 session_start();
-//error_reporting(0);
 
 use Dotenv\Dotenv;
 use App\services\Get;
