@@ -6,32 +6,30 @@ $helper = new Helpers;
 $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
 ?>
 
-
-    <!-- Main content -->
-    <section class="content">
+<!-- Main content -->
+<section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Nouvel article</h3>
+                <h3 class="card-title">Modifiez l'article</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                     <!-- Form containing the editor textarea -->
-                    <?php $helper->generateCsrfToken();?>
+                    <?php $helper->generateCsrfToken(); ?>
                     <form id="editor-form" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="title">Titre</label>
-                            <input class="form-control" type="text" name="title" id="title" value="<?= htmlspecialchars('TITRE') ?>">
+                            <input class="form-control" type="text" name="title" id="title" value="<?= htmlspecialchars($title) ?>">
                         </div>
 
                         <!-- Image -->
-                        <?php $ilyauneimage = false;?>
-                        <?php if ($ilyauneimage) : ?>
+                        <?php if (empty($imageData) === FALSE && empty($imageType) === FALSE) : ?>
                           <div class="form-group">
                             <label>Image actuelle :</label>
-                            <img src="data:<?= htmlspecialchars($post['image_type']) ?>;base64,<?= htmlspecialchars(base64_encode($post['image_data'])) ?>" style="max-width: 200px;" alt="Image de l'article">
+                            <img src="data:<?= htmlspecialchars($imageType) ?>;base64,<?= htmlspecialchars($imageData) ?>" style="max-width: 200px;" alt="Image de l'article">
                           </div>
                           <div class="form-group">
                             <label for="delete_image">Supprimer l'image actuelle</label>
@@ -59,11 +57,11 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                         
                         <div class="form-group">
                             <label for="chapo">Chapo (Max 255 caractères)</label>
-                            <textarea class="form-control" name="chapo" id="chapo" maxlength="255"><?= htmlspecialchars('chapo') ?></textarea>
+                            <textarea class="form-control" name="chapo" id="chapo" maxlength="255"><?= htmlspecialchars($chapo) ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="content">Contenu de l'article</label>
-                            <textarea class="form-control" name="content" id="content"><?= htmlspecialchars('content')?></textarea>
+                            <textarea class="form-control" name="content" id="content"><?= htmlspecialchars($content) ?></textarea>
                         </div>
                         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                         <input type="submit" value="Publier">
@@ -78,7 +76,6 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-
       <?php $helper->renderView('app/views/admin/dashboard-scripts.php',[]);?>
 <!-- Page specific script -->
 <script src="../admin/plugins/add-post/add-post.js"></script>

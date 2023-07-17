@@ -44,7 +44,7 @@ class AddComment
             <script language="javascript"> 
             var numpost = <?= $post?>;
             alert("les données du commentaires sont invalides");
-            document.location.href = 'index.php?action=article&id='+numpost;</script>
+            document.location.href = '/index.php?action=article&id='+numpost;</script>
             <?php
         }
 
@@ -59,7 +59,7 @@ class AddComment
             <script language="javascript"> 
             var numpost = <?= $post?>;
             alert("Commentaire envoyé, celui-ci sera visible après validation.");
-            document.location.href = 'index.php?action=article&id='+numpost;</script>
+            document.location.href = '/index.php?action=article&id='+numpost;</script>
             <?php
         }
     }

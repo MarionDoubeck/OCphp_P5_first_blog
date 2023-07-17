@@ -79,7 +79,7 @@ class Register
                     ?>
                     <script language="javascript"> 
                     alert("Toutes les informations doivent être complétées");
-                    document.location.href = 'index.php?action=register';</script>
+                    document.location.href = '/index.php?action=register';</script>
                     <?php
                 }
             }
