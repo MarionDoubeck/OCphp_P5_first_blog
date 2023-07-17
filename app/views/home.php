@@ -12,14 +12,21 @@ $helper->renderView('app/views/header.php',[]);
 	<div class="container" id="latestPosts">
 		<h3>Derniers Posts !</h3>
         <?php foreach ($lastThreePosts as $post){
-			$str = htmlspecialchars($post->getTitle());
+			$title = htmlspecialchars($post->getTitle());
 			// Supprimez les accents
-			$str = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($str, Normalizer::FORM_D));
+			$title = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($title, Normalizer::FORM_D));
 			$created_at = htmlspecialchars($post->getFrenchCreationDate());
 			$chapo = htmlspecialchars($post->getChapo());
 			$imageData = $post->getImageData();
 			$imageType = $post->getImageType();
-            require 'post-frame.php';
+            $helper->renderView('app/views/post-frame.php',array(
+				'post'=>$post,
+				'title'=>$title,
+				'created_at'=>$created_at,
+				'chapo'=>$chapo,
+				'imageData'=>$imageData,
+				'imageType'=>$imageType
+			));
         }?>
 	</div> 
 

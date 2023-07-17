@@ -53,8 +53,8 @@ class SinglePost
             'created_at'=>$created_at,
             'chapo'=>$chapo,
             'content'=>$content,
-            'image data'=>$imageData,
-            'image type'=>$imageType
+            'imageData'=>$imageData,
+            'imageType'=>$imageType
         ));
     }
 

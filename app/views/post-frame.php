@@ -1,7 +1,7 @@
 <div class="container px-4 px-lg-5 mt-5 mb-5 border p-3">
     <div class="d-flex mb-4">
         <h3 class="text-left">
-            <?= htmlspecialchars($str) ?>
+            <?= htmlspecialchars($title) ?>
             <span class="font-weight-light" style="padding-left:30px; margin-top:20px; font-size: .85rem">Cree le : <?= htmlspecialchars($created_at) ?></span>
         </h3>
     </div>
