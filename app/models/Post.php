@@ -15,7 +15,6 @@ class Post
      *
      * @var string
      */
-
     private string $title;
 
     /**
@@ -23,15 +22,13 @@ class Post
      *
      * @var string
      */
-
-     private string $frenchCreationDate;
+    private string $frenchCreationDate;
 
     /**
      * Post modification date 
      *
      */
-
-     private $frenchModificationDate;
+    private $frenchModificationDate;
 
 
     /**
@@ -39,22 +36,22 @@ class Post
      *
      * @var string
      */
+    private string $content;
 
-     private string $content;
     /**
      * Post chapo
      *
      * @var string
      */
+    private string $chapo;
 
-     private string $chapo;
     /**
      * Post indentifier
      *
      * @var string
      */
-
-     private int $identifier;
+    private int $identifier;
+    
     /**
      * User's nickname
      *
