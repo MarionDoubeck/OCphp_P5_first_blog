@@ -1,4 +1,6 @@
-<?php include 'header.php'; ?>
+<?php 
+use App\services\Session;
+include 'header.php'; ?>
 
 <div class="container">
 <h2>S'enregistrer</h2>
@@ -15,7 +17,7 @@
     <label for="password">Mot de passe</label>
     <input type="password" name="password" id="password" required>
 
-    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
     <button type="submit">S'enregistrer</button>
 </form>
 </div>

@@ -1,5 +1,6 @@
 <?php
 use App\Models\Post;
+use App\services\Session;
 require_once __DIR__ .'../../../helpers/csrf.php';
 
 include 'dashboard-header-and-menu.php';
@@ -31,26 +32,26 @@ include 'dashboard-header-and-menu.php';
                   <tbody>
                     <!-- Loop through posts data and display each post in a row -->
                     <?php foreach ($posts as $post) : 
-                      $title = htmlspecialchars($post->getTitle());
+                      $title = $post->getTitle();
                       //No accents in title with this font
                       $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));
-                      $created_at = htmlspecialchars($post->getFrenchCreationDate());
-                      $modified_at = htmlspecialchars($post->getFrenchModificationDate());
+                      $created_at = $post->getFrenchCreationDate();
+                      $modified_at = $post->getFrenchModificationDate();
                       $id = $post->getIdentifier();
                       $nbOfComments=$newPost->retrieveNumberOfComments($id);
                     ?>
                     <tr>
-                        <td><?= $title ?></td>
-                        <td><?= $created_at ?></td>
-                        <td><?= $modified_at ?></td>
-                        <td><?= $nbOfComments ?></td>
+                        <td><?= htmlspecialchars($title) ?></td>
+                        <td><?= htmlspecialchars($created_at) ?></td>
+                        <td><?= htmlspecialchars($modified_at) ?></td>
+                        <td><?= htmlspecialchars($nbOfComments) ?></td>
                         <td>
                             <div style="width:100%; display:flex; justify-content: space-around;">
                               <a href=# class="btn btn-success" target="_blank">Voir</a>
                               <a href=# class="btn btn-primary" >Modifier</a>
                               <?php generateCsrfToken();?>
                               <form  method="post" style="display: inline;">
-                                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                                 <button type="submit" class="btn btn-danger" onclick="confirmDelete(event)">Supprimer</button>
                               </form>
                             </div>

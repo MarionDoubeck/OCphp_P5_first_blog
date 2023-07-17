@@ -1,8 +1,8 @@
 <?php
 require_once __DIR__ .'../../../helpers/csrf.php';
+use App\services\Session;
 
 include 'dashboard-header-and-menu.php';
-
 ?>
 
 
@@ -40,7 +40,7 @@ include 'dashboard-header-and-menu.php';
                             <label for="content">Contenu de l'article</label>
                             <textarea class="form-control" name="content" id="content"></textarea>
                         </div>
-                        <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">
                         <input type="submit" value="Publier">
                     </form>
                 </div>
