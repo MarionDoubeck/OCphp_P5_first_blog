@@ -60,13 +60,12 @@ class Register
                 $errors[] = "Erreur : Jeton CSRF invalide.";
             } else {
                 if ($this->postGlobal->isParamSet('username') === TRUE && $this->postGlobal->isParamSet('password') === TRUE && empty($this->postGlobal->get('username')) === FALSE && empty($this->postGlobal->get('password')) === FALSE) {
-
                     $this->checkIfFormIsCorrect();
 
                     $username = strip_tags(trim($this->postGlobal->get('username')));
                     $email = $this->postGlobal->get('email');
 
-                    // We hash password for security issues
+                    // We hash password for security issues.
                     $passtest = $this->postGlobal->get('password');
                     $pass = password_hash($this->postGlobal->get('password'), PASSWORD_DEFAULT);
 
@@ -94,14 +93,15 @@ class Register
                     }
                 } else {
                     $errors[] = "Toutes les informations doivent être complétées";
-                }
-            }
-        }
+                }//end if
+            }//end if
+        }//end if
 
         $data = [
             'errors' => $errors,
         ];
         $helper->renderView('app/views/register.php', $data);
+
     }
 
 
@@ -142,18 +142,19 @@ class Register
         $usernameCheck = new User();
         $usernameCheck->connection = new DatabaseConnection();
         $result1 = $usernameCheck->checkUserUsername(strip_tags(trim($this->postGlobal->get('username'))));
-        if ($result1) {
+        if ($result1 !== null) {
             $errors[] = 'Nom d\'utilisateur déjà existant';
         }
+
         // We check that the email is unique.
         $userMailCheck = new User();
         $userMailCheck->connection = new DatabaseConnection();
         $result2 = $userMailCheck->checkUserEmail($this->postGlobal->get('email'));
-        if ($result2) {
+        if ($result2 !== null) {
             $errors[] = 'Email déjà existant';
         }
 
-        if (!empty($errors)) {
+        if (empty($errors) === FALSE) {
             $data = [
                 'errors' => $errors,
             ];

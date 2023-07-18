@@ -45,7 +45,7 @@ class ValidateComment
     {
         $role = $this->session->get('role');
         if ($role !== 'admin') {
-            header("Location: index.php/?action=AccesNonAutorisé");
+            echo '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>';
         }
 
         $postRepository = new Comment();
