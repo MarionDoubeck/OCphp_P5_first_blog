@@ -60,37 +60,40 @@ class Register
                 $errors[] = "Erreur : Jeton CSRF invalide.";
             } else {
                 if ($this->postGlobal->isParamSet('username') === TRUE && $this->postGlobal->isParamSet('password') === TRUE && empty($this->postGlobal->get('username')) === FALSE && empty($this->postGlobal->get('password')) === FALSE) {
-                    $this->checkIfFormIsCorrect();
+                    // Check form entries.
+                    $formErrors = $this->checkIfFormIsCorrect();
+                    if(empty($formErrors) === TRUE) {
+                        $username = strip_tags(trim($this->postGlobal->get('username')));
+                        $email = $this->postGlobal->get('email');
 
-                    $username = strip_tags(trim($this->postGlobal->get('username')));
-                    $email = $this->postGlobal->get('email');
+                        // We hash password for security issues.
+                        $passtest = $this->postGlobal->get('password');
+                        $pass = password_hash($this->postGlobal->get('password'), PASSWORD_DEFAULT);
 
-                    // We hash password for security issues.
-                    $passtest = $this->postGlobal->get('password');
-                    $pass = password_hash($this->postGlobal->get('password'), PASSWORD_DEFAULT);
+                        // We add the new user.
+                        $userRepository = new User();
+                        $userRepository->connection = new DatabaseConnection();
+                        $success = $userRepository->addUser($username, $pass, $email);
+                        if ($success === FALSE) {
+                            $errors[] = 'Impossible d\'ajouter l\'utilisateur !';
+                        } else {
+                            $usersession = new User();
+                            $usersession->connection = new DatabaseConnection();
+                            $sessionResult = $usersession->checkUserUsername($username);
+                            $this->session->put('user_id', $sessionResult->getUser_id());
+                            $this->session->put('username', $sessionResult->getUsername());
+                            $this->session->put('role', $sessionResult->getRole());
 
-                    // We add the new user.
-                    $userRepository = new User();
-                    $userRepository->connection = new DatabaseConnection();
-                    $success = $userRepository->addUser($username, $pass, $email);
-                    if ($success === FALSE) {
-                        $errors[] = 'Impossible d\'ajouter l\'utilisateur !';
-                    } else {
-                        $usersession = new User();
-                        $usersession->connection = new DatabaseConnection();
-                        $sessionResult = $usersession->checkUserUsername($username);
-                        $this->session->put('user_id', $sessionResult->getUser_id());
-                        $this->session->put('username', $sessionResult->getUsername());
-                        $this->session->put('role', $sessionResult->getRole());
+                            ?>
+                            <script>
+                                alert("Félicitations, vous êtes bien enregistré");
+                                window.location.href = '/';
+                            </script>
+                            <?php
+                            return;
+                        }//end if
+                    }//end if
 
-                        ?>
-                        <script>
-                            alert("Félicitations, vous êtes bien enregistré");
-                            window.location.href = '/';
-                        </script>
-                        <?php
-                        return;
-                    }
                 } else {
                     $errors[] = "Toutes les informations doivent être complétées";
                 }//end if
@@ -138,6 +141,21 @@ class Register
             $errors[] = 'Le mot de passe doit contenir au moins 1 minuscule';
         }
 
+        $moreErrors = $this->checkIfAlreadyInDb($errors);
+        return $moreErrors;
+
+    }//end checkIfFormIsCorrect()
+
+
+    /**
+     * Method to do the checks and to secure the entrances
+     *
+     * @param array $errors Errors
+     * 
+     * @return array $errors Errors
+     */
+    public function checkIfAlreadyInDb($errors)
+    {
         // We check that the nickname is unique.
         $usernameCheck = new User();
         $usernameCheck->connection = new DatabaseConnection();
@@ -160,8 +178,10 @@ class Register
             ];
             $helper = new Helpers;
             $helper->renderView('app/views/register.php', $data);
-            exit;
         }
+        return $errors;
 
-    }//end checkIfFormIsCorrect()
+    }//end checkIfAlreadyInDb()
+
+
 }
