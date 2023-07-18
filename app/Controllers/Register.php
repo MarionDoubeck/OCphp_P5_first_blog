@@ -96,8 +96,8 @@ class Register
                 } else {
                     $errors[] = "Toutes les informations doivent être complétées";
                 }//end if
-            }
-        }
+            }//end if
+        }//end if
 
         $data = [ 'errors' => $errors ];
         $helper->renderView('app/views/register.php', $data);

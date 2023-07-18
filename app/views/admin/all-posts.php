@@ -39,7 +39,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                       $created_at = $post->getFrenchCreationDate();
                       $modified_at = $post->getFrenchModificationDate();
                       $id = $post->getIdentifier();
-                      $nbOfComments=$newPost->retrieveNumberOfComments($id);
+                      $nbOfComments = $newPost->retrieveNumberOfComments($id);
                       ?>
                 <tr>
                     <td><?= htmlspecialchars($title) ?></td>
@@ -58,7 +58,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                         </div>
                     </td>
               </tr>
-              <?php endforeach ;?>
+              <?php endforeach ; ?>
               </tbody>
             </table>
           </div>

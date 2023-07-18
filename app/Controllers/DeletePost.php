@@ -83,9 +83,9 @@ class DeletePost
                     document.location.href = '/index.php?action=adminAllPosts';
                     </script>
                     <?php
-                }
-            }
-        }
+                }//end if
+            }//end if
+        }//end if
 
     }//end execute()
 

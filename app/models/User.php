@@ -41,14 +41,14 @@ class User
     /**
      * email of user
      *
-     * @var int
+     * @var integer
      */
     private string $email;
 
     /**
      * nb of comments user wrote
      *
-     * @var int
+     * @var integer
      */
     private int $commentCount;
 
@@ -210,7 +210,7 @@ class User
 
     /**
      * Set the value of password
-     * 
+     *
      * @param string $password Password
      *
      * @return self
@@ -241,7 +241,7 @@ class User
      *
      * @param int $user_id User Id
      * @return self
-     */ 
+     */
     public function setUser_id($user_id)
     {
         $this->user_id = $user_id;

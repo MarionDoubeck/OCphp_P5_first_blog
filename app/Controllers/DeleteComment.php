@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Comment;
 use App\services\Session;
+use App\services\Helpers;
 use App\db\DatabaseConnection;
 
 /**
@@ -45,6 +46,7 @@ class DeleteComment
     {
         $role = $this->session->get('role');
         if ($role !== 'admin') {
+            $helper = new Helpers;
             $helper->renderView('app/views/404.php',[]);
         }
 

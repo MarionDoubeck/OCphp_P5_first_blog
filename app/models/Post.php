@@ -279,7 +279,7 @@ class Post
         return($affectedLines > 0);
 
     }//end deletePost()
-    
+
 
     /**
      * Get post title
@@ -443,7 +443,7 @@ class Post
      * @param string $content post content
      *
      * @return self
-     */ 
+     */
     public function setContent(string $content)
     {
         $this->content = $content;
