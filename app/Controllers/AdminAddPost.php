@@ -79,7 +79,7 @@ class AdminAddPost
         $chapo = null;
 
         if ($role !== 'admin') {
-            header("Location: index.php/?action=AccesNonAutorisé");
+            echo '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>';
         }
 
         if ($this->server->requestMethod() === 'POST') {
