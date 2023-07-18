@@ -77,7 +77,7 @@ class User
         }
 
         return $users;
-    }
+    }//end getUsers()
 
 
     /**
@@ -107,7 +107,7 @@ class User
             $user->setRole($row['role']);
             $user->setEmail($row['email']);
         return $user;
-    }
+    }//end checkUserUsername()
 
 
     /**
@@ -130,7 +130,7 @@ class User
             return null;
         }
         return $row;
-    }
+    }//end checkUserEmail()
 
 
     /**
@@ -150,7 +150,7 @@ class User
         $affectedLines = $statement->execute([$username, $password, $email, 'user']);
 
         return($affectedLines > 0);
-    }
+    }//end addUser()
 
 
     /**

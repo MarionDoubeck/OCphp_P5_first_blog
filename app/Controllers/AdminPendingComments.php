@@ -27,7 +27,7 @@ class AdminPendingComments
     {
         $this->session = $session;
 
-    }
+    }//end __construct()
 
 
     /**

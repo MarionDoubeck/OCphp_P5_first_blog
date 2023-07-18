@@ -26,7 +26,7 @@ class AdminValidatedComments
     {
         $this->session = $session;
 
-    }
+    }//end __construct()
 
 
     /**

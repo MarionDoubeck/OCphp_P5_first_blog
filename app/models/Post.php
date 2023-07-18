@@ -137,7 +137,7 @@ class Post
 
         return $total;
 
-    }
+    }//end retrieveNumberOfComments()
 
 
     /**
@@ -168,7 +168,7 @@ class Post
         }
         
         return $posts;
-    }
+    }//end getPosts()
 
 
     /**
@@ -199,7 +199,7 @@ class Post
         }
         
         return $posts;
-    }
+    }//end getRecentPosts()
 
 
     /**
@@ -229,7 +229,7 @@ class Post
 
         return($affectedLines > 0);
 
-    }
+    }//end addPost()
 
 
     /**
@@ -257,7 +257,7 @@ class Post
         $affectedLines = $statement->execute();
     
         return ($affectedLines > 0);
-    }
+    }//end editPost()
     
 
     /**
@@ -274,7 +274,7 @@ class Post
         );
         $affectedLines = $statement->execute([$identifier]);
         return($affectedLines > 0);
-    }
+    }//end deletePost()
     
 
     /**
@@ -285,7 +285,7 @@ class Post
     public function getTitle()
     {
         return $this->title;
-    }
+    }//end getTitle()
 
 
     /**
@@ -300,7 +300,7 @@ class Post
         $this->title = $title;
 
         return $this;
-    }
+    }//end setTitle()
 
 
     /**
@@ -311,7 +311,7 @@ class Post
     public function getFrenchCreationDate()
     {
         return $this->frenchCreationDate;
-    }
+    }//end getFrenchCreationDate()
 
 
     /**
@@ -322,7 +322,7 @@ class Post
     public function getFrenchModificationDate()
     {
         return $this->FrenchModificationDate;
-    }
+    }//end getFrenchModificationDate()
 
 
     /**
@@ -333,7 +333,7 @@ class Post
     public function getImageData()
     {
         return $this->imageData;
-    }
+    }//end getImageData()
 
 
     /**
@@ -352,7 +352,7 @@ class Post
         }
 
         return $this;
-    }
+    }//end setImageData()
 
 
     /**
@@ -363,7 +363,7 @@ class Post
     public function getImageType()
     {
         return $this->imageType;
-    }
+    }//end getImageType()
 
 
     /**
@@ -378,7 +378,7 @@ class Post
         $this->imageType = $imageType;
 
         return $this;
-    }
+    }//end setImageType()
 
 
     /**
@@ -393,7 +393,7 @@ class Post
         $this->frenchCreationDate = $frenchCreationDate;
 
         return $this;
-    }
+    }//end setFrenchCreationDate()
     
 
     /**
@@ -408,7 +408,7 @@ class Post
         $this->FrenchModificationDate = $FrenchModificationDate;
 
         return $this;
-    }
+    }//end setFrenchModificationDate()
 
 
     /**
@@ -419,7 +419,7 @@ class Post
     public function getContent()
     {
         return $this->content;
-    }
+    }//end getContent()
 
 
     /**
@@ -434,7 +434,7 @@ class Post
         $this->content = $content;
 
         return $this;
-    }
+    }//end setContent()
 
 
     /**
@@ -445,7 +445,7 @@ class Post
     public function getChapo()
     {
         return $this->chapo;
-    }
+    }//end getChapo()
 
 
     /**
@@ -460,7 +460,7 @@ class Post
         $this->chapo = $chapo;
 
         return $this;
-    }
+    }//end setChapo()
 
 
     /**
@@ -471,7 +471,7 @@ class Post
     public function getIdentifier()
     {
         return $this->identifier;
-    }
+    }//end getIdentifier()
 
 
     /**
@@ -486,7 +486,7 @@ class Post
         $this->identifier = $identifier;
 
         return $this;
-    }
+    }//end setIdentifier()
 
 
     /**
@@ -497,7 +497,7 @@ class Post
     public function getFirstname()
     {
         return $this->firstname;
-    }
+    }//end getFirstname()
 
 
     /**
@@ -508,7 +508,7 @@ class Post
     public function getUsername()
     {
         return $this->username;
-    }
+    }//end getUsername()
 
 
     /**
@@ -524,7 +524,7 @@ class Post
 
         return $this;
 
-    }
+    }//end setUsername()
 
   
 }

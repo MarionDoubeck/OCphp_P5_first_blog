@@ -85,7 +85,7 @@ class Comment
         }
 
         return $comments;
-    }
+    }//end getComments()
 
 
     /**
@@ -106,7 +106,7 @@ class Comment
         $affectedLines = $statement->execute([$postId, $user_id, $comment, 'pending']);
 
         return($affectedLines > 0);
-    }
+    }//end createComment()
 
 
     /**
@@ -123,7 +123,7 @@ class Comment
         );
         $affectedLines = $statement->execute([$identifier]);
         return($affectedLines > 0);
-    }
+    }//end deleteComment()
 
 
     /**
@@ -140,7 +140,7 @@ class Comment
         $statement->bindParam(':postId', $postId);
         $affectedLines = $statement->execute();
         return($affectedLines > 0);
-    }
+    }//end deleteAllComments()
 
 
     /**
@@ -158,7 +158,7 @@ class Comment
         $statement->bindParam(':identifier', $identifier);
         $affectedLines = $statement->execute();
         return($affectedLines > 0);
-    }
+    }//end validateComment()
 
 
     /**
@@ -193,7 +193,7 @@ class Comment
         }
 
         return $comments;
-    }
+    }//end getCommentsStatus()
 
 
     /**
@@ -204,7 +204,7 @@ class Comment
     public function getFrenchCreationDate()
     {
         return $this->frenchCreationDate;
-    }
+    }//end getFrenchCreationDate()
 
 
     /**
@@ -219,7 +219,7 @@ class Comment
         $this->frenchCreationDate = $frenchCreationDate;
 
         return $this;
-    }
+    }//end setFrenchCreationDate()
 
 
     /**
@@ -230,7 +230,7 @@ class Comment
     public function getComment()
     {
         return $this->comment;
-    }
+    }//end getComment()
 
 
     /**
@@ -243,7 +243,7 @@ class Comment
         $this->comment = $comment;
 
         return $this;
-    }
+    }//end setComment()
 
 
     /**
@@ -254,7 +254,7 @@ class Comment
     public function getIdentifier()
     {
         return $this->identifier;
-    }
+    }//end getIdentifier()
 
 
     /**
@@ -267,7 +267,7 @@ class Comment
         $this->identifier = $identifier;
 
         return $this;
-    }
+    }//end setIdentifier()
 
 
     /**
@@ -278,7 +278,7 @@ class Comment
     public function getPost()
     {
         return $this->postId;
-    }
+    }//end getPost()
 
 
     /**
@@ -291,7 +291,7 @@ class Comment
         $this->postId = $postId;
 
         return $this;
-    }
+    }//end setPost()
 
 
     /**
@@ -302,7 +302,7 @@ class Comment
     public function getPostTitle()
     {
         return $this->postTitle;
-    }
+    }//end getPostTitle()
 
 
     /**
@@ -315,7 +315,7 @@ class Comment
         $this->postTitle = $postTitle;
 
         return $this;
-    }
+    }//end setPostTitle()
 
 
     /**
@@ -326,7 +326,7 @@ class Comment
     public function getUsername()
     {
         return $this->username;
-    }
+    }//end getUsername()
 
     /**
      * Set the value of username
@@ -338,7 +338,7 @@ class Comment
         $this->username = $username;
 
         return $this;
-    }
+    }//end setUsername()
 
 
 }

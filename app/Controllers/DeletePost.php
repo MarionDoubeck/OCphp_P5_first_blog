@@ -43,7 +43,7 @@ class DeletePost
         $this->session = $session;
         $this->postGlobal = $postGlobal;
 
-    }
+    }//end __construct()
 
 
     /**
