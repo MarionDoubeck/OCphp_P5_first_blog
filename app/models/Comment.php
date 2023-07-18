@@ -8,6 +8,7 @@ use App\db\DatabaseConnection;
  */
 class Comment
 {
+
     /**
      * Username of the editor of the comment
      *
@@ -32,7 +33,7 @@ class Comment
     /**
      * Comment id
      *
-     * @var int
+     * @var integer
      */
     private int $identifier;
 
@@ -50,7 +51,11 @@ class Comment
      */
     private string $postTitle;
 
-    // Connect to the data base.
+    /**
+     * Connexion to database
+     *
+     * @var DatabaseConnection
+     */
     public DatabaseConnection $connection;
 
 
@@ -85,6 +90,7 @@ class Comment
         }
 
         return $comments;
+
     }//end getComments()
 
 
@@ -106,6 +112,7 @@ class Comment
         $affectedLines = $statement->execute([$postId, $user_id, $comment, 'pending']);
 
         return($affectedLines > 0);
+
     }//end createComment()
 
 
@@ -123,6 +130,7 @@ class Comment
         );
         $affectedLines = $statement->execute([$identifier]);
         return($affectedLines > 0);
+
     }//end deleteComment()
 
 
@@ -166,6 +174,8 @@ class Comment
     /**
      * Method to retrieve unvalidated comments
      *
+     * @param string $status Status
+     * 
      * @return array
      */
     public function getCommentsStatus($status)
@@ -229,7 +239,7 @@ class Comment
 
     /**
      * Get the content of comment
-     * 
+     *
      * @return string
      */
     public function getComment()
@@ -283,7 +293,7 @@ class Comment
      * Get the value of postId
      * 
      * @return int
-     */ 
+     */
     public function getPost()
     {
         return $this->postId;
@@ -341,6 +351,7 @@ class Comment
         return $this->username;
 
     }//end getUsername()
+
 
     /**
      * Set the value of username

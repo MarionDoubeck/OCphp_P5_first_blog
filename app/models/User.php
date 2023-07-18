@@ -9,6 +9,7 @@ use App\db\DatabaseConnection;
  */
 class User
 {
+
     /**
      * Role of user
      *
@@ -33,7 +34,7 @@ class User
     /**
      * Id of user
      *
-     * @var int
+     * @var integer
      */
     private int $user_id;
 
@@ -44,9 +45,18 @@ class User
      */
     private string $email;
 
+    /**
+     * nb of comments user wrote
+     *
+     * @var int
+     */
     private int $commentCount;
 
-    // Connect to database.
+    /**
+     * Connexion to database
+     *
+     * @var DatabaseConnection
+     */
     public DatabaseConnection $connection;
 
 
@@ -66,11 +76,11 @@ class User
 
         $users = [];
 
-        while (($row = $statement->fetch())) {
+        while (($row = $statement->fetch()) === TRUE) {
             $user = new User();
             $user->setUsername($row['username']);
             $user->setEmail($row['email']);
-            $commentCount = $row['comment_count'] ?? 0;
+            $commentCount = ($row['comment_count'] ?? 0);
             $user->setCommentCount($commentCount);
 
             $users[] = $user;
@@ -131,6 +141,7 @@ class User
         if ($row === false) {
             return null;
         }
+
         return $row;
 
     }//end checkUserEmail()
@@ -166,7 +177,7 @@ class User
     {
         return $this->role;
 
-    }
+    }//end getRole()
 
 
     /**
@@ -181,7 +192,8 @@ class User
         $this->role = $role;
 
         return $this;
-    }
+
+    }//end setRole()
 
 
     /**
@@ -192,7 +204,8 @@ class User
     public function getPassword()
     {
         return $this->password;
-    }
+
+    }//end getPassword()
 
 
     /**
@@ -207,7 +220,8 @@ class User
         $this->password = $password;
 
         return $this;
-    }
+
+    }//end setPassword()
 
 
     /**
@@ -218,7 +232,8 @@ class User
     public function getUser_id()
     {
         return $this->user_id;
-    }
+
+    }//end getUser_id()
 
 
     /**
@@ -232,7 +247,8 @@ class User
         $this->user_id = $user_id;
 
         return $this;
-    }
+
+    }//end setUser_id()
 
 
     /**
@@ -243,7 +259,8 @@ class User
     public function getEmail()
     {
         return $this->email;
-    }
+
+    }//end getEmail()
 
 
     /**
@@ -254,7 +271,8 @@ class User
     public function getCommentCount()
     {
         return $this->commentCount;
-    }
+
+    }//end getCommentCount()
 
 
     /**
@@ -267,7 +285,8 @@ class User
         $this->email = $email;
 
         return $this;
-    }
+
+    }//end setEmail()
 
 
     /**
@@ -285,7 +304,7 @@ class User
 
         return $this;
 
-    }
+    }//end setCommentCount()
 
 
     /**
@@ -297,7 +316,7 @@ class User
     {
         return $this->username;
 
-    }
+    }//end getUsername()
 
 
     /**
@@ -311,7 +330,7 @@ class User
 
         return $this;
 
-    }
+    }//end setUsername()
 
 
 }//end class
