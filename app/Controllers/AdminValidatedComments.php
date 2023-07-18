@@ -7,6 +7,7 @@ use App\services\Helpers;
 
 class AdminValidatedComments
 {
+    
     /**
      * Session
      *

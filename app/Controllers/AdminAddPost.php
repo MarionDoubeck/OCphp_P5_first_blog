@@ -89,7 +89,7 @@ class AdminAddPost
                 // We do the checks.
                 if (empty($this->postGlobal->get('content')) === FALSE && empty($this->postGlobal->get('title')) === FALSE
                     && empty($this->postGlobal->get('chapo')) === FALSE
-                    ) {
+                ) {
                     $content = strip_tags($this->postGlobal->get('content'));
                     $title = strip_tags($this->postGlobal->get('title'));
                     $chapo = strip_tags($this->postGlobal->get('chapo'));

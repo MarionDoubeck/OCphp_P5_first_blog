@@ -24,8 +24,8 @@ $helper->renderView('app/views/header.php',[]);
     <ul>
         <?php
         foreach ($comments as $comment) :
-            $commentAuthor=$comment->getUsername();
-            $commentContent=$comment->getComment();
+            $commentAuthor = $comment->getUsername();
+            $commentContent = $comment->getComment();
             ?>
             <li>
                 <strong><?= htmlspecialchars($commentAuthor) ?>:</strong>

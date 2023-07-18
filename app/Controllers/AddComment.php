@@ -41,6 +41,7 @@ class AddComment
     {
         $this->session = $session;
         $this->postGlobal = $postGlobal;
+
     }//end __construct()
 
 
@@ -67,7 +68,7 @@ class AddComment
                     $commentContent = strip_tags($this->postGlobal->get('commentContent'));
                 }
             } catch (Exception $e) {
-                $errorMessage = "Une erreur s'est produite : " . $e->getMessage();
+                $errorMessage = "Une erreur s'est produite : ".$e->getMessage();
                 echo htmlspecialchars($errorMessage);
             }
         } else {

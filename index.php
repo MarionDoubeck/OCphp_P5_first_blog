@@ -107,7 +107,7 @@ try {
             (new AdminAllUsers($session))->execute();
             break;
         case "deleteComment":
-            if (null !== Get::get('id') && Get::get('id') > 0) {
+            if (Get::get('id') !== null && Get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new DeleteComment($session))->execute($identifier);
             } else {
@@ -115,7 +115,7 @@ try {
             }
             break;
         case "validateComment":
-            if (null !== Get::get('id') && Get::get('id') > 0) {
+            if (Get::get('id') !== null  && Get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new ValidateComment($session))->execute($identifier);
             } else {
@@ -123,7 +123,7 @@ try {
             }
             break;
         case "deletePost":
-            if (null !== Get::get('id') && Get::get('id') > 0) {
+            if (Get::get('id') !== null  && Get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new DeletePost($session, $postGlobal))->execute($identifier);
             } else {
@@ -131,7 +131,7 @@ try {
             }
             break;
         case "editPost":
-            if (null !== Get::get('id') && Get::get('id') > 0) {
+            if (Get::get('id') !== null  && Get::get('id') > 0) {
                 $identifier = Get::get('id');
                 $input = null;
                 if (Server::requestMethod() === 'POST') {
