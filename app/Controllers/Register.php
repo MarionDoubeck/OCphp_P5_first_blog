@@ -178,4 +178,4 @@ class Register
     }//end checkIfAlreadyInDB()
 
 
-}
+}//end execute()
