@@ -88,7 +88,8 @@ class AdminAddPost
             } else {
                 // We do the checks.
                 if (empty($this->postGlobal->get('content')) === FALSE && empty($this->postGlobal->get('title')) === FALSE
-                    && empty($this->postGlobal->get('chapo')) === FALSE ) {
+                    && empty($this->postGlobal->get('chapo')) === FALSE
+                    ) {
                     $content = strip_tags($this->postGlobal->get('content'));
                     $title = strip_tags($this->postGlobal->get('title'));
                     $chapo = strip_tags($this->postGlobal->get('chapo'));
@@ -108,7 +109,7 @@ class AdminAddPost
                         document.location.href = '/index.php?action=adminAddPost';
                     </script>
                     <?php
-                }//end if
+                }//endif
 
                 // We create the new article.
                 $postRepository = new Post();
@@ -128,5 +129,6 @@ class AdminAddPost
         }//end if
         
         $helper->renderView('app/views/admin/add-post.php',[]); 
+        
     }//end execute()
 }

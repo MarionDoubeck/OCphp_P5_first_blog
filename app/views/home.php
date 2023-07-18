@@ -19,14 +19,14 @@ $helper->renderView('app/views/header.php',[]);
 		$chapo = htmlspecialchars($post->getChapo());
 		$imageData = $post->getImageData();
 		$imageType = $post->getImageType();
-		$helper->renderView('app/views/post-frame.php',array(
-														'post' => $post,
-														'title' => $title,
-														'created_at' => $created_at,
-														'chapo' => $chapo,
-														'imageData' => $imageData,
-														'imageType' => $imageType,
-														)
+		$helper->renderView('app/views/post-frame.php', [
+			'post' => $post,
+			'title' => $title,
+			'created_at' => $created_at,
+			'chapo' => $chapo,
+			'imageData' => $imageData,
+			'imageType' => $imageType,
+		]
 		);
 	}?>
 </div> 
@@ -42,4 +42,4 @@ $helper->renderView('app/views/header.php',[]);
 	<?php $helper->renderView('app/views/contact.php',[]); ?>
 </div>
 
-<?php $helper->renderView('app/views/footer.php',[]); ?>
+<?php $helper->renderView('app/views/footer.php',[]);
