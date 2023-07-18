@@ -2,8 +2,8 @@
 namespace App\Controllers;
 
 use App\Models\Comment;
-use App\services\Session;
 use App\db\DatabaseConnection;
+use App\services\Session;
 use App\services\PostGlobal;
 use App\services\Helpers;
 
@@ -13,6 +13,17 @@ use App\services\Helpers;
  */
 class AddComment
 {
+
+    private $session;
+    private $postGlobal;
+
+    public function __construct(Session $session, PostGlobal $postGlobal)
+    {
+        $this->session = $session;
+        $this->postGlobal = $postGlobal;
+    }
+
+
     /**
      * Function in charge of doing security checks and adding a new comment
      *
@@ -22,18 +33,18 @@ class AddComment
      */
     public function execute(string $post)
     {
-        $user_id = Session::get('user_id');
+        $user_id = $this->session->get('user_id');
         $commentContent = null;
 
         $helper = new Helpers;
         // We do the checks.
-        if (empty(PostGlobal::get('commentContent')) === false) {
+        if (empty($this->postGlobal->get('commentContent')) === false) {
             try {
                 /* Check if the CSRF token is valid */
-                if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
+                if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
                 } else{
-                    $commentContent = strip_tags(PostGlobal::get('commentContent'));
+                    $commentContent = strip_tags($this->postGlobal->get('commentContent'));
                 }
             } catch (Exception $e) {
                 $errorMessage = "Une erreur s'est produite : " . $e->getMessage();

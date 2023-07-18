@@ -42,4 +42,16 @@ class Files
     {
         return file_get_contents($_FILES['image']['tmp_name']);
     }
+
+    /**
+     * read file content
+     * 
+     * @param  string $type
+     * @param  string $temporaryName
+     * @return array
+     */
+    public static function file($type, $temporaryName)
+    {
+        return ($_FILES['image']['tmp_name']);
+    }
 }

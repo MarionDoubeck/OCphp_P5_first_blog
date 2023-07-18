@@ -9,6 +9,8 @@ use App\Controllers\Login;
 use App\Controllers\Logout;
 use App\services\Session;
 use App\services\Server;
+use App\services\PostGlobal;
+use App\services\Files;
 use App\services\Helpers;
 use App\Controllers\Register;
 use App\Controllers\SinglePost;
@@ -31,6 +33,12 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 $helper = new Helpers;
 
+// To avoid static access of services classes functions, call classes with construction parameters :
+$session = new Session();
+$postGlobal = new PostGlobal();
+$server = new Server();
+$files = new Files();
+
 // Router
 try {
 
@@ -40,7 +48,7 @@ try {
             (new PostList())->execute();
             break;
         case "login":
-            (new Login())->execute();
+            (new Login($session, $postGlobal))->execute();
             break;
         case "logout":
             (new Logout())->execute();
@@ -52,7 +60,7 @@ try {
                     window.location.reload();
                 </script>
             <?php }
-            (new Register())->execute();
+            (new Register($session, $postGlobal))->execute();
             break;
         case "article":
             if (null !== Get::get('id') && get::get('id') > 0) {
@@ -68,7 +76,7 @@ try {
         case "addComment":
             if (null !== Get::get('id') && Get::get('id') > 0) {
                 $identifier = Get::get('id');
-                (new AddComment())->execute($identifier);
+                (new AddComment($session, $postGlobal))->execute($identifier);
             } else {?>
                 <script> 
                     alert('Aucun identifiant de post envoyé')
@@ -87,7 +95,7 @@ try {
             (new AdminAllPosts())->execute();
             break;
         case "adminAddPost":
-            (new AdminAddPost())->execute();
+            (new AdminAddPost($session, $postGlobal, $server, $files))->execute();
             break;
         case "adminPendingComments":
             (new AdminPendingComments())->execute();
@@ -117,7 +125,7 @@ try {
         case "deletePost":
             if (null !== Get::get('id') && Get::get('id') > 0) {
                 $identifier = Get::get('id');
-                (new DeletePost())->execute($identifier);
+                (new DeletePost($session, $postGlobal))->execute($identifier);
             } else {
                 throw new Exception('aucun identifiant envoyé');
             }
@@ -127,7 +135,7 @@ try {
                 $identifier = Get::get('id');
                 $input = null;
                 if (Server::requestMethod() === 'POST') {
-                    $input = $_POST;
+                    $input = PostGlobal::getAllPostVars();
                 }
                 (new EditPost())->execute($identifier, $input);
             } else {
