@@ -23,5 +23,8 @@ class HomePosts
         $lastThreePosts = $repository->getRecentPosts();
         $helper = new Helpers;
         $helper->renderView('app/views/home.php',['lastThreePosts' => $lastThreePosts]);
-    }
+
+    }//end execute()
+
+
 }

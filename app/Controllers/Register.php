@@ -27,11 +27,11 @@ class Register
      * @var PostGlobal
      */
     private $postGlobal;
-    
+
 
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
-     * 
+     *
      * @param Session    $session Session
      * @param PostGlobal $postGlobal PostGlobal
      * 
@@ -100,7 +100,9 @@ class Register
 
         $data = [ 'errors' => $errors ];
         $helper->renderView('app/views/register.php', $data);
-    }
+
+    }//end execute()
+
 
     /**
      * Method to check if form is correctly field by user
@@ -142,7 +144,9 @@ class Register
             $helper = new Helpers;
             $helper->renderView('app/views/register.php', $data);
         }
-    }
+
+    }//end checkIfFormIsCorrect()
+
 
     /**
      * Method to check if usernanme or password is already used
@@ -170,6 +174,8 @@ class Register
         }
 
         return $errors;
-    }
-}
 
+    }//end checkIfAlreadyInDB()
+
+
+}

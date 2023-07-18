@@ -1,4 +1,4 @@
-<?php 
+<?php
 use App\services\Helpers;
 
 $helper = new Helpers;

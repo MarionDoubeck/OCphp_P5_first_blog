@@ -32,7 +32,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
               </thead>
               <tbody>
                   <!-- Loop through posts data and display each post in a row -->
-                  <?php foreach ($posts as $post) : 
+                  <?php foreach ($posts as $post) :
                     $title = $post->getTitle();
                     // Suppress accents with this font.
                     $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));

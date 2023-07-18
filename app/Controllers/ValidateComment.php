@@ -36,5 +36,8 @@ class ValidateComment
             document.location.href = '/index.php?action=adminPendingComments';</script>
             <?php
         }
-    }
+
+    }//end execute()
+
+
 }

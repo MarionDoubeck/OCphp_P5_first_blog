@@ -31,7 +31,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                   </thead>
                   <tbody>
                     <!-- Loop through posts data and display each post in a row -->
-                    <?php foreach ($comments as $comment) : 
+                    <?php foreach ($comments as $comment) :
                         $commentPost = $comment->getPost();
                         $commentPostTitle = $comment->getPostTitle();
                         $commentDate = $comment->getFrenchCreationDate();

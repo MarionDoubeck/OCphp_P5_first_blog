@@ -27,11 +27,11 @@ class EditPost
      * @var Files
      */
     private $files;
-    
 
+    
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
-     * 
+     *
      * @param Session   $session Session
      * @param Files     $files   Files
      * 

@@ -31,5 +31,7 @@ class AdminAllPosts
 
         $helper = new Helpers;
         $helper->renderView('app/views/admin/all-posts.php', ['posts' => $posts, 'newPost' => $newPost]);
-    }
+
+    }//end execute()
+
 }

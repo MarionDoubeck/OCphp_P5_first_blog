@@ -55,5 +55,8 @@ class SinglePost
                                                         'imageType' => $imageType,
                                                         ]
         );
-    }
+
+    }//end execute()
+
+
 }

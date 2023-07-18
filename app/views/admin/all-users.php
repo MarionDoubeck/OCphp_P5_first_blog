@@ -26,7 +26,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                   </thead>
                   <tbody>
                     <!-- Loop through posts data and display each post in a row -->
-                    <?php foreach ($users as $user) : 
+                    <?php foreach ($users as $user) :
                         $username = $user->getUsername();
                         $email = $user->getEmail();
                         $commentCount = $user->getCommentCount();

@@ -50,7 +50,7 @@ class User
     public DatabaseConnection $connection;
 
     /**
-     * Method to retrieve data from  all users 
+     * Method to retrieve data from  all users
      *
      * @return array
      */
@@ -74,7 +74,7 @@ class User
 
             $users[] = $user;
         }
-        
+
         return $users;
     }
 
@@ -136,7 +136,7 @@ class User
      * @param string $username Username
      * @param string $password Password
      * @param string $email    Email
-     * 
+     *
      * @return boolean
      */
     public function addUser(string $username, string $password, string $email) : bool
@@ -178,7 +178,7 @@ class User
      * Get the value of password
      * 
      * @return string
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;

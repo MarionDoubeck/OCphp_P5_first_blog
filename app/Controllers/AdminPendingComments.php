@@ -18,7 +18,7 @@ class AdminPendingComments
 
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
-     * 
+     *
      * @param Session    $session Session
      * 
      * @return void
@@ -50,4 +50,6 @@ class AdminPendingComments
         $helper->renderView('app/views/admin/pending-comments.php',['comments' => $comments]);
 
     }//end execute()
+
+
 }

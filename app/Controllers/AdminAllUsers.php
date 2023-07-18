@@ -29,5 +29,8 @@ class AdminAllUsers
 
         $helper = new Helpers;
         $helper->renderView('app/views/admin/all-users.php',['users' => $users]);
-    }
+
+    }//end execute()
+
+
 }
