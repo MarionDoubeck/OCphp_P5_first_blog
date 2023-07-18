@@ -12,6 +12,8 @@ use App\services\Helpers;
  */
 class AdminAllPosts
 {
+
+    
     /**
      * Method in charge of displaying the list of posts
      *
@@ -33,5 +35,6 @@ class AdminAllPosts
         $helper->renderView('app/views/admin/all-posts.php', ['posts' => $posts, 'newPost' => $newPost]);
 
     }//end execute()
+
 
 }

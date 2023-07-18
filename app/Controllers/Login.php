@@ -28,7 +28,7 @@ class Login
      * @var PostGlobal
      */
     private $postGlobal;
-    
+
 
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
@@ -44,6 +44,7 @@ class Login
         $this->postGlobal = $postGlobal;
     }
 
+    
     /**
      * Method which verifies the username and password of the user
      * and retrieves the session data
@@ -107,6 +108,6 @@ class Login
 
     }//end execute()
 
-    
+
 }
  

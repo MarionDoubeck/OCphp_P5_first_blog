@@ -11,6 +11,8 @@ use App\db\DatabaseConnection;
  */
 class DeleteComment
 {
+
+    
     /**
      * Method to delete a comment
      *
@@ -39,5 +41,5 @@ class DeleteComment
 
     }//end execute()
 
-    
+
 }

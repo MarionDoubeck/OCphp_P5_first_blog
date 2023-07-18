@@ -49,6 +49,7 @@ class User
     // Connect to database.
     public DatabaseConnection $connection;
 
+
     /**
      * Method to retrieve data from  all users
      *
@@ -77,6 +78,7 @@ class User
 
         return $users;
     }
+
 
     /**
      * Method to check user username and get this user data
@@ -152,13 +154,14 @@ class User
 
     /**
      * Get the value of role
-     * 
+     *
      * @return string
      */
     public function getRole()
     {
         return $this->role;
     }
+
 
     /**
      * Set the value of role
@@ -174,6 +177,7 @@ class User
         return $this;
     }
 
+
     /**
      * Get the value of password
      * 
@@ -183,6 +187,7 @@ class User
     {
         return $this->password;
     }
+
 
     /**
      * Set the value of password
@@ -198,6 +203,7 @@ class User
         return $this;
     }
 
+
     /**
      * Get the value of user_id
      * 
@@ -207,6 +213,7 @@ class User
     {
         return $this->user_id;
     }
+
 
     /**
      * Set the value of user_id
@@ -220,6 +227,7 @@ class User
         return $this;
     }
 
+
     /**
      * Get the value of email
      * 
@@ -230,6 +238,7 @@ class User
         return $this->email;
     }
 
+
     /**
      * Get the value of user's nb of comments
      * 
@@ -239,6 +248,7 @@ class User
     {
         return $this->commentCount;
     }
+
 
     /**
      * Set the value of email
@@ -251,6 +261,7 @@ class User
 
         return $this;
     }
+
 
     /**
      * Set the user's number of comments
@@ -268,6 +279,7 @@ class User
         return $this;
     }
 
+
     /**
      * Get the value of username
      * 
@@ -277,6 +289,7 @@ class User
     {
         return $this->username;
     }
+
 
     /**
      * Set the value of username
@@ -289,4 +302,6 @@ class User
 
         return $this;
     }
+
+
 }

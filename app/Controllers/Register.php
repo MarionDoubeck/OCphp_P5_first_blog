@@ -34,7 +34,7 @@ class Register
      *
      * @param Session    $session Session
      * @param PostGlobal $postGlobal PostGlobal
-     * 
+     *
      * @return void
      */
     public function __construct(Session $session, PostGlobal $postGlobal)
@@ -43,6 +43,7 @@ class Register
         $this->postGlobal = $postGlobal;
 
     }
+    
     
     /**
      * Method to do the checks and to secure the entrances

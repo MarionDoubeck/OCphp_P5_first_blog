@@ -22,7 +22,7 @@ $helper->renderView('app/views/header.php',[]);
     <!-- Comments -->
     <h3>Commentaires</h3>
     <ul>
-        <?php 
+        <?php
         foreach ($comments as $comment) :
             $commentAuthor=$comment->getUsername();
             $commentContent=$comment->getComment();

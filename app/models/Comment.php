@@ -53,6 +53,7 @@ class Comment
     // Connect to the data base.
     public DatabaseConnection $connection;
 
+
     /**
      * Method to retrieve comments associated with post id
      *
@@ -107,6 +108,7 @@ class Comment
         return($affectedLines > 0);
     }
 
+
     /**
      * Method to delete a comment
      *
@@ -122,6 +124,7 @@ class Comment
         $affectedLines = $statement->execute([$identifier]);
         return($affectedLines > 0);
     }
+
 
     /**
      * Method to delete all  comments of a post
@@ -139,6 +142,7 @@ class Comment
         return($affectedLines > 0);
     }
 
+
     /**
      * Method to validate a comment
      *
@@ -154,7 +158,7 @@ class Comment
         $statement->bindParam(':identifier', $identifier);
         $affectedLines = $statement->execute();
         return($affectedLines > 0);
-     }
+    }
 
 
     /**
@@ -190,9 +194,10 @@ class Comment
         return $comments;
     }
 
+
     /**
      * Get the value of frenchCreationDate
-     * 
+     *
      * @return string
      */
     public function getFrenchCreationDate()
@@ -244,7 +249,7 @@ class Comment
      * Get the value of comment Id
      * 
      * @return int
-     */ 
+     */
     public function getIdentifier()
     {
         return $this->identifier;
@@ -333,4 +338,6 @@ class Comment
 
         return $this;
     }
+
+
 }

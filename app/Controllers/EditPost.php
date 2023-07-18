@@ -28,13 +28,13 @@ class EditPost
      */
     private $files;
 
-    
+
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
      *
      * @param Session   $session Session
      * @param Files     $files   Files
-     * 
+     *
      * @return void
      */
     public function __construct(Session $session, Files $files)

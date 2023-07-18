@@ -33,14 +33,14 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
               <tbody>
                   <!-- Loop through posts data and display each post in a row -->
                   <?php foreach ($posts as $post) :
-                    $title = $post->getTitle();
-                    // Suppress accents with this font.
-                    $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));
-                    $created_at = $post->getFrenchCreationDate();
-                    $modified_at = $post->getFrenchModificationDate();
-                    $id = $post->getIdentifier();
-                    $nbOfComments=$newPost->retrieveNumberOfComments($id);
-                  ?>
+                      $title = $post->getTitle();
+                      // Suppress accents with this font.
+                      $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));
+                      $created_at = $post->getFrenchCreationDate();
+                      $modified_at = $post->getFrenchModificationDate();
+                      $id = $post->getIdentifier();
+                      $nbOfComments=$newPost->retrieveNumberOfComments($id);
+                      ?>
                 <tr>
                     <td><?= htmlspecialchars($title) ?></td>
                     <td><?= htmlspecialchars($created_at) ?></td>

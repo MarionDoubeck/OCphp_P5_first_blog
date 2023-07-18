@@ -12,22 +12,22 @@ $helper->renderView('app/views/header.php',[]);
 <div class="container" id="latestPosts">
 	<h3>Derniers Posts !</h3>
 	<?php foreach ($lastThreePosts as $post) {
-		$title = htmlspecialchars($post->getTitle());
-		// Suppress accents with this font.
-		$title = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($title, Normalizer::FORM_D));
-		$created_at = htmlspecialchars($post->getFrenchCreationDate());
-		$chapo = htmlspecialchars($post->getChapo());
-		$imageData = $post->getImageData();
-		$imageType = $post->getImageType();
-		$helper->renderView('app/views/post-frame.php', [
-														'post' => $post,
-														'title' => $title,
-														'created_at' => $created_at,
-														'chapo' => $chapo,
-														'imageData' => $imageData,
-														'imageType' => $imageType,
-														]
-		);
+			$title = htmlspecialchars($post->getTitle());
+			// Suppress accents with this font.
+			$title = preg_replace('/[\p{M}]/u', '', Normalizer::normalize($title, Normalizer::FORM_D));
+			$created_at = htmlspecialchars($post->getFrenchCreationDate());
+			$chapo = htmlspecialchars($post->getChapo());
+			$imageData = $post->getImageData();
+			$imageType = $post->getImageType();
+			$helper->renderView('app/views/post-frame.php', [
+															'post' => $post,
+															'title' => $title,
+															'created_at' => $created_at,
+															'chapo' => $chapo,
+															'imageData' => $imageData,
+															'imageType' => $imageType,
+															]
+			);
 	}?>
 </div> 
 

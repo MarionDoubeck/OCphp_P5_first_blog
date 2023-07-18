@@ -114,7 +114,7 @@ class Post
         } else {
             throw new Exception('Cette page n\'existe pas');
         }
-   
+
     }//end getPost()
 
 
@@ -245,7 +245,7 @@ class Post
      * @return boolean
      */
     public function editPost(int $postId, string $content, string $title, string $chapo, ?string $image_data, ?string $image_type)
-    {  
+    {
         $query = 'UPDATE posts SET title = :title, content = :content, chapo = :chapo, updated_at = NOW(), image_data = :imageData, image_type = :imageType WHERE id = :postId';
         $statement = $this->connection->getConnection()->prepare($query);
         $statement->bindParam(':title', $title);
@@ -264,7 +264,7 @@ class Post
      * Method to delete data of a post
      *
      * @param int $identifier PostId
-     * 
+     *
      * @return void
      */
     public function deletePost(int $identifier)
@@ -372,7 +372,7 @@ class Post
      * @param $imageType post image type
      *
      * @return self
-     */ 
+     */
     public function setImageType($imageType)
     {
         $this->imageType = $imageType;
@@ -526,5 +526,5 @@ class Post
 
     }
 
-    
+  
 }

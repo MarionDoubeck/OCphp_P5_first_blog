@@ -11,6 +11,8 @@ use App\db\DatabaseConnection;
  */
 class ValidateComment
 {
+
+    
     /**
      * Method to validate a comment
      *

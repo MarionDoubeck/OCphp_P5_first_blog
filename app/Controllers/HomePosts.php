@@ -11,6 +11,8 @@ use App\services\Helpers;
  */
 class HomePosts
 {
+
+    
     /**
      * Method in charge of displaying the last 3 posts
      *
