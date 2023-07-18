@@ -15,20 +15,22 @@ class Post
      *
      * @var string
      */
+
     private string $title;
 
     /**
-     * Post date 
+     * Post date
      *
      * @var string
      */
     private string $frenchCreationDate;
 
     /**
-     * Post modification date 
+     * Post modification date
      *
+     * @var
      */
-    private $frenchModificationDate;
+    private $FrenchModificationDate;
 
     /**
      * Post content
@@ -58,12 +60,28 @@ class Post
      */
     private string $username;
 
+    /**
+     * Image data
+     *
+     * @var string
+     */
     private $imageData;
+
+    /**
+     * Image type
+     *
+     * @var string
+     */
     private $imageType;
 
 
-    // Connect to the database.
+    /**
+     * Connexion to database
+     *
+     * @var DatabaseConnection
+     */
     public DatabaseConnection $connection;
+
 
     /**
      * Method to retrieve data from a single article according to its id
@@ -83,7 +101,7 @@ class Post
         $row = $statement->fetch();
 
         $post = new Post();
-        if ($row) {
+        if (empty($row) === FALSE) {
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);
             $post->setFrenchModificationDate($row['updated_at']);
@@ -99,6 +117,7 @@ class Post
         }
             
     }
+
 
     /**
      * Method to retrieve data from a single article according to its id
@@ -119,9 +138,6 @@ class Post
 
         return $total;
     }
-
-
-
 
 
     /**
@@ -154,6 +170,7 @@ class Post
         return $posts;
     }
 
+
     /**
      * Method to retrieve data from last 3 articles
      * 
@@ -184,6 +201,7 @@ class Post
         return $posts;
     }
 
+
     /**
      * Method to add data of a new post
      *
@@ -212,7 +230,8 @@ class Post
         return($affectedLines > 0);    
     }
 
-        /**
+
+    /**
      * Method to edit data of a new post
      *
      * @param int $postId
@@ -267,6 +286,7 @@ class Post
         return $this->title;
     }
 
+
     /**
      * Set post title
      *
@@ -281,6 +301,7 @@ class Post
         return $this;
     }
 
+
     /**
      * Get post date
      *
@@ -291,6 +312,7 @@ class Post
         return $this->frenchCreationDate;
     }
 
+
     /**
      * Get post modification date
      *
@@ -298,7 +320,7 @@ class Post
      */
     public function getFrenchModificationDate()
     {
-        return $this->frenchModificationDate;
+        return $this->FrenchModificationDate;
     }
 
 
@@ -311,6 +333,7 @@ class Post
     {
         return $this->imageData;
     }
+
 
     /**
      * Set image data
@@ -329,6 +352,7 @@ class Post
         return $this;
     }
 
+
     /**
      * Get image type
      *
@@ -338,6 +362,7 @@ class Post
     {
         return $this->imageType;
     }
+
 
     /**
      * Set image type
@@ -353,6 +378,7 @@ class Post
         return $this;
     }
 
+
     /**
      * Set post date
      *
@@ -367,19 +393,21 @@ class Post
         return $this;
     }
     
+
     /**
      * Set post modification date
      *
-     * @param string $frenchModificationDate post date
+     * @param string $FrenchModificationDate post date
      *
      * @return self
      */ 
-    public function setFrenchModificationDate(string $frenchModificationDate)
+    public function setFrenchModificationDate(string $FrenchModificationDate)
     {
-        $this->frenchModificationDate = $frenchModificationDate;
+        $this->FrenchModificationDate = $FrenchModificationDate;
 
         return $this;
     }
+
 
     /**
      * Get post content
@@ -390,6 +418,7 @@ class Post
     {
         return $this->content;
     }
+
 
     /**
      * Set post content
@@ -405,6 +434,7 @@ class Post
         return $this;
     }
 
+
     /**
      * Get post chapo
      *
@@ -414,6 +444,7 @@ class Post
     {
         return $this->chapo;
     }
+
 
     /**
      * Set post chapo
@@ -429,6 +460,7 @@ class Post
         return $this;
     }
 
+
     /**
      * Get post id
      *
@@ -438,6 +470,7 @@ class Post
     {
         return $this->identifier;
     }
+
 
     /**
      * Set post id
@@ -453,6 +486,7 @@ class Post
         return $this;
     }
 
+
     /**
      * Get the value of firstname
      * 
@@ -462,6 +496,7 @@ class Post
     {
         return $this->firstname;
     }
+
 
     /**
      * Get user's nickname
@@ -473,6 +508,7 @@ class Post
         return $this->username;
     }
 
+    
     /**
      * Set user's nickname
      *

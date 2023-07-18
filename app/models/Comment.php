@@ -187,8 +187,7 @@ class Comment
 
             $comments[] = $comment;
         }
-        
-            return $comments;
+        return $comments;
     }
 
     /**
@@ -223,7 +222,7 @@ class Comment
      * Set the value of comment
      *
      * @return self
-     */ 
+     */
     public function setComment($comment)
     {
         $this->comment = $comment;

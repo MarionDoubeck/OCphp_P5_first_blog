@@ -10,7 +10,7 @@ use App\services\Helpers;
  * AdminPostlist class
  * To manage posts in admin part
  */
-class AdminAllPosts 
+class AdminAllPosts
 {
     /**
      * Method in charge of displaying the list of posts
@@ -30,6 +30,6 @@ class AdminAllPosts
         $newPost->connection = new DatabaseConnection();
 
         $helper = new Helpers;
-        $helper->renderView('app/views/admin/all-posts.php', ['posts' => $posts, 'newPost' => $newPost]);  
+        $helper->renderView('app/views/admin/all-posts.php', ['posts' => $posts, 'newPost' => $newPost]);
     }
 }
