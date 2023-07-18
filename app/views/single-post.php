@@ -12,7 +12,7 @@ $helper->renderView('app/views/header.php',[]);
     <p>Auteur: <?= htmlspecialchars($author) ?></p>
     <p>Dernière mise à jour: <?= htmlspecialchars($created_at) ?></p>
     <?php if (empty($imageData) === FALSE && empty($imageType) === FALSE) : ?>
-        <img src="data:<?= htmlspecialchars($imageType) ?>;base64,<?= htmlspecialchars($imageData) ?>" style="max-width: 600px;" alt="Image de l'article">
+        <img src="data:<?= htmlspecialchars($imageType) ?>;base64,<?= htmlspecialchars($imageData) ?>" class="img-fluid" alt="Image de l'article">
     <?php endif ;?>
     <p><?= htmlspecialchars($chapo) ?></p>
     <p><?= htmlspecialchars($content) ?></p>
