@@ -11,6 +11,8 @@ use App\services\Helpers;
  */
 class PostList
 {
+
+    
     /**
      * Method in charge of displaying the list of posts
      *

@@ -12,6 +12,8 @@ use App\services\Helpers;
  */
 class AdminAllPosts
 {
+
+    
     /**
      * Method in charge of displaying the list of posts
      *
@@ -34,5 +36,5 @@ class AdminAllPosts
 
     }//end execute()
 
-    
+
 }

@@ -44,6 +44,7 @@ class Login
         $this->postGlobal = $postGlobal;
     }
 
+    
     /**
      * Method which verifies the username and password of the user
      * and retrieves the session data

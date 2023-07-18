@@ -39,7 +39,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                         $commentAuthor = $comment->getUsername();
                         $commentContent = $comment->getComment();
                         $commentId = $comment->getIdentifier();
-                    ?>
+                        ?>
                     <tr>
                         <td><?= htmlspecialchars($commentPost.' : '.$commentPostTitle) ?></td>
                         <td><?= htmlspecialchars($commentDate)?></td>

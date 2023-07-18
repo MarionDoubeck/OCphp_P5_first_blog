@@ -44,6 +44,7 @@ class Register
 
     }
     
+    
     /**
      * Method to do the checks and to secure the entrances
      * and to add a new user.

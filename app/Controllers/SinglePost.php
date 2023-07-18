@@ -13,6 +13,8 @@ use App\services\Helpers;
  */
 class SinglePost
 {
+
+    
      /**
       * Method in charge of displaying one post and its comments
       *
