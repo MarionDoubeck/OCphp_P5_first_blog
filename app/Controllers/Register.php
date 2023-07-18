@@ -91,14 +91,14 @@ class Register
                             </script>
                             <?php
                             return;
-                        }//end if
-                    }//end if
+                        }// end if
+                    }// end if
 
                 } else {
                     $errors[] = "Toutes les informations doivent être complétées";
-                }//end if
-            }//end if
-        }//end if
+                }// end if
+            }// end if
+        }// end if
 
         $data = [
             'errors' => $errors,
