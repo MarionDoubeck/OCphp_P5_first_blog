@@ -94,7 +94,7 @@ class AdminAddPost
                     $title = strip_tags($this->postGlobal->get('title'));
                     $chapo = strip_tags($this->postGlobal->get('chapo'));
                     // Check if an image was uploaded.
-                    if (empty($this->files->file('image','tmp_name')) === FALSE ) {
+                    if (empty($this->files->file('image','tmp_name')) === FALSE) {
                         // Process the uploaded image.
                         $image_data = file_get_contents($this->files->file('image','tmp_name'));
                         $image_type = $this->files->file('image','tmp_name');

@@ -63,6 +63,7 @@ class DeletePost
             if ($role !== 'admin') {
                 $helper->renderView('app/views/404.php',[]);
             }
+
             $commentRepository = new Comment();
             $commentRepository->connection = new DatabaseConnection();
             $commentsSuccess = $commentRepository->deleteAllComments($identifier);
@@ -84,6 +85,7 @@ class DeletePost
                     <?php
                 }
             }
+
         }
 
     }//end execute()

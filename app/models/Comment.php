@@ -191,6 +191,7 @@ class Comment
 
             $comments[] = $comment;
         }
+        
         return $comments;
     }
 

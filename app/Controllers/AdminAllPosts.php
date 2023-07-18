@@ -13,7 +13,7 @@ use App\services\Helpers;
 class AdminAllPosts
 {
 
-    
+
     /**
      * Method in charge of displaying the list of posts
      *
@@ -25,6 +25,7 @@ class AdminAllPosts
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
+        
         $repository = new Post();
         $repository->connection = new DatabaseConnection();
         $posts = $repository->getPosts();

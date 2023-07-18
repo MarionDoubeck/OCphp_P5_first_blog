@@ -41,6 +41,7 @@ class AdminValidatedComments
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
+        
         $repository = new Comment();
         $repository->connection = new DatabaseConnection();
         $comments = $repository->getCommentsStatus('approved');

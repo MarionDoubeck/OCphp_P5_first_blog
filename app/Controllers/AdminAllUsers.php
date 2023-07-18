@@ -13,7 +13,7 @@ use App\services\Helpers;
 class AdminAllUsers
 {
 
-    
+
     /**
      * Method in charge of displaying the list of users
      *
@@ -25,6 +25,7 @@ class AdminAllUsers
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
+        
         $repository = new User();
         $repository->connection = new DatabaseConnection();
         $users = $repository->getUsers();

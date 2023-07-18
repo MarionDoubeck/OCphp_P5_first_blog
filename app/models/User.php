@@ -99,6 +99,7 @@ class User
         if ($row === false) {
             return null;
         }
+        
         $user = new User();
             $user->setUsername($row['username']);
             $user->setPassword($row['password']);
