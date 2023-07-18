@@ -1,6 +1,6 @@
 <?php
 use App\services\Session;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 $helper = new Helpers;
 $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
@@ -32,13 +32,13 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                   <tbody>
                     <!-- Loop through posts data and display each post in a row -->
                     <?php foreach ($comments as $comment) : 
-                      $commentPost = $comment->getPost();
-                      $commentPostTitle = $comment->getPostTitle();
-                      $commentDate = $comment->getFrenchCreationDate();
-                      $commentAuthor = $comment->getUsername();
-                      $commentContent = $comment->getComment();
-                      $commentId = $comment->getIdentifier();
-                    ?>
+                        $commentPost = $comment->getPost();
+                        $commentPostTitle = $comment->getPostTitle();
+                        $commentDate = $comment->getFrenchCreationDate();
+                        $commentAuthor = $comment->getUsername();
+                        $commentContent = $comment->getComment();
+                        $commentId = $comment->getIdentifier();
+                        ?>
                     <tr>
                         <td><?= htmlspecialchars($commentPost.' : '.$commentPostTitle) ?></td>
                         <td><?= htmlspecialchars($commentDate)?></td>

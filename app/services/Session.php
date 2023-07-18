@@ -42,6 +42,16 @@ class Session
     }
 
     /**
+     * Check if the session is set
+     *
+     * @return boolean
+     */
+    public static function isSet() : bool
+    {
+        return isset($_SESSION);
+    }
+
+    /**
      * Remove element from the session
      *
      * @param  [type] $key

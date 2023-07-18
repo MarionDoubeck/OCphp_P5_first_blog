@@ -3,7 +3,7 @@ namespace App\Controllers;
 use App\Models\Comment;
 use App\services\Session;
 use App\db\DatabaseConnection;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 class AdminValidatedComments {
     /**

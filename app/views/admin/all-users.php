@@ -1,5 +1,5 @@
 <?php
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 $helper = new Helpers;
 $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
@@ -30,7 +30,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                         $username = $user->getUsername();
                         $email = $user->getEmail();
                         $commentCount = $user->getCommentCount();
-                    ?>
+                        ?>
                     <tr>
                         <td><?= htmlspecialchars($username) ?></td>
                         <td><?= htmlspecialchars($commentCount) ?></td>

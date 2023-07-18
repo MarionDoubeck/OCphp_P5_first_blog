@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Models\User;
 use App\services\Session;
 use App\db\DatabaseConnection;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 /**
  * AdminUserlist class

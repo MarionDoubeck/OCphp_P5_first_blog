@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\Post;
 use App\Models\Comment;
 use App\db\DatabaseConnection;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 /**
  * SinglePost class

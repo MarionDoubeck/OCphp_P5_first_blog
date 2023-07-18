@@ -1,11 +1,11 @@
 <?php
 namespace App\Controllers;
 
-use App\Models\user;
+use App\models\user;
 use App\services\Session;
 use App\services\PostGlobal;
 use App\db\DatabaseConnection;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 
 /**

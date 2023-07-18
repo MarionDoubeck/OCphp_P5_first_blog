@@ -1,7 +1,7 @@
 <?php
 use App\Models\Post;
 use App\services\Session;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 $helper = new Helpers;
 $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
@@ -21,26 +21,26 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
           <div class="card-body">
             <table id="example2" class="table table-bordered table-hover">
               <thead>
-              <tr>
-                <!-- <th>Id</th> -->
-                <th>Titre</th>
-                <th>Date de création</th>
-                <th>Dernière modification</th>
-                <th>Nombre de commentaires</th>
-                <th class="th-vide"></th>
-              </tr>
+                <tr>
+                  <!-- <th>Id</th> -->
+                  <th>Titre</th>
+                  <th>Date de création</th>
+                  <th>Dernière modification</th>
+                  <th>Nombre de commentaires</th>
+                  <th class="th-vide"></th>
+                </tr>
               </thead>
               <tbody>
-                <!-- Loop through posts data and display each post in a row -->
-                <?php foreach ($posts as $post) : 
-                  $title = $post->getTitle();
-                  // Suppress accents with this font.
-                  $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));
-                  $created_at = $post->getFrenchCreationDate();
-                  $modified_at = $post->getFrenchModificationDate();
-                  $id = $post->getIdentifier();
-                  $nbOfComments=$newPost->retrieveNumberOfComments($id);
-                ?>
+                  <!-- Loop through posts data and display each post in a row -->
+                  <?php foreach ($posts as $post) : 
+                    $title = $post->getTitle();
+                    // Suppress accents with this font.
+                    $title = preg_replace('/[\p{M}]/u', '', \Normalizer::normalize($title, \Normalizer::FORM_D));
+                    $created_at = $post->getFrenchCreationDate();
+                    $modified_at = $post->getFrenchModificationDate();
+                    $id = $post->getIdentifier();
+                    $nbOfComments=$newPost->retrieveNumberOfComments($id);
+                  ?>
                 <tr>
                     <td><?= htmlspecialchars($title) ?></td>
                     <td><?= htmlspecialchars($created_at) ?></td>
