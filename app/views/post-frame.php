@@ -6,7 +6,7 @@
         </h3>
     </div>
     <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="d-flex gap-3">
+        <div class="d-flex flex-column flex-sm-row gap-3">
             <?php if (empty($imageData) === FALSE && empty($imageType) === FALSE) : ?>
                 <img src="data:<?= htmlspecialchars($imageType) ?>;base64,<?= htmlspecialchars($imageData) ?>" style="max-width: 200px;" alt="Image de l'article">
             <?php endif ;?>
