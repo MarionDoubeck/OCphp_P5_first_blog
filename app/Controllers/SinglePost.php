@@ -61,4 +61,4 @@ class SinglePost
     }//end execute()
 
 
-}
+}//end execute()
