@@ -41,7 +41,7 @@ class EditPost
     {
         $this->session = $session;
         $this->files = $files;
-    }
+    }//end __construct()
 
 
     /**
