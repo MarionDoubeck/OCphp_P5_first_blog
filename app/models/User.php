@@ -99,7 +99,7 @@ class User
         if ($row === false) {
             return null;
         }
-        
+
         $user = new User();
             $user->setUsername($row['username']);
             $user->setPassword($row['password']);
@@ -219,6 +219,7 @@ class User
     /**
      * Set the value of user_id
      *
+     * @param int $user_id User Id
      * @return self
      */ 
     public function setUser_id($user_id)

@@ -32,7 +32,7 @@ class AddComment
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
      *
-     * @param Session    $session Session
+     * @param Session    $session    Session
      * @param PostGlobal $postGlobal PostGlobal
      *
      * @return void
