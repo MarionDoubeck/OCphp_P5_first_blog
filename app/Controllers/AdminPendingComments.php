@@ -40,7 +40,7 @@ class AdminPendingComments
     {
         $role = $this->session->get('role');
         if ($role !== 'admin') {
-            $helper->renderView('app/views/404.php',[]);
+            header("Location: index.php/?action=AccesNonAutorisé");
         }
 
         $repository = new Comment();

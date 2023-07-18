@@ -79,7 +79,7 @@ class AdminAddPost
         $chapo = null;
 
         if ($role !== 'admin') {
-            $helper->renderView('app/views/404.php',[]);
+            header("Location: index.php/?action=AccesNonAutorisé");
         }
 
         if ($this->server->requestMethod() === 'POST') {

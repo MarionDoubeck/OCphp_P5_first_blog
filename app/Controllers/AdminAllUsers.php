@@ -43,15 +43,15 @@ class AdminAllUsers
     public function execute()
     {
         $role = $this->session->get('role');
+        $helper = new Helpers;
         if ($role !== 'admin') {
-            $helper->renderView('app/views/404.php',[]);
+            header("Location: index.php/?action=AccesNonAutorisé");
         }
 
         $repository = new User();
         $repository->connection = new DatabaseConnection();
         $users = $repository->getUsers();
 
-        $helper = new Helpers;
         $helper->renderView('app/views/admin/all-users.php',['users' => $users]);
 
     }//end execute()

@@ -58,7 +58,7 @@ class EditPost
         $helper = new Helpers;
         $role = $this->session->get('role');
         if ($role !== 'admin') {
-            $helper->renderView('app/views/404.php',[]);
+            header("Location: index.php/?action=AccesNonAutorisé");
         }
 
         // Submission management if there is an entry.
