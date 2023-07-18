@@ -21,11 +21,11 @@ $helper->renderView('app/views/header.php',[]);
 			$imageType = $post->getImageType();
 			$helper->renderView('app/views/post-frame.php', [
                                                             'post' => $post,
-															'title' => $title,
-															'created_at' => $created_at,
-															'chapo' => $chapo,
-															'imageData' => $imageData,
-															'imageType' => $imageType,
+                                                            'title' => $title,
+                                                            'created_at' => $created_at,
+                                                            'chapo' => $chapo,
+                                                            'imageData' => $imageData,
+                                                            'imageType' => $imageType,
 															]
 			);
 	}?>
