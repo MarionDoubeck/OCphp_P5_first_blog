@@ -60,9 +60,9 @@ class DeletePost
             throw new \Exception("Erreur : Jeton CSRF invalide.");
         } else {
             $role = $this->session->get('role');
-            if ($role !== 'admin') {
-                echo '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>';
-            }
+            if ($role !== 'admin') {?>
+                <?= '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>'; ?>
+            <?php }
 
             $commentRepository = new Comment();
             $commentRepository->connection = new DatabaseConnection();

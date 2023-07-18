@@ -44,9 +44,9 @@ class AdminAllUsers
     {
         $role = $this->session->get('role');
         $helper = new Helpers;
-        if ($role !== 'admin') {
-            echo '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>';
-        }
+        if ($role !== 'admin') {?>
+            <?= '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>'; ?>
+        <?php }
 
         $repository = new User();
         $repository->connection = new DatabaseConnection();

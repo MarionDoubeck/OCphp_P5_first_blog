@@ -39,9 +39,9 @@ class AdminValidatedComments
     public function execute()
     {
         $role = $this->session->get('role');
-        if ($role !== 'admin') {
-            echo '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>';
-        }
+        if ($role !== 'admin') {?>
+            <?= '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>'; ?>
+        <?php }
 
         $repository = new Comment();
         $repository->connection = new DatabaseConnection();
