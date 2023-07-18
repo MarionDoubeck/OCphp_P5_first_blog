@@ -13,6 +13,16 @@ use App\services\Helpers;
  */
 class Register
 {
+    private $session;
+    private $postGlobal;
+
+    public function __construct(Session $session, PostGlobal $postGlobal)
+    {
+        $this->session = $session;
+        $this->postGlobal = $postGlobal;
+
+    }
+    
     /**
      * Method to do the checks and to secure the entrances
      * and to add a new user.
@@ -24,20 +34,20 @@ class Register
         $helper = new Helpers;
         $errors = [];
 
-        if (empty(PostGlobal::getAllPostVars()) === FALSE) {
-            if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
+        if (empty($this->postGlobal->getAllPostVars()) === FALSE) {
+            if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                 $errors[] = "Erreur : Jeton CSRF invalide.";
             } else {
-                if (PostGlobal::isParamSet('username') === TRUE && PostGlobal::isParamSet('password') === TRUE && empty(PostGlobal::get('username')) === FALSE && empty(PostGlobal::get('password')) === FALSE) {
+                if ($this->postGlobal->isParamSet('username') === TRUE && $this->postGlobal->isParamSet('password') === TRUE && empty($this->postGlobal->get('username')) === FALSE && empty($this->postGlobal->get('password')) === FALSE) {
 
                     $this->checkIfFormIsCorrect();
 
-                    $username = strip_tags(trim(PostGlobal::get('username')));
-                    $email = PostGlobal::get('email');
+                    $username = strip_tags(trim($this->postGlobal->get('username')));
+                    $email = $this->postGlobal->get('email');
 
                     // We hash password for security issues
-                    $passtest = PostGlobal::get('password');
-                    $pass = password_hash(PostGlobal::get('password'), PASSWORD_DEFAULT);
+                    $passtest = $this->postGlobal->get('password');
+                    $pass = password_hash($this->postGlobal->get('password'), PASSWORD_DEFAULT);
 
                     // We add the new user.
                     $userRepository = new User();
@@ -49,9 +59,9 @@ class Register
                         $usersession = new User();
                         $usersession->connection = new DatabaseConnection();
                         $sessionResult = $usersession->checkUserUsername($username);
-                        Session::put('user_id', $sessionResult->getUser_id());
-                        Session::put('username', $sessionResult->getUsername());
-                        Session::put('role', $sessionResult->getRole());
+                        $this->session->put('user_id', $sessionResult->getUser_id());
+                        $this->session->put('username', $sessionResult->getUsername());
+                        $this->session->put('role', $sessionResult->getRole());
 
                         ?>
                         <script>
@@ -73,48 +83,40 @@ class Register
         $helper->renderView('app/views/register.php', $data);
     }
 
+    /**
+     * Method to check if form is correctly field by user
+     * 
+     * @return void
+     */
     public function checkIfFormIsCorrect()
     {
         $errors = [];
 
-        if (strlen(strip_tags(trim(PostGlobal::get('username')))) < 4) {
+        if (strlen(strip_tags(trim($this->postGlobal->get('username')))) < 4) {
             $errors[] = 'Nom d\'utilisateur trop court, il doit faire au moins 4 caractères';
         }
 
-        if (filter_var(PostGlobal::get('email'), FILTER_VALIDATE_EMAIL) === FALSE) {
+        if (filter_var($this->postGlobal->get('email'), FILTER_VALIDATE_EMAIL) === FALSE) {
             $errors[] = 'Adresse mail incorrecte';
         }
 
-        if (strlen(PostGlobal::get('password')) <= 8) {
+        if (strlen($this->postGlobal->get('password')) <= 8) {
             $errors[] = 'Le mot de passe trop court, il doit faire au moins 8 caractères';
         }
 
-        if (!preg_match("#[0-9]+#", PostGlobal::get('password'))) {
+        if (!preg_match("#[0-9]+#", $this->postGlobal->get('password'))) {
             $errors[] = 'Le mot de passe doit contenir au moins 1 chiffre';
         }
 
-        if (!preg_match("#[A-Z]+#", PostGlobal::get('password'))) {
+        if (!preg_match("#[A-Z]+#", $this->postGlobal->get('password'))) {
             $errors[] = 'Le mot de passe doit contenir au moins 1 majuscule';
         }
 
-        if (!preg_match("#[a-z]+#", PostGlobal::get('password'))) {
+        if (!preg_match("#[a-z]+#", $this->postGlobal->get('password'))) {
             $errors[] = 'Le mot de passe doit contenir au moins 1 minuscule';
         }
 
-        // We check that the nickname is unique.
-        $usernameCheck = new User();
-        $usernameCheck->connection = new DatabaseConnection();
-        $result1 = $usernameCheck->checkUserUsername(strip_tags(trim(PostGlobal::get('username'))));
-        if ($result1) {
-            $errors[] = 'Nom d\'utilisateur déjà existant';
-        }
-        // We check that the email is unique.
-        $userMailCheck = new User();
-        $userMailCheck->connection = new DatabaseConnection();
-        $result2 = $userMailCheck->checkUserEmail(PostGlobal::get('email'));
-        if ($result2) {
-            $errors[] = 'Email déjà existant';
-        }
+        checkIfAlreadyInDB($errors);
 
         if (!empty($errors)) {
             $data = [
@@ -122,7 +124,33 @@ class Register
             ];
             $helper = new Helpers;
             $helper->renderView('app/views/register.php', $data);
-            exit;
         }
     }
+
+    /**
+     * Method to check if usernanme or password is already used
+     * 
+     * @param array 
+     */
+    public function checkIfAlreadyInDB($errors)
+    {
+        // We check that the nickname is unique.
+        $usernameCheck = new User();
+        $usernameCheck->connection = new DatabaseConnection();
+        $result1 = $usernameCheck->checkUserUsername(strip_tags(trim($this->postGlobal->get('username'))));
+        if ($result1) {
+            $errors[] = 'Nom d\'utilisateur déjà existant';
+        }
+
+        // We check that the email is unique.
+        $userMailCheck = new User();
+        $userMailCheck->connection = new DatabaseConnection();
+        $result2 = $userMailCheck->checkUserEmail($this->postGlobal->get('email'));
+        if ($result2) {
+            $errors[] = 'Email déjà existant';
+        }
+
+        return $errors;
+    }
 }
+

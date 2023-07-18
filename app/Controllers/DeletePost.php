@@ -14,6 +14,15 @@ use App\services\PostGlobal;
  */
 class DeletePost
 {
+    private $session;
+    private $postGlobal;
+
+    public function __construct(Session $session, PostGlobal $postGlobal)
+    {
+        $this->session = $session;
+        $this->postGlobal = $postGlobal;
+
+    }
     /**
      * Method to delete a post
      *
@@ -24,10 +33,10 @@ class DeletePost
     public function execute(string $identifier)
     {
         $helper = new Helpers;
-        if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
+        if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
             throw new \Exception("Erreur : Jeton CSRF invalide.");
         } else {
-            $role = Session::get('role');
+            $role = $this->session->get('role');
             if ($role !== 'admin') {
                 $helper->renderView('app/views/404.php',[]);
             }

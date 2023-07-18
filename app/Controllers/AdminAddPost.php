@@ -13,6 +13,19 @@ use App\db\DatabaseConnection;
  * To add a new post in the admin part
  */
 class AdminAddPost {
+    private $session;
+    private $postGlobal;
+    private $server;
+    private $files;
+
+    public function __construct(Session $session, PostGlobal $postGlobal, Server $server, Files $files)
+    {
+        $this->session = $session;
+        $this->postGlobal = $postGlobal;
+        $this->server = $server;
+        $this->files = $files;
+    }
+
     /**
      * Method to add a new post
      *
@@ -21,8 +34,8 @@ class AdminAddPost {
     public function execute()
     {
         $helper = new Helpers;
-        $role = Session::get('role');
-        $user_id = Session::get('user_id');
+        $role = $this->session->get('role');
+        $user_id = $this->session->get('user_id');
         $content = null;
         $title = null;
         $chapo = null;
@@ -30,25 +43,22 @@ class AdminAddPost {
         if ($role !='admin') {
             $helper->renderView('app/views/404.php',[]);
         }
-        if (Server::requestMethod() === 'POST')  {
-            if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
+        if ($this->server->requestMethod() === 'POST')  {
+            if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                 throw new \Exception("Erreur : Jeton CSRF invalide.");
             } else {
                 // We do the checks.
-                if (empty(PostGlobal::get('content')) === FALSE && empty(PostGlobal::get('title')) === FALSE
-                    && empty(PostGlobal::get('chapo')) === FALSE )
+                if (empty($this->postGlobal->get('content')) === FALSE && empty($this->postGlobal->get('title')) === FALSE
+                    && empty($this->postGlobal->get('chapo')) === FALSE )
                 {
-                    $content = strip_tags(PostGlobal::get('content'));
-                    $title = strip_tags(PostGlobal::get('title'));
-                    $chapo = strip_tags(PostGlobal::get('chapo'));
+                    $content = strip_tags($this->postGlobal->get('content'));
+                    $title = strip_tags($this->postGlobal->get('title'));
+                    $chapo = strip_tags($this->postGlobal->get('chapo'));
                     // Check if an image was uploaded
-                    if (empty(Files::file('image','tmp_name')) === FALSE ) {
-                        // Process the uploaded image without codacy discouraged function file_get_contents.
-                        //$image_data = file_get_contents(Files::file('image','tmp_name'));
-                        $fileHandle = fopen(Files::file('image','tmp_name'), 'rb');
-                        $image_data = fread($fileHandle, Files::filesize('image','tmp_name'));
-                        fclose($fileHandle);
-                        $image_type = Files::file('image','tmp_name');
+                    if (empty($this->files->file('image','tmp_name')) === FALSE ) {
+                        // Process the uploaded image
+                        $image_data = file_get_contents($this->files->file('image','tmp_name'));
+                        $image_type = $this->files->file('image','tmp_name');
                     } else {
                         $image_data = null;
                         $image_type = null;

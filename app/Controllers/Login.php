@@ -14,6 +14,16 @@ use App\services\Helpers;
  */
 class Login
 {
+    private $session;
+    private $postGlobal;
+
+    public function __construct(Session $session, PostGlobal $postGlobal)
+    {
+        $this->session = $session;
+        $this->postGlobal = $postGlobal;
+
+    }
+
     /**
      * Method which verifies the username and password of the user
      * and retrieves the session data
@@ -24,13 +34,13 @@ class Login
     {
         $helper = new Helpers;
         if (Server::requestMethod() === 'POST') {
-            if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
+            if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                 throw new \Exception("Erreur : Jeton CSRF invalide.");
             } else{
                 $username = null;
-                if (PostGlobal::isParamSet('username') === TRUE &&  PostGlobal::isParamSet('password') === TRUE
-                    && empty(trim(PostGlobal::get('username'))) === FALSE && empty(PostGlobal::get('password')) === FALSE ) {
-                    $username = htmlspecialchars(trim(PostGlobal::get('username')));
+                if ($this->postGlobal->isParamSet('username') === TRUE &&  $this->postGlobal->isParamSet('password') === TRUE
+                    && empty(trim($this->postGlobal->get('username'))) === FALSE && empty($this->postGlobal->get('password')) === FALSE ) {
+                    $username = htmlspecialchars(trim($this->postGlobal->get('username')));
                     $userRepository = new User();
                     $userRepository->connection = new DatabaseConnection();
                     $connectedUser = $userRepository->checkUserUsername($username);
@@ -43,13 +53,13 @@ class Login
                         <?php
                     } else {
                         if (password_verify(
-                            trim(PostGlobal::get('password')),
+                            trim($this->postGlobal->get('password')),
                             $connectedUser->getPassword()
                         )
                         ) {
-                            Session::put('user_id', $connectedUser->getUser_id());
-                            Session::put('username', $connectedUser->getUsername());
-                            Session::put('role', $connectedUser->getRole());
+                            $this->session->put('user_id', $connectedUser->getUser_id());
+                            $this->session->put('username', $connectedUser->getUsername());
+                            $this->session->put('role', $connectedUser->getRole());
 
                             ?>
                             <script language="javascript"> 
