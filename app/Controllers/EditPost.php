@@ -92,11 +92,11 @@ class EditPost
         $imageType = $post->getImageType();
         
         $helper->renderView('app/views/admin/edit-post.php',array(
-                                                                'title' => $title,
-                                                                'chapo' => $chapo,
-                                                                'content' => $content,
-                                                                'imageData' => $imageData,
-                                                                'imageType' => $imageType
+                                                            'title' => $title,
+                                                            'chapo' => $chapo,
+                                                            'content' => $content,
+                                                            'imageData' => $imageData,
+                                                            'imageType' => $imageType,
                                                             )
         );
     }

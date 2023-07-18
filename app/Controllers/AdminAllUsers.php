@@ -28,6 +28,6 @@ class AdminAllUsers
         $users = $repository->getUsers();
 
         $helper = new Helpers;
-        $helper->renderView('app/views/admin/all-users.php',['users' =>$users]);
+        $helper->renderView('app/views/admin/all-users.php',['users' => $users]);
     }
 }

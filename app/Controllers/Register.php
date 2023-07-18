@@ -77,9 +77,7 @@ class Register
             }
         }
 
-        $data = [
-            'errors' => $errors,
-        ];
+        $data = [ 'errors' => $errors ];
         $helper->renderView('app/views/register.php', $data);
     }
 
@@ -119,9 +117,7 @@ class Register
         checkIfAlreadyInDB($errors);
 
         if (!empty($errors)) {
-            $data = [
-                'errors' => $errors,
-            ];
+            $data = [ 'errors' => $errors ];
             $helper = new Helpers;
             $helper->renderView('app/views/register.php', $data);
         }

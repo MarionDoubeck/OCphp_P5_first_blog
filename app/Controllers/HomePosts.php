@@ -22,6 +22,6 @@ class HomePosts
         $repository->connection = new DatabaseConnection();
         $lastThreePosts = $repository->getRecentPosts();
         $helper = new Helpers;
-        $helper->renderView('app/views/home.php',['lastThreePosts' =>$lastThreePosts]);
+        $helper->renderView('app/views/home.php',['lastThreePosts' => $lastThreePosts]);
     }
 }
