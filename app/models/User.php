@@ -226,7 +226,7 @@ class User
 
     /**
      * Get the value of user_id
-     * 
+     *
      * @return int
      */
     public function getUser_id()
@@ -255,7 +255,7 @@ class User
      * Get the value of email
      * 
      * @return string
-     */ 
+     */
     public function getEmail()
     {
         return $this->email;

@@ -407,7 +407,7 @@ class Post
         return $this;
 
     }//end setFrenchCreationDate()
-    
+
 
     /**
      * Set post modification date
@@ -457,7 +457,7 @@ class Post
      * Get post chapo
      *
      * @return string
-     */ 
+     */
     public function getChapo()
     {
         return $this->chapo;

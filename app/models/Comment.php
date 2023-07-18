@@ -253,7 +253,7 @@ class Comment
      * Set the value of comment
      *
      * @param string $comment Comment content
-     * 
+     *
      * @return self
      */
     public function setComment($comment)
@@ -321,7 +321,7 @@ class Comment
      * Get the value of post title
      *
      * @return string
-     */ 
+     */
     public function getPostTitle()
     {
         return $this->postTitle;
