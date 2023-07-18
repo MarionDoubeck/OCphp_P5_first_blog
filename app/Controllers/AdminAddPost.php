@@ -18,6 +18,12 @@ class AdminAddPost {
     private $server;
     private $files;
 
+
+    /**
+     * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
+     * 
+     * @return void
+     */
     public function __construct(Session $session, PostGlobal $postGlobal, Server $server, Files $files)
     {
         $this->session = $session;

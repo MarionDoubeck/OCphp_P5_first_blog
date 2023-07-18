@@ -16,7 +16,7 @@ class SinglePost
      /**
       * Method in charge of displaying one post and its comments
       *
-      * @param int $identifier
+      * @param int $identifier Post Id
       *
       * @return void
       */

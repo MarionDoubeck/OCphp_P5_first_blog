@@ -14,7 +14,7 @@ class DeleteComment
     /**
      * Method to delete a comment
      *
-     * @param int $identifier
+     * @param int $identifier Comment Id
      *
      * @return void
      */

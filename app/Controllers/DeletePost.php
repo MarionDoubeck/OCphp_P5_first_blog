@@ -17,6 +17,12 @@ class DeletePost
     private $session;
     private $postGlobal;
 
+
+    /**
+     * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
+     * 
+     * @return void
+     */
     public function __construct(Session $session, PostGlobal $postGlobal)
     {
         $this->session = $session;

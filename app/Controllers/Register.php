@@ -16,6 +16,12 @@ class Register
     private $session;
     private $postGlobal;
 
+
+    /**
+     * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
+     * 
+     * @return void
+     */
     public function __construct(Session $session, PostGlobal $postGlobal)
     {
         $this->session = $session;
@@ -126,7 +132,9 @@ class Register
     /**
      * Method to check if usernanme or password is already used
      * 
-     * @param array 
+     * @param array $errors Array of errors
+     * 
+     * @return array
      */
     public function checkIfAlreadyInDB($errors)
     {
