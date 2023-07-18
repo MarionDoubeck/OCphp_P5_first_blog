@@ -32,8 +32,8 @@ class Helpers
      */
     function validateCsrfToken($token)
     {
-        if (isset($_SESSION) === FALSE) {
-            if (isset($_SESSION) === FALSE) {
+        if (Session::isSet() === FALSE) {
+            if (Session::isSet() === FALSE) {
                 session_start();
             }
         }

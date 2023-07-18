@@ -30,7 +30,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                         $username = $user->getUsername();
                         $email = $user->getEmail();
                         $commentCount = $user->getCommentCount();
-                    ?>
+                        ?>
                     <tr>
                         <td><?= htmlspecialchars($username) ?></td>
                         <td><?= htmlspecialchars($commentCount) ?></td>

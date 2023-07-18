@@ -8,6 +8,7 @@ use App\Controllers\PostList;
 use App\Controllers\Login;
 use App\Controllers\Logout;
 use App\services\Session;
+use App\services\Server;
 use App\Controllers\Register;
 use App\Controllers\SinglePost;
 use App\Controllers\AddComment;
@@ -119,7 +120,7 @@ try {
             if (null !== Get::get('id') && Get::get('id') > 0) {
                 $identifier = Get::get('id');
                 $input = null;
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (Server::requestMethod() === 'POST') {
                     $input = $_POST;
                 }
                 (new EditPost())->execute($identifier, $input);

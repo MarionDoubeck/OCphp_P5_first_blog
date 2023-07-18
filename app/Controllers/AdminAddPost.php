@@ -4,6 +4,8 @@ use App\helpers\Helpers;
 use App\Models\Post;
 use App\services\Session;
 use App\services\PostGlobal;
+use App\services\Files;
+use App\services\Server;
 use App\db\DatabaseConnection;
 
 /**
@@ -28,7 +30,7 @@ class AdminAddPost {
         if ($role !='admin') {
             throw new \Exception('Page résevée à l\'administration !');
         }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')  {
+        if (Server::requestMethod() === 'POST')  {
             if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {
                 throw new \Exception("Erreur : Jeton CSRF invalide.");
             } else {
@@ -40,10 +42,10 @@ class AdminAddPost {
                     $title = strip_tags(PostGlobal::get('title'));
                     $chapo = strip_tags(PostGlobal::get('chapo'));
                     // Check if an image was uploaded
-                    if (empty($_FILES['image']['tmp_name']) === FALSE ) {
+                    if (empty(Files::file('image','tmp_name')) === FALSE ) {
                         // Process the uploaded image
-                        $image_data = file_get_contents($_FILES['image']['tmp_name']);
-                        $image_type = $_FILES['image']['type'];
+                        $image_data = file_get_contents(Files::file('image','tmp_name'));
+                        $image_type = Files::file('image','tmp_name');
                     } else {
                         $image_data = null;
                         $image_type = null;
