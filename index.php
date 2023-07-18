@@ -92,7 +92,7 @@ try {
             }
             break;
         case "adminAllPosts":
-            (new AdminAllPosts())->execute();
+            (new AdminAllPosts($session))->execute();
             break;
         case "adminAddPost":
             (new AdminAddPost($session, $postGlobal, $server, $files))->execute();
@@ -104,12 +104,12 @@ try {
             (new AdminValidatedComments($session))->execute();
             break;
         case "adminAllUsers":
-            (new AdminAllUsers())->execute();
+            (new AdminAllUsers($session))->execute();
             break;
         case "deleteComment":
             if (null !== Get::get('id') && Get::get('id') > 0) {
                 $identifier = Get::get('id');
-                (new DeleteComment())->execute($identifier);
+                (new DeleteComment($session))->execute($identifier);
             } else {
                 throw new Exception('aucun identifiant envoyé');
             }
@@ -117,7 +117,7 @@ try {
         case "validateComment":
             if (null !== Get::get('id') && Get::get('id') > 0) {
                 $identifier = Get::get('id');
-                (new ValidateComment())->execute($identifier);
+                (new ValidateComment($session))->execute($identifier);
             } else {
                 throw new Exception('aucun identifiant envoyé');
             }
@@ -148,7 +148,7 @@ try {
         }//end switch
     } else {
         (new HomePosts())->execute();
-    }//'end if'
+    }//end if
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     echo htmlspecialchars($errorMessage);

@@ -109,7 +109,7 @@ class AdminAddPost
                         document.location.href = '/index.php?action=adminAddPost';
                     </script>
                     <?php
-                }//'end if'
+                }//end if
 
                 // We create the new article.
                 $postRepository = new Post();
@@ -125,8 +125,8 @@ class AdminAddPost
                     </script>
                     <?php
                 }
-            }//'end if'
-        }//'end if'
+            }//end if
+        }//end if
 
         $helper->renderView('app/views/admin/add-post.php',[]);
 

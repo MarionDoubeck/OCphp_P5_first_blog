@@ -60,7 +60,7 @@ class AddComment
         // We do the checks.
         if (empty($this->postGlobal->get('commentContent')) === false) {
             try {
-                /* Check if the CSRF token is valid */
+                // Check if the CSRF token is valid.
                 if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
                 } else {

@@ -101,7 +101,7 @@ class Login
                     alert("Vous devez remplir tous les champs");
                     </script>
                     <?php
-                }
+                }//end if
 
             }
         }
