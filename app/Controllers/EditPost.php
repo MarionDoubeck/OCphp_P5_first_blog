@@ -14,22 +14,52 @@ use App\services\Helpers;
 class EditPost
 {
 
+    /**
+     * Session
+     *
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * Files
+     *
+     * @var Files
+     */
+    private $files;
+    
+
+    /**
+     * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
+     * 
+     * @param Session   $session Session
+     * @param Files     $files   Files
+     * 
+     * @return void
+     */
+    public function __construct(Session $session, Files $files)
+    {
+        $this->session = $session;
+        $this->files = $files;
+    }
+
 
     /**
      * Method to modify a post
      *
-     * @param int             $identifier Post Id
-     * @param array|null      $input Original post data
+     * @param int        $identifier     Post Id
+     * @param array|null $input Original Post data
      *
      * @return void
      */
     public function execute(int $identifier, ?array $input)
     {
         $helper = new Helpers;
-        $role = Session::get('role');
+        $role = $this->session->get('role');
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
+
         // Submission management if there is an entry.
         if ($input !== null) {
             $title = null;
@@ -44,10 +74,10 @@ class EditPost
             }
 
             // Check if an image was uploaded.
-            if (empty(Files::file('image','tmp_name')) === FALSE ) {
+            if (empty($this->files->file('image','tmp_name')) === FALSE) {
                 // Process the uploaded image.
-                $image_data = Files::getFileContent('image','tmp_name');
-                $image_type = Files::file('image','tmp_name');
+                $image_data = $this->files->getFileContent('image','tmp_name');
+                $image_type = $this->files->file('image','tmp_name');
             } else {
                 $image_data = null;
                 $image_type = null;
@@ -75,7 +105,7 @@ class EditPost
         $postRepository = new Post();
         $postRepository->connection = new DatabaseConnection();
         $post = $postRepository->getPost($identifier);
-        
+
         if ($post === null) {
             throw new \Exception("L'article $identifier n'existe pas.");
         }
@@ -91,15 +121,16 @@ class EditPost
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
         
-        $helper->renderView('app/views/admin/edit-post.php',array(
-                                                            'title' => $title,
-                                                            'chapo' => $chapo,
-                                                            'content' => $content,
-                                                            'imageData' => $imageData,
-                                                            'imageType' => $imageType,
-                                                            )
+        $helper->renderView('app/views/admin/edit-post.php', [
+            'title' => $title,
+            'chapo' => $chapo,
+            'content' => $content,
+            'imageData' => $imageData,
+            'imageType' => $imageType,
+        ]
         );
-    }
+        
+    }//end execute()
 
 
 }

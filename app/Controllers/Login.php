@@ -56,7 +56,7 @@ class Login
         if (Server::requestMethod() === 'POST') {
             if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                 throw new \Exception("Erreur : Jeton CSRF invalide.");
-            } else{
+            } else {
                 $username = null;
                 if ($this->postGlobal->isParamSet('username') === TRUE &&  $this->postGlobal->isParamSet('password') === TRUE
                     && empty(trim($this->postGlobal->get('username'))) === FALSE && empty($this->postGlobal->get('password')) === FALSE ) {

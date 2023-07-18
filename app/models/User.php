@@ -261,7 +261,7 @@ class User
     {
         if ($commentCount === null) {
             $this->commentCount = 0;
-        } else{
+        } else {
             $this->commentCount = $commentCount;
         }
 
