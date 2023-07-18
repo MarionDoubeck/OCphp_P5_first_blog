@@ -21,7 +21,7 @@ use App\Controllers\DeleteComment;
 use App\Controllers\ValidateComment;
 use App\Controllers\DeletePost;
 use App\Controllers\EditPost;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 // Autoload
 require 'vendor/autoload.php';

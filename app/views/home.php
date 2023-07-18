@@ -1,5 +1,5 @@
 <?php
-use App\helpers\Helpers;
+use App\services\Helpers;
 $helper = new Helpers;
 $helper->renderView('app/views/header.php',[]);
 ?>

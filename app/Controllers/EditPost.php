@@ -5,7 +5,7 @@ use App\Models\Post;
 use App\services\Session;
 use App\services\Files;
 use App\db\DatabaseConnection;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 /**
  * EditPost class
@@ -46,7 +46,7 @@ class EditPost
             // Check if an image was uploaded
             if (empty(Files::file('image','tmp_name')) === FALSE ) {
                 // Process the uploaded image
-                $image_data = file_get_contents(Files::file('image','tmp_name'));
+                $image_data = Files::getFileContent('image','tmp_name');
                 $image_type = Files::file('image','tmp_name');
             } else {
                 $image_data = null;

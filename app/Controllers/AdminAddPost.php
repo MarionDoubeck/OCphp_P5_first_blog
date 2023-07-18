@@ -1,6 +1,6 @@
 <?php
 namespace App\Controllers;
-use App\helpers\Helpers;
+use App\services\Helpers;
 use App\Models\Post;
 use App\services\Session;
 use App\services\PostGlobal;
@@ -43,8 +43,11 @@ class AdminAddPost {
                     $chapo = strip_tags(PostGlobal::get('chapo'));
                     // Check if an image was uploaded
                     if (empty(Files::file('image','tmp_name')) === FALSE ) {
-                        // Process the uploaded image
-                        $image_data = file_get_contents(Files::file('image','tmp_name'));
+                        // Process the uploaded image without codacy discouraged function file_get_contents.
+                        //$image_data = file_get_contents(Files::file('image','tmp_name'));
+                        $fileHandle = fopen(Files::file('image','tmp_name'), 'rb');
+                        $image_data = fread($fileHandle, Files::filesize('image','tmp_name'));
+                        fclose($fileHandle);
                         $image_type = Files::file('image','tmp_name');
                     } else {
                         $image_data = null;

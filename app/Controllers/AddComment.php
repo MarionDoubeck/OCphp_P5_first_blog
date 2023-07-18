@@ -5,7 +5,7 @@ use App\Models\Comment;
 use App\services\Session;
 use App\db\DatabaseConnection;
 use App\services\PostGlobal;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 /**
  * AddComment class

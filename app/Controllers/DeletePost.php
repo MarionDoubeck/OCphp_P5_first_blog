@@ -5,7 +5,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\services\Session;
 use App\db\DatabaseConnection;
-use App\helpers\Helpers;
+use App\services\Helpers;
 use App\services\PostGlobal;
 
 /**

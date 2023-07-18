@@ -6,7 +6,7 @@ use App\services\Session;
 use App\services\PostGlobal;
 use App\services\Server;
 use App\db\DatabaseConnection;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 /**
  * Class login

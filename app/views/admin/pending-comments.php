@@ -1,7 +1,7 @@
 <?php
 use App\services\Session;
 use App\models\Comment;
-use App\helpers\Helpers;
+use App\services\Helpers;
 
 $helper = new Helpers;
 $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
