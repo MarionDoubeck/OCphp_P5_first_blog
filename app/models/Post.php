@@ -257,7 +257,7 @@ class Post
         $statement->bindParam(':imageType', $image_type);
         $statement->bindParam(':postId', $postId);
         $affectedLines = $statement->execute();
-    
+
         return ($affectedLines > 0);
 
     }//end editPost()
@@ -415,7 +415,7 @@ class Post
      * @param string $FrenchModificationDate post date
      *
      * @return self
-     */ 
+     */
     public function setFrenchModificationDate(string $FrenchModificationDate)
     {
         $this->FrenchModificationDate = $FrenchModificationDate;

@@ -59,9 +59,9 @@ class Register
             if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                 $errors[] = "Erreur : Jeton CSRF invalide.";
             } else {
-                if ($this->postGlobal->isParamSet('username') === TRUE && $this->postGlobal->isParamSet('password') === TRUE 
+                if ($this->postGlobal->isParamSet('username') === TRUE && $this->postGlobal->isParamSet('password') === TRUE
                     && empty($this->postGlobal->get('username')) === FALSE && empty($this->postGlobal->get('password')) === FALSE
-                    ) {
+                ) {
                     $this->checkIfFormIsCorrect();
 
                     $username = strip_tags(trim($this->postGlobal->get('username')));
@@ -95,7 +95,7 @@ class Register
                     }
                 } else {
                     $errors[] = "Toutes les informations doivent être complétées";
-                }//end if
+                }//'end if'
             }
         }
 
