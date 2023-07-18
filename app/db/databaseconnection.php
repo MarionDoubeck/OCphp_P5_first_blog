@@ -9,8 +9,14 @@ use App\services\Env;
  */
 class DatabaseConnection
 {
-
+    /**
+     * PHP Data Object
+     *
+     * @var \PDO|null $database Description de la variable de base de données PDO.
+     */
     public ?\PDO $database = null;
+
+
     /**
      * Function to connect to the data base
      *
@@ -24,6 +30,9 @@ class DatabaseConnection
                 Env::get('DB_USER'), Env::get('DB_PASSWORD')
             );
         }
+
         return $this->database;
-    }
+
+    }//end getConnection
+
 }
