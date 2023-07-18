@@ -27,11 +27,11 @@ class Register
      * @var PostGlobal
      */
     private $postGlobal;
-    
+
 
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
-     * 
+     *
      * @param Session    $session Session
      * @param PostGlobal $postGlobal PostGlobal
      * 

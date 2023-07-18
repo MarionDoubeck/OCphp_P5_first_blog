@@ -1,4 +1,4 @@
-<?php 
+<?php
 use App\services\Session;
 use App\services\Helpers;
 
@@ -23,7 +23,7 @@ $helper->renderView('app/views/header.php',[]);
     <h3>Commentaires</h3>
     <ul>
         <?php 
-        foreach ($comments as $comment) : 
+        foreach ($comments as $comment) :
             $commentAuthor=$comment->getUsername();
             $commentContent=$comment->getComment();
             ?>

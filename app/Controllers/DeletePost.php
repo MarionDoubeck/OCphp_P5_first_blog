@@ -32,7 +32,7 @@ class DeletePost
 
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
-     * 
+     *
      * @param Session    $session Session
      * @param PostGlobal $postGlobal PostGlobal
      * 
@@ -45,7 +45,7 @@ class DeletePost
 
     }
 
-    
+
     /**
      * Method to delete a post
      *

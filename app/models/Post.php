@@ -114,8 +114,8 @@ class Post
         } else {
             throw new Exception('Cette page n\'existe pas');
         }
-            
-    }//getPostbyId()
+   
+    }//end getPost()
 
 
     /**

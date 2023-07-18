@@ -51,7 +51,7 @@ class AdminAddPost
      * @param PostGlobal $postGlobal PostGlobal
      * @param Server     $server     Server
      * @param Files      $files      Files
-     * 
+     *
      * @return void
      */
     public function __construct(Session $session, PostGlobal $postGlobal, Server $server, Files $files)
@@ -127,8 +127,8 @@ class AdminAddPost
                 }
             }//end if
         }//end if
-        
-        $helper->renderView('app/views/admin/add-post.php',[]); 
+
+        $helper->renderView('app/views/admin/add-post.php',[]);
         
     }//end execute()
 }
