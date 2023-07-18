@@ -22,4 +22,4 @@ $helper->renderView('app/views/header.php',[]);
     <button type="submit">Login</button>
 </form>
 </div>
-<?php $helper->renderView('app/views/footer.php',[]); ?>
+<?php $helper->renderView('app/views/footer.php',[]);

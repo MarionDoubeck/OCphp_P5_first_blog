@@ -43,7 +43,7 @@ class SinglePost
         $imageType = $post->getImageType();
 
         $helper = new Helpers;
-        $helper->renderView('app/views/single-post.php',array(
+        $helper->renderView('app/views/single-post.php',[
                                                         'comments' => $comments,
                                                         'post' => $post,
                                                         'title' => $title,
@@ -53,7 +53,7 @@ class SinglePost
                                                         'content' => $content,
                                                         'imageData' => $imageData,
                                                         'imageType' => $imageType,
-                                                        )
+                                                        ]
         );
     }
 }

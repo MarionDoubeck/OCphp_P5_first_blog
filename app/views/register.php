@@ -10,11 +10,11 @@ $helper->renderView('app/views/header.php',[]);
 <div class="container">
     <h2>S'enregistrer</h2>
 
-    <?php 
-    if (empty($data['errors']) === FALSE ){ ?>
+    <?php
+    if (empty($data['errors']) === FALSE) { ?>
         <div class="alert alert-danger" role="alert">
         <?php
-        foreach($data['errors'] as $error) { ?>
+        foreach ($data['errors'] as $error) { ?>
             <p><?= htmlspecialchars($error) ?></p>
         <?php } ?>
         </div>
@@ -24,10 +24,10 @@ $helper->renderView('app/views/header.php',[]);
     <form method="post">
 
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?= PostGlobal::isParamSet('email') ? htmlspecialchars(PostGlobal::get('email')) : '' ?>" required>
+        <input type="email" name="email" id="email" value="<?= PostGlobal::isParamSet('email') === TRUE ? htmlspecialchars(PostGlobal::get('email')) : '' ?>" required>
 
         <label for="username">Nom d'utilisateur</label>
-        <input type="text" name="username" id="username" value="<?= PostGlobal::isParamSet('username') ? htmlspecialchars(PostGlobal::get('username')) : '' ?>" required>
+        <input type="text" name="username" id="username" value="<?= PostGlobal::isParamSet('username') === TRUE ? htmlspecialchars(PostGlobal::get('username')) : '' ?>" required>
 
         <label for="password">Mot de passe</label>
         <input type="password" name="password" id="password" required>
@@ -37,4 +37,4 @@ $helper->renderView('app/views/header.php',[]);
     </form>
 </div>
 
-<?php $helper->renderView('app/views/footer.php',[]); ?>
+<?php $helper->renderView('app/views/footer.php',[]);
