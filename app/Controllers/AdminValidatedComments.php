@@ -49,4 +49,6 @@ class AdminValidatedComments
         $helper->renderView('app/views/admin/validated-comments.php',['comments' => $comments]);
 
     }//end execute()
+
+
 }

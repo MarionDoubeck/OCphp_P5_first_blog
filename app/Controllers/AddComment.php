@@ -93,7 +93,7 @@ class AddComment
             document.location.href = '/index.php?action=article&id='+numpost;</script>
             <?php
         }
-    }
+    }//end execute()
 
 
 }

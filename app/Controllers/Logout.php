@@ -23,5 +23,8 @@ class Logout
             history.go(-1);
         </script>
         <?php
-    }
+
+    }//end execute()
+
+    
 }

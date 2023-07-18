@@ -50,4 +50,6 @@ class AdminPendingComments
         $helper->renderView('app/views/admin/pending-comments.php',['comments' => $comments]);
 
     }//end execute()
+
+
 }
