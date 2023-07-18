@@ -95,7 +95,7 @@ class Register
                     }
                 } else {
                     $errors[] = "Toutes les informations doivent être complétées";
-                }//end if
+                }//'end if'
             }
         }
 

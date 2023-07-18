@@ -25,7 +25,7 @@ use App\Controllers\ValidateComment;
 use App\Controllers\DeletePost;
 use App\Controllers\EditPost;
 
-// Autoload
+// Autoload.
 require 'vendor/autoload.php';
 
 
@@ -33,13 +33,13 @@ $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 $helper = new Helpers;
 
-// To avoid static access of services classes functions, call classes with construction parameters :
+// To avoid static access of services classes functions, call classes with construction parameters.
 $session = new Session();
 $postGlobal = new PostGlobal();
 $server = new Server();
 $files = new Files();
 
-// Router
+// Router.
 try {
     if (Get::get('action') !== null && Get::get('action') !== '') {
         switch (Get::get('action')) {
@@ -47,13 +47,13 @@ try {
             (new PostList())->execute();
             break;
         case "login":
-            (new Login($session, $postGlobal))->execute();
+            (new Login($session, $postGlobal, $server))->execute();
             break;
         case "logout":
             (new Logout())->execute();
             break;
         case "register":
-            if (null !== Session::get('user_id')) { ?>
+            if (Session::get('user_id') !== null) { ?>
                 <script>
                     alert('Vous êtes déjà connecté, vous ne pouvez pas vous inscrire à nouveau')
                     window.location.reload();
@@ -63,7 +63,7 @@ try {
             (new Register($session, $postGlobal))->execute();
             break;
         case "article":
-            if (null !== Get::get('id') && get::get('id') > 0) {
+            if (Get::get('id') !== null && get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new SinglePost())->execute($identifier);
             } else {?>
@@ -74,7 +74,7 @@ try {
             <?php }
             break;
         case "addComment":
-            if (null !== Get::get('id') && Get::get('id') > 0) {
+            if (Get::get('id') !== null && Get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new AddComment($session, $postGlobal))->execute($identifier);
             } else {?>
@@ -85,7 +85,7 @@ try {
             <?php }
             break;
         case "administration":
-            if (null !== Session::get('user_id') && Session::get('role') === 'admin') {
+            if (Session::get('user_id') !== null && Session::get('role') === 'admin') {
                 $helper->renderView('app/views/admin/dashboard.php',[]);
             } else {
                 $helper->renderView('app/views/404.php',[]);
@@ -145,11 +145,11 @@ try {
             break;
         default:
             $helper->renderView('app/views/404.php',[]);
-        }//end try
+        }//end switch
     } else {
         (new HomePosts())->execute();
-    }
+    }//'end if'
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     echo htmlspecialchars($errorMessage);
-}
+}//end try

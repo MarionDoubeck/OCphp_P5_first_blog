@@ -35,13 +35,16 @@ class Login
      *
      * @param Session    $session    Session
      * @param PostGlobal $postGlobal PostGlobal
+     * @param Server     $server     Server
      *
      * @return void
      */
-    public function __construct(Session $session, PostGlobal $postGlobal)
+    public function __construct(Session $session, PostGlobal $postGlobal, Server $server)
     {
         $this->session = $session;
         $this->postGlobal = $postGlobal;
+        $this->server = $server;
+
     }//end __construct()
 
 
@@ -54,13 +57,14 @@ class Login
     public function execute()
     {
         $helper = new Helpers;
-        if (Server::requestMethod() === 'POST') {
+        if ($this->server->requestMethod() === 'POST') {
             if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                 throw new \Exception("Erreur : Jeton CSRF invalide.");
             } else {
                 $username = null;
                 if ($this->postGlobal->isParamSet('username') === TRUE &&  $this->postGlobal->isParamSet('password') === TRUE
-                    && empty(trim($this->postGlobal->get('username'))) === FALSE && empty($this->postGlobal->get('password')) === FALSE ) {
+                    && empty(trim($this->postGlobal->get('username'))) === FALSE && empty($this->postGlobal->get('password')) === FALSE
+                ) {
                     $username = htmlspecialchars(trim($this->postGlobal->get('username')));
                     $userRepository = new User();
                     $userRepository->connection = new DatabaseConnection();
@@ -73,11 +77,7 @@ class Login
                         </script>
                         <?php
                     } else {
-                        if (password_verify(
-                            trim($this->postGlobal->get('password')),
-                            $connectedUser->getPassword()
-                        )
-                        ) {
+                        if (password_verify(trim($this->postGlobal->get('password')),$connectedUser->getPassword()) === TRUE) {
                             $this->session->put('user_id', $connectedUser->getUser_id());
                             $this->session->put('username', $connectedUser->getUsername());
                             $this->session->put('role', $connectedUser->getRole());
@@ -95,13 +95,14 @@ class Login
                             </script>
                             <?php
                         }
-                    }
+                    }//'endif'
                 } else {?>
                     <script language="javascript"> 
                     alert("Vous devez remplir tous les champs");
                     </script>
                     <?php
                 }
+
             }
         }
         $helper->renderView('app/views/login.php',[]);
