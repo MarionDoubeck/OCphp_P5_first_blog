@@ -198,7 +198,7 @@ class User
 
     /**
      * Get the value of password
-     * 
+     *
      * @return string
      */
     public function getPassword()
@@ -228,7 +228,7 @@ class User
      * Get the value of user_id
      * 
      * @return int
-     */ 
+     */
     public function getUser_id()
     {
         return $this->user_id;
