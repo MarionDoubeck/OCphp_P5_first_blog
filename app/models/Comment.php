@@ -78,7 +78,7 @@ class Comment
         $statement->execute([$postId]);
 
         $comments = [];
-        while (($row = $statement->fetch()) === TRUE) {
+        while (($row = $statement->fetch())) {
             $comment = new Comment();
             $comment->setUsername($row['username']);
             $comment->setFrenchCreationDate($row['creation_date']);
@@ -191,7 +191,7 @@ class Comment
         $statement->execute();
 
         $comments = [];
-        while (($row = $statement->fetch()) === TRUE) {
+        while (($row = $statement->fetch())) {
             $comment = new Comment();
             $comment->setFrenchCreationDate($row['creation_date']);
             $comment->setComment($row['content']);
