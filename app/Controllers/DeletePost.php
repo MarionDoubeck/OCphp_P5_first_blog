@@ -29,7 +29,7 @@ class DeletePost
      */
     private $postGlobal;
 
-    
+
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
      * 
@@ -44,6 +44,8 @@ class DeletePost
         $this->postGlobal = $postGlobal;
 
     }
+
+    
     /**
      * Method to delete a post
      *

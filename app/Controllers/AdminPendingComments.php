@@ -5,7 +5,31 @@ use App\services\Session;
 use App\db\DatabaseConnection;
 use App\services\Helpers;
 
-class AdminPendingComments {
+class AdminPendingComments
+{
+
+    /**
+     * Session
+     *
+     * @var Session
+     */
+    private $session;
+
+
+    /**
+     * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
+     * 
+     * @param Session    $session Session
+     * 
+     * @return void
+     */
+    public function __construct(Session $session)
+    {
+        $this->session = $session;
+
+    }
+
+
     /**
      * Method in charge of displaying the list of unvalidaded comments
      * for the admin
@@ -24,5 +48,6 @@ class AdminPendingComments {
 
         $helper = new Helpers;
         $helper->renderView('app/views/admin/pending-comments.php',['comments' => $comments]);
-    }
+
+    }//end execute()
 }

@@ -98,10 +98,10 @@ try {
             (new AdminAddPost($session, $postGlobal, $server, $files))->execute();
             break;
         case "adminPendingComments":
-            (new AdminPendingComments())->execute();
+            (new AdminPendingComments($session))->execute();
             break;
         case "adminValidatedComments":
-            (new AdminValidatedComments())->execute();
+            (new AdminValidatedComments($session))->execute();
             break;
         case "adminAllUsers":
             (new AdminAllUsers())->execute();
