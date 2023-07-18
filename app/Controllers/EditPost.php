@@ -13,10 +13,12 @@ use App\services\Helpers;
  */
 class EditPost
 {
+
+
     /**
      * Method to modify a post
      *
-     * @param int        $identifier
+     * @param int $identifier
      * @param array|null $input
      *
      * @return void
@@ -25,7 +27,7 @@ class EditPost
     {
         $helper = new Helpers;
         $role = Session::get('role');
-        if ($role !='admin') {
+        if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
         // Submission management if there is an entry.
@@ -33,9 +35,7 @@ class EditPost
             $title = null;
             $content = null;
             $chapo = null;
-
-            if (empty($input['title']) === FALSE && empty($input['chapo']) === FALSE && empty($input['content']) === FALSE)
-            {
+            if (empty($input['title']) === FALSE && empty($input['chapo']) === FALSE && empty($input['content']) === FALSE) {
                 $title = strip_tags($input['title']);
                 $chapo = strip_tags($input["chapo"]);
                 $content = strip_tags($input['content']);
@@ -43,9 +43,9 @@ class EditPost
                 throw new \Exception('les données du formulaire sont incomplètes');
             }
 
-            // Check if an image was uploaded
+            // Check if an image was uploaded.
             if (empty(Files::file('image','tmp_name')) === FALSE ) {
-                // Process the uploaded image
+                // Process the uploaded image.
                 $image_data = Files::getFileContent('image','tmp_name');
                 $image_type = Files::file('image','tmp_name');
             } else {
@@ -57,7 +57,7 @@ class EditPost
             $postRepository->connection = new DatabaseConnection();
             $success = $postRepository->editPost($identifier, $content, $title, $chapo, $image_data, $image_type);
 
-            if (!$success) {
+            if ($success === FALSE) {
                 throw new \Exception('Impossible de modifier l\'article !');
             } else {
                 $postRepository = new Post();
@@ -70,7 +70,7 @@ class EditPost
                 </script>
                 <?php
             }
-        }
+        }//end if
         // Displays the form if there is no entry and at the beginning.
         $postRepository = new Post();
         $postRepository->connection = new DatabaseConnection();
@@ -90,14 +90,13 @@ class EditPost
         $content = $post->getContent();
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
-
         
         $helper->renderView('app/views/admin/edit-post.php',array(
-                                                                'title' =>$title,
-                                                                'chapo' =>$chapo,
-                                                                'content' =>$content,
-                                                                'imageData' =>$imageData,
-                                                                'imageType' =>$imageType
+                                                                'title' => $title,
+                                                                'chapo' => $chapo,
+                                                                'content' => $content,
+                                                                'imageData' => $imageData,
+                                                                'imageType' => $imageType
                                                             )
         );
     }

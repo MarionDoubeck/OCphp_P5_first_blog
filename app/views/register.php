@@ -14,9 +14,9 @@ $helper->renderView('app/views/header.php',[]);
     if (empty($data['errors']) === FALSE ){ ?>
         <div class="alert alert-danger" role="alert">
         <?php
-        foreach($data['errors'] as $error) {
-            echo htmlspecialchars($error) . '<br>';
-        } ?>
+        foreach($data['errors'] as $error) { ?>
+            <p><?= htmlspecialchars($error) ?></p>
+        <?php } ?>
         </div>
     <?php } ?>
 
