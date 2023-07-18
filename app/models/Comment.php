@@ -192,7 +192,7 @@ class Comment
 
     /**
      * Get the value of frenchCreationDate
-     * 
+     *
      * @return string
      */
     public function getFrenchCreationDate()
@@ -244,7 +244,7 @@ class Comment
      * Get the value of comment Id
      * 
      * @return int
-     */ 
+     */
     public function getIdentifier()
     {
         return $this->identifier;

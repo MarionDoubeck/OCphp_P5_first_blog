@@ -129,7 +129,7 @@ class AdminAddPost
         }//end if
 
         $helper->renderView('app/views/admin/add-post.php',[]);
-        
+
     }//end execute()
 
 

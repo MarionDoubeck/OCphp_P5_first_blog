@@ -33,6 +33,6 @@ class DatabaseConnection
 
         return $this->database;
 
-    }//end getConnection
+    }//end getConnection()
 
 }

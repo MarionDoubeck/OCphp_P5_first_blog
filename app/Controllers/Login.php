@@ -28,7 +28,7 @@ class Login
      * @var PostGlobal
      */
     private $postGlobal;
-    
+
 
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
@@ -107,6 +107,6 @@ class Login
 
     }//end execute()
 
-    
+
 }
  

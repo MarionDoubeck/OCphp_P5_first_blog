@@ -152,7 +152,7 @@ class User
 
     /**
      * Get the value of role
-     * 
+     *
      * @return string
      */
     public function getRole()

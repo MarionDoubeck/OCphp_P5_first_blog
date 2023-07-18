@@ -34,7 +34,7 @@ class Register
      *
      * @param Session    $session Session
      * @param PostGlobal $postGlobal PostGlobal
-     * 
+     *
      * @return void
      */
     public function __construct(Session $session, PostGlobal $postGlobal)

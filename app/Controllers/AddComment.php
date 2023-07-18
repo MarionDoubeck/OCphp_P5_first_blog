@@ -34,7 +34,7 @@ class AddComment
      *
      * @param Session    $session Session
      * @param PostGlobal $postGlobal PostGlobal
-     * 
+     *
      * @return void
      */
     public function __construct(Session $session, PostGlobal $postGlobal)
@@ -93,6 +93,7 @@ class AddComment
             document.location.href = '/index.php?action=article&id='+numpost;</script>
             <?php
         }
+
     }//end execute()
 
 
