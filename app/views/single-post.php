@@ -42,7 +42,7 @@ $helper->renderView('app/views/header.php',[]);
         <!-- User logged in -->
         <h5>Ajouter un commentaire</h4>
         <?php $helper->generateCsrfToken();?>
-        <form method="post" action="index.php?action=addComment&id=<?= htmlspecialchars($post->getIdentifier())?>" class="d-flex row gap-3" style="max-width:400px;">
+        <form method="post" action="index.php?action=addComment&id=<?= htmlspecialchars($post->getIdentifier())?>" class="d-flex flex-column gap-3" style="max-width:400px;">
             <label>Commentaire</label>
             <textarea name="commentContent" rows="6"></textarea>
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">

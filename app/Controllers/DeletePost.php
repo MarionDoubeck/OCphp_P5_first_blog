@@ -61,7 +61,7 @@ class DeletePost
         } else {
             $role = $this->session->get('role');
             if ($role !== 'admin') {
-                $helper->renderView('app/views/404.php',[]);
+                header("Location: index.php/?action=AccesNonAutorisé");
             }
 
             $commentRepository = new Comment();
