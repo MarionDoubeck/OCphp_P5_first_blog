@@ -86,7 +86,7 @@ class Post
     /**
      * Method to retrieve data from a single article according to its id
      *
-     * @param int $identifier
+     * @param int $postId Post ID
      *
      * @return Post
      */
@@ -205,12 +205,12 @@ class Post
     /**
      * Method to add data of a new post
      *
-     * @param string $title
-     * @param string $content
-     * @param string $chapo
-     * @param int    $user_id
-     * @param string|null $image_data
-     * @param string|null $image_type
+     * @param string $title Title
+     * @param string $content Content
+     * @param string $chapo Chapo
+     * @param int    $user_id Author ID
+     * @param string|null $image_data Image data
+     * @param string|null $image_type Image type
      *
      * @return boolean
      */
@@ -234,7 +234,7 @@ class Post
     /**
      * Method to edit data of a new post
      *
-     * @param int $postId
+     * @param int $postId PostID
      * @param string $title
      * @param string $content
      * @param string $chapo
@@ -508,7 +508,7 @@ class Post
         return $this->username;
     }
 
-    
+
     /**
      * Set user's nickname
      *

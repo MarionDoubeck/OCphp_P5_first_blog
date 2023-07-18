@@ -23,6 +23,6 @@ class AdminPendingComments {
         $comments = $repository->getCommentsStatus('pending');
 
         $helper = new Helpers;
-        $helper->renderView('app/views/admin/pending-comments.php',['comments' =>$comments]);
+        $helper->renderView('app/views/admin/pending-comments.php',['comments' => $comments]);
     }
 }

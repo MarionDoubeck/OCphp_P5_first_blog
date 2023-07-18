@@ -17,6 +17,12 @@ class AddComment
     private $session;
     private $postGlobal;
 
+
+    /**
+     * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
+     * 
+     * @return void
+     */
     public function __construct(Session $session, PostGlobal $postGlobal)
     {
         $this->session = $session;
@@ -27,11 +33,11 @@ class AddComment
     /**
      * Function in charge of doing security checks and adding a new comment
      *
-     * @param string $post
+     * @param int $postId PostId
      *
      * @return void
      */
-    public function execute(string $post)
+    public function execute(int $postId)
     {
         $user_id = $this->session->get('user_id');
         $commentContent = null;
@@ -53,7 +59,7 @@ class AddComment
         } else {
             ?>
             <script language="javascript"> 
-            var numpost = <?= $post?>;
+            var numpost = <?= $postId?>;
             alert("les données du commentaires sont invalides");
             document.location.href = '/index.php?action=article&id='+numpost;</script>
             <?php
@@ -62,13 +68,13 @@ class AddComment
         // We create a new comment.
         $commentRepository = new Comment();
         $commentRepository->connection = new DatabaseConnection();
-        $success = $commentRepository->createComment($post, $user_id, $commentContent);
+        $success = $commentRepository->createComment($postId, $user_id, $commentContent);
         if ($success === FALSE) {
             throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
             ?>
             <script language="javascript"> 
-            var numpost = <?= $post?>;
+            var numpost = <?= $postId ?>;
             alert("Commentaire envoyé, celui-ci sera visible après validation.");
             document.location.href = '/index.php?action=article&id='+numpost;</script>
             <?php

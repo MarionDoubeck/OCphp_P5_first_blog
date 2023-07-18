@@ -81,7 +81,7 @@ class User
     /**
      * Method to check user username and get this user data
      *
-     * @param string $username
+     * @param string $username Username
      *
      * @return user|null
      */
@@ -110,7 +110,7 @@ class User
     /**
      * Method to check user email
      *
-     * @param string $email
+     * @param string $email Email
      *
      * @return void
      */
@@ -133,9 +133,9 @@ class User
     /**
      * Method to add data of a new user
      *
-     * @param string $username
-     * @param string $password
-     * @param string $email
+     * @param string $username Username
+     * @param string $password Password
+     * @param string $email Email
      * 
      * @return boolean
      */
@@ -163,6 +163,8 @@ class User
     /**
      * Set the value of role
      *
+     * @param string $role Role
+     * 
      * @return self
      */
     public function setRole($role)

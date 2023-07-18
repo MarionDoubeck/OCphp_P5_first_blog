@@ -23,6 +23,6 @@ class AdminValidatedComments {
         $comments = $repository->getCommentsStatus('approved');
 
         $helper = new Helpers;
-        $helper->renderView('app/views/admin/validated-comments.php',['comments' =>$comments]);
+        $helper->renderView('app/views/admin/validated-comments.php',['comments' => $comments]);
     }
 }

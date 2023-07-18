@@ -18,8 +18,8 @@ class EditPost
     /**
      * Method to modify a post
      *
-     * @param int $identifier
-     * @param array|null $input
+     * @param int $identifier Post Id
+     * @param array|null $input Original post data
      *
      * @return void
      */
@@ -92,11 +92,11 @@ class EditPost
         $imageType = $post->getImageType();
         
         $helper->renderView('app/views/admin/edit-post.php',array(
-                                                                'title' => $title,
-                                                                'chapo' => $chapo,
-                                                                'content' => $content,
-                                                                'imageData' => $imageData,
-                                                                'imageType' => $imageType
+                                                            'title' => $title,
+                                                            'chapo' => $chapo,
+                                                            'content' => $content,
+                                                            'imageData' => $imageData,
+                                                            'imageType' => $imageType,
                                                             )
         );
     }

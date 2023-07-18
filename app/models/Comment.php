@@ -41,7 +41,7 @@ class Comment
      *
      * @var int
      */
-    private int $post;
+    private int $postId;
 
     /**
      * Post title
@@ -56,11 +56,11 @@ class Comment
     /**
      * Method to retrieve comments associated with post id
      *
-     * @param string $post
+     * @param int $postId The post we want the comments of
      *
      * @return array
      */
-    public function getComments(string $post) : array
+    public function getComments(int $postId) : array
     {
         $statement = $this->connection->getConnection()->prepare(
             "SELECT comments.*, users.username FROM comments 
@@ -69,7 +69,7 @@ class Comment
             ORDER BY comments.creation_date DESC"
         );
 
-        $statement->execute([$post]);
+        $statement->execute([$postId]);
 
         $comments = [];
         while (($row = $statement->fetch())) {
@@ -90,19 +90,19 @@ class Comment
     /**
      * Method to add a new comment
      *
-     * @param string $post
-     * @param int    $user_id
-     * @param string $comment
+     * @param int $postId The post to comment 
+     * @param int    $user_id The author's user Id
+     * @param string $comment The content of the comment
      *
      * @return boolean
      */
-    public function createComment(string $post, int $user_id, string $comment) : bool
+    public function createComment(int $postId, int $user_id, string $comment) : bool
     {
         $statement = $this->connection->getConnection()->prepare(
             'INSERT INTO comments(post_id, author_id, content, creation_date, status) 
             VALUES(?, ?, ?, NOW(), ?)'
         );
-        $affectedLines = $statement->execute([$post, $user_id, $comment, 'pending']);
+        $affectedLines = $statement->execute([$postId, $user_id, $comment, 'pending']);
 
         return($affectedLines > 0);
     }
@@ -110,7 +110,7 @@ class Comment
     /**
      * Method to delete a comment
      *
-     * @param int $identifier
+     * @param int $identifier Comment's Id
      *
      * @return boolean
      */
@@ -192,11 +192,14 @@ class Comment
 
     /**
      * Get the value of frenchCreationDate
+     * 
+     * @return string
      */
     public function getFrenchCreationDate()
     {
         return $this->frenchCreationDate;
     }
+
 
     /**
      * Set the value of frenchCreationDate
@@ -210,13 +213,17 @@ class Comment
         return $this;
     }
 
+
     /**
-     * Get the value of comment
+     * Get the content of comment
+     * 
+     * @return string
      */
     public function getComment()
     {
         return $this->comment;
     }
+
 
     /**
      * Set the value of comment
@@ -230,16 +237,20 @@ class Comment
         return $this;
     }
 
+
     /**
-     * Get the value of identifier
+     * Get the value of comment Id
+     * 
+     * @return int
      */ 
     public function getIdentifier()
     {
         return $this->identifier;
     }
 
+
     /**
-     * Set the value of identifier
+     * Set the value of comment Id
      *
      * @return self
      */ 
@@ -250,33 +261,41 @@ class Comment
         return $this;
     }
 
+
     /**
-     * Get the value of post
+     * Get the value of postId
+     * 
+     * @return int
      */ 
     public function getPost()
     {
-        return $this->post;
+        return $this->postId;
     }
 
+
     /**
-     * Set the value of post
+     * Set the id of post
      *
      * @return self
      */ 
-    public function setPost($post)
+    public function setPost($postId)
     {
-        $this->post = $post;
+        $this->postId = $postId;
 
         return $this;
     }
 
+
     /**
      * Get the value of post title
+     * 
+     * @return string
      */ 
     public function getPostTitle()
     {
         return $this->postTitle;
     }
+
 
     /**
      * Set the value of post title
@@ -293,6 +312,8 @@ class Comment
 
     /**
      * Get the value of username
+     * 
+     * @return string
      */ 
     public function getUsername()
     {
