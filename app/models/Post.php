@@ -10,6 +10,7 @@ use Exception;
  */
 class Post
 {
+
     /**
      * Post title
      *
@@ -72,7 +73,6 @@ class Post
      * @var string
      */
     private $imageType;
-
 
     /**
      * Connexion to database
@@ -168,6 +168,7 @@ class Post
         }
 
         return $posts;
+
     }//end getPosts()
 
 
@@ -197,8 +198,9 @@ class Post
 
             $posts[] = $post;
         }
-        
+
         return $posts;
+
     }//end getRecentPosts()
 
 
