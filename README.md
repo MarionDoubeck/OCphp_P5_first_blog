@@ -1,3 +1,6 @@
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ddb0754a2154d008813bbdcab4e6203)](https://app.codacy.com/gh/MarionDoubeck/OCphp_P5_first_blog?utm_source=github.com&utm_medium=referral&utm_content=MarionDoubeck/OCphp_P5_first_blog&utm_campaign=Badge_Grade)
+
 Composer :
 intall composer
 then : 
