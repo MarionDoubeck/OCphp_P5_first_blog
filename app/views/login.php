@@ -12,10 +12,10 @@ $helper->renderView('app/views/header.php',[]);
 <?php $helper->generateCsrfToken();?>
 
 <form method="post">
-    <label for="username">Username</label>
+    <label for="username">Nom d'utilisateur</label>
     <input type="text" name="username" id="username" required>
 
-    <label for="password">Password</label>
+    <label for="password">Mot de passe</label>
     <input type="password" name="password" id="password" required>
 
     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(Session::get('csrf_token')) ?>">

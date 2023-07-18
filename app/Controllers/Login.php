@@ -37,7 +37,8 @@ class Login
                     if ($connectedUser === null) {
                         ?>
                         <script language="javascript"> 
-                        alert("Mauvais pseudo");
+                        alert("Mauvais nom d'utilisateur");
+                        window.location.reload();
                         </script>
                         <?php
                     } else {

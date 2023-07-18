@@ -26,7 +26,7 @@ class EditPost
         $helper = new Helpers;
         $role = Session::get('role');
         if ($role !='admin') {
-            throw new \Exception('Page résevée à l\'administration !');
+            $helper->renderView('app/views/404.php',[]);
         }
         // Submission management if there is an entry.
         if ($input !== null) {

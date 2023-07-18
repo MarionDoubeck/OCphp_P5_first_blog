@@ -9,6 +9,7 @@ use App\Controllers\Login;
 use App\Controllers\Logout;
 use App\services\Session;
 use App\services\Server;
+use App\services\Helpers;
 use App\Controllers\Register;
 use App\Controllers\SinglePost;
 use App\Controllers\AddComment;
@@ -21,7 +22,6 @@ use App\Controllers\DeleteComment;
 use App\Controllers\ValidateComment;
 use App\Controllers\DeletePost;
 use App\Controllers\EditPost;
-use App\services\Helpers;
 
 // Autoload
 require 'vendor/autoload.php';
@@ -46,35 +46,41 @@ try {
             (new Logout())->execute();
             break;
         case "register":
-            if (null !== Session::get('user_id')) {
-                throw new Exception(
-                'Vous êtes déjà connecté, 
-                vous ne pouvez pas vous inscrire à nouveau'
-                );
-            }
+            if (null !== Session::get('user_id')) { ?>
+                <script>
+                    alert('Vous êtes déjà connecté, vous ne pouvez pas vous inscrire à nouveau')
+                    window.location.reload();
+                </script>
+            <?php }
             (new Register())->execute();
             break;
         case "article":
             if (null !== Get::get('id') && get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new SinglePost())->execute($identifier);
-            } else {
-                throw new Exception('aucun identifiant envoyé');
-            }
+            } else {?>
+                <script> 
+                    alert('Aucun identifiant de post envoyé')
+                    window.location.reload();
+                </script>
+            <?php }
             break;
         case "addComment":
             if (null !== Get::get('id') && Get::get('id') > 0) {
                 $identifier = Get::get('id');
                 (new AddComment())->execute($identifier);
-            } else {
-                throw new Exception('aucun identifiant envoyé');
-            }
+            } else {?>
+                <script> 
+                    alert('Aucun identifiant de post envoyé')
+                    window.location.reload();
+                </script>
+            <?php }
             break;
         case "administration":
             if (null !== Session::get('user_id') && Session::get('role') === 'admin') {
                 $helper->renderView('app/views/admin/dashboard.php',[]);
             } else {
-                throw new Exception('Seul l\'administrateur a accès à cette page');
+                $helper->renderView('app/views/404.php',[]);
             }
             break;
         case "adminAllPosts":

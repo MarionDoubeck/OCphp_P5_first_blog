@@ -22,7 +22,7 @@ class ValidateComment
     {
         $role = Session::get('role');
         if ($role !== 'admin') {
-            throw new \Exception('Page résevée à l\'administration !');
+            $helper->renderView('app/views/404.php',[]);
         }
         $postRepository = new Comment();
         $postRepository->connection = new DatabaseConnection();
