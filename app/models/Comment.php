@@ -175,7 +175,7 @@ class Comment
      * Method to retrieve unvalidated comments
      *
      * @param string $status Status
-     * 
+     *
      * @return array
      */
     public function getCommentsStatus($status)
@@ -305,7 +305,7 @@ class Comment
      * Set the id of post
      *
      * @return self
-     */ 
+     */
     public function setPost($postId)
     {
         $this->postId = $postId;

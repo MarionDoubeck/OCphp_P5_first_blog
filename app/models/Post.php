@@ -261,7 +261,7 @@ class Post
         return ($affectedLines > 0);
 
     }//end editPost()
-    
+
 
     /**
      * Method to delete data of a post
@@ -429,7 +429,7 @@ class Post
      * Get post content
      *
      * @return string
-     */ 
+     */
     public function getContent()
     {
         return $this->content;

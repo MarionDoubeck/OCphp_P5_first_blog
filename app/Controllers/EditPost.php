@@ -41,6 +41,7 @@ class EditPost
     {
         $this->session = $session;
         $this->files = $files;
+
     }//end __construct()
 
 
@@ -121,16 +122,15 @@ class EditPost
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
 
-        $helper->renderView('app/views/admin/edit-post.php', 
-            [
-                'title' => $title,
-                'chapo' => $chapo,
-                'content' => $content,
-                'imageData' => $imageData,
-                'imageType' => $imageType,
-            ]
+        $helper->renderView('app/views/admin/edit-post.php', [
+                                                             'title' => $title,
+                                                             'chapo' => $chapo,
+                                                             'content' => $content,
+                                                             'imageData' => $imageData,
+                                                             'imageType' => $imageType,
+                                                            ]
         );
-        
+
     }//end execute()
 
 
