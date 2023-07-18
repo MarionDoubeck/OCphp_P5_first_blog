@@ -33,7 +33,7 @@ class DeletePost
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
      *
-     * @param Session    $session Session
+     * @param Session    $session    Session
      * @param PostGlobal $postGlobal PostGlobal
      *
      * @return void
@@ -63,6 +63,7 @@ class DeletePost
             if ($role !== 'admin') {
                 $helper->renderView('app/views/404.php',[]);
             }
+
             $commentRepository = new Comment();
             $commentRepository->connection = new DatabaseConnection();
             $commentsSuccess = $commentRepository->deleteAllComments($identifier);
@@ -84,6 +85,7 @@ class DeletePost
                     <?php
                 }
             }
+
         }
 
     }//end execute()

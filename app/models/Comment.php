@@ -91,7 +91,7 @@ class Comment
     /**
      * Method to add a new comment
      *
-     * @param int    $postId The post to comment
+     * @param int    $postId  The post to comment
      * @param int    $user_id The author's user Id
      * @param string $comment The content of the comment
      *
@@ -191,6 +191,7 @@ class Comment
 
             $comments[] = $comment;
         }
+
         return $comments;
     }
 

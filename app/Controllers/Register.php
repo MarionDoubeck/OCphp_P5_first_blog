@@ -32,7 +32,7 @@ class Register
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
      *
-     * @param Session    $session Session
+     * @param Session    $session    Session
      * @param PostGlobal $postGlobal PostGlobal
      *
      * @return void
@@ -44,7 +44,7 @@ class Register
 
     }
     
-    
+
     /**
      * Method to do the checks and to secure the entrances
      * and to add a new user.
@@ -55,7 +55,6 @@ class Register
     {
         $helper = new Helpers;
         $errors = [];
-
         if (empty($this->postGlobal->getAllPostVars()) === FALSE) {
             if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                 $errors[] = "Erreur : Jeton CSRF invalide.";

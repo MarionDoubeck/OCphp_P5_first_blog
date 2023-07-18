@@ -32,8 +32,8 @@ class EditPost
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
      *
-     * @param Session   $session Session
-     * @param Files     $files   Files
+     * @param Session $session Session
+     * @param Files   $files   Files
      *
      * @return void
      */
@@ -47,8 +47,8 @@ class EditPost
     /**
      * Method to modify a post
      *
-     * @param int        $identifier     Post Id
-     * @param array|null $input Original Post data
+     * @param int        $identifier Post Id
+     * @param array|null $input      Original Post data
      *
      * @return void
      */

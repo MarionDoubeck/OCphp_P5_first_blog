@@ -19,7 +19,7 @@ class AdminPendingComments
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
      *
-     * @param Session    $session Session
+     * @param Session $session Session
      *
      * @return void
      */
@@ -42,6 +42,7 @@ class AdminPendingComments
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
+
         $repository = new Comment();
         $repository->connection = new DatabaseConnection();
         $comments = $repository->getCommentsStatus('pending');

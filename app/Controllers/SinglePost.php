@@ -14,7 +14,7 @@ use App\services\Helpers;
 class SinglePost
 {
 
-    
+
      /**
       * Method in charge of displaying one post and its comments
       *
@@ -46,15 +46,15 @@ class SinglePost
 
         $helper = new Helpers;
         $helper->renderView('app/views/single-post.php',[
-                                                        'comments' => $comments,
-                                                        'post' => $post,
-                                                        'title' => $title,
-                                                        'author' => $author,
-                                                        'created_at' => $created_at,
-                                                        'chapo' => $chapo,
-                                                        'content' => $content,
-                                                        'imageData' => $imageData,
-                                                        'imageType' => $imageType,
+                                                            'comments' => $comments,
+                                                            'post' => $post,
+                                                            'title' => $title,
+                                                            'author' => $author,
+                                                            'created_at' => $created_at,
+                                                            'chapo' => $chapo,
+                                                            'content' => $content,
+                                                            'imageData' => $imageData,
+                                                            'imageType' => $imageType,
                                                         ]
         );
 

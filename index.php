@@ -41,7 +41,6 @@ $files = new Files();
 
 // Router
 try {
-
     if (Get::get('action') !== null && Get::get('action') !== '') {
         switch (Get::get('action')) {
         case "archive":
@@ -60,6 +59,7 @@ try {
                     window.location.reload();
                 </script>
             <?php }
+
             (new Register($session, $postGlobal))->execute();
             break;
         case "article":
@@ -137,6 +137,7 @@ try {
                 if (Server::requestMethod() === 'POST') {
                     $input = PostGlobal::getAllPostVars();
                 }
+                
                 (new EditPost($session, $files))->execute($identifier, $input);
             } else {
                     throw new Exception('aucun identifiant envoyé');

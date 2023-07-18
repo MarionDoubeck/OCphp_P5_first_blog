@@ -12,7 +12,7 @@ use App\db\DatabaseConnection;
 class ValidateComment
 {
 
-    
+
     /**
      * Method to validate a comment
      *
@@ -26,6 +26,7 @@ class ValidateComment
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
+        
         $postRepository = new Comment();
         $postRepository->connection = new DatabaseConnection();
         $success = $postRepository->validateComment($identifier);

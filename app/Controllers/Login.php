@@ -33,7 +33,7 @@ class Login
     /**
      * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
      *
-     * @param Session    $session Session
+     * @param Session    $session    Session
      * @param PostGlobal $postGlobal PostGlobal
      * 
      * @return void
@@ -44,7 +44,7 @@ class Login
         $this->postGlobal = $postGlobal;
     }
 
-    
+
     /**
      * Method which verifies the username and password of the user
      * and retrieves the session data
@@ -103,6 +103,7 @@ class Login
                     <?php
                 }
             }
+
         }
         $helper->renderView('app/views/login.php',[]);
 
