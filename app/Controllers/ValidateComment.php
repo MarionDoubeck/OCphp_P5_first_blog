@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Comment;
 use App\services\Session;
+use App\services\Helpers;
 use App\db\DatabaseConnection;
 
 /**
@@ -11,6 +12,27 @@ use App\db\DatabaseConnection;
  */
 class ValidateComment
 {
+
+    /**
+     * Session
+     *
+     * @var Session
+     */
+    private $session;
+
+
+    /**
+     * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
+     *
+     * @param Session $session Session
+     *
+     * @return void
+     */
+    public function __construct(Session $session)
+    {
+        $this->session = $session;
+
+    }//end __construct()
 
 
     /**
@@ -22,8 +44,9 @@ class ValidateComment
      */
     public function execute(int $identifier)
     {
-        $role = Session::get('role');
+        $role = $this->session->get('role');
         if ($role !== 'admin') {
+            $helper = new Helpers;
             $helper->renderView('app/views/404.php',[]);
         }
 

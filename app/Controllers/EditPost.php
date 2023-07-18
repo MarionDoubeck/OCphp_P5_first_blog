@@ -100,7 +100,7 @@ class EditPost
                 </script>
                 <?php
             }
-        }//'end if'
+        }//end if
         // Displays the form if there is no entry and at the beginning.
         $postRepository = new Post();
         $postRepository->connection = new DatabaseConnection();
@@ -121,13 +121,14 @@ class EditPost
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
 
-        $helper->renderView('app/views/admin/edit-post.php', [
-                                                             'title' => $title,
-                                                             'chapo' => $chapo,
-                                                             'content' => $content,
-                                                             'imageData' => $imageData,
-                                                             'imageType' => $imageType,
-                                                            ]
+        $helper->renderView('app/views/admin/edit-post.php', 
+        [
+            'title' => $title,
+            'chapo' => $chapo,
+            'content' => $content,
+            'imageData' => $imageData,
+            'imageType' => $imageType,
+        ]
         );
         
     }//end execute()

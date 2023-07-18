@@ -37,7 +37,7 @@ class AdminValidatedComments
      */
     public function execute()
     {
-        $role = Session::get('role');
+        $role = $this->session->get('role');
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
