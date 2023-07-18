@@ -44,9 +44,9 @@ class DeleteComment
     public function execute(int $identifier)
     {
         $role = $this->session->get('role');
-        if ($role !== 'admin') {
-            echo '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>';
-        }
+        if ($role !== 'admin') {?>
+            <?= '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>'; ?>
+        <?php }
 
         $postRepository = new Comment();
         $postRepository->connection = new DatabaseConnection();

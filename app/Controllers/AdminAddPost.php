@@ -78,9 +78,9 @@ class AdminAddPost
         $title = null;
         $chapo = null;
 
-        if ($role !== 'admin') {
-            echo '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>';
-        }
+        if ($role !== 'admin') {?>
+            <?= '<script>window.location.href = "index.php/?action=AccesNonAutorisé";</script>'; ?>
+        <?php }
 
         if ($this->server->requestMethod() === 'POST') {
             if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
