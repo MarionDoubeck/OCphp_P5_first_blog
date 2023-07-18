@@ -108,9 +108,9 @@ class Login
                     alert("Vous devez remplir tous les champs");
                     </script>
                     <?php
-                }//end if
-            }//end if
-        }//end if
+                }// end if
+            }// end if
+        }// end if
 
         $helper->renderView('app/views/login.php',[]);
 

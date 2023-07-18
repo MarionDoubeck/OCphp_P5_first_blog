@@ -148,7 +148,7 @@ try {
         }//end switch
     } else {
         (new HomePosts())->execute();
-    }//end if
+    }// end if
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     echo htmlspecialchars($errorMessage);
