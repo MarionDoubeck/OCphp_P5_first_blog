@@ -15,7 +15,6 @@ class Post
      *
      * @var string
      */
-
     private string $title;
 
     /**
@@ -28,7 +27,7 @@ class Post
     /**
      * Post modification date
      *
-     * @var
+     * @var string
      */
     private $FrenchModificationDate;
 
@@ -52,7 +51,7 @@ class Post
      * @var string
      */
     private int $identifier;
-    
+
     /**
      * User's nickname
      *
@@ -116,7 +115,7 @@ class Post
             throw new Exception('Cette page n\'existe pas');
         }
             
-    }
+    }//getPostbyId()
 
 
     /**
@@ -134,9 +133,10 @@ class Post
         $statement->execute();
         // Fetch the post record.
         $row = $statement->fetch();
-        $total = $row['total_comments'] ?? 0;
+        $total = ($row['total_comments'] ?? 0);
 
         return $total;
+
     }
 
 
@@ -153,7 +153,7 @@ class Post
 
         $posts = [];
 
-        while (($row = $statement->fetch())) {
+        while (($row = $statement->fetch()) === TRUE) {
             $post = new Post();
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);
@@ -173,7 +173,7 @@ class Post
 
     /**
      * Method to retrieve data from last 3 articles
-     * 
+     *
      * @return array
      */
     public function getRecentPosts() : array
@@ -184,7 +184,7 @@ class Post
 
         $posts = [];
 
-        while (($row = $statement->fetch())) {
+        while (($row = $statement->fetch()) === TRUE) {
             $post = new Post();
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);
@@ -205,17 +205,17 @@ class Post
     /**
      * Method to add data of a new post
      *
-     * @param string      $title Title
-     * @param string      $content Content
-     * @param string      $chapo Chapo
-     * @param int         $user_id Author ID
+     * @param string      $title      Title
+     * @param string      $content    Content
+     * @param string      $chapo      Chapo
+     * @param int         $user_id    Author ID
      * @param string|null $image_data Image data
      * @param string|null $image_type Image type
      *
      * @return boolean
      */
     public function addPost(string $title, string $content, string $chapo, int $user_id, ?string $image_data, ?string $image_type)
-    {  
+    {
         $query = 'INSERT INTO posts (title, content, chapo, author_id, created_at, updated_at, image_data, image_type, comment_count) 
         VALUES (:title, :content, :chapo, :authorId, NOW(), NOW(), :imageData, :imageType, 0)';
         $statement = $this->connection->getConnection()->prepare($query);
@@ -227,17 +227,18 @@ class Post
         $statement->bindParam(':imageType', $image_type);
         $affectedLines = $statement->execute();
 
-        return($affectedLines > 0);    
+        return($affectedLines > 0);
+
     }
 
 
     /**
      * Method to edit data of a new post
      *
-     * @param int         $postId PostID
-     * @param string      $title Title
-     * @param string      $content Content
-     * @param string      $chapo Chapo
+     * @param int         $postId     PostID
+     * @param string      $title      Title
+     * @param string      $content    Content
+     * @param string      $chapo      Chapo
      * @param string|null $image_data Image Data
      * @param string|null $image_type Image Type
      *
@@ -255,7 +256,7 @@ class Post
         $statement->bindParam(':postId', $postId);
         $affectedLines = $statement->execute();
     
-        return ($affectedLines > 0);    
+        return ($affectedLines > 0);
     }
     
 
@@ -341,14 +342,15 @@ class Post
      * @param  $imageData post image data
      *
      * @return self
-     */ 
-    public function setImageData( $imageData)
+     */
+    public function setImageData($imageData)
     {
         if ($imageData !== null) {
             $this->imageData = base64_encode($imageData);
-        } else{
+        } else {
             $this->imageData = null;
         }
+
         return $this;
     }
 
@@ -521,5 +523,8 @@ class Post
         $this->username = $username;
 
         return $this;
+
     }
+
+    
 }

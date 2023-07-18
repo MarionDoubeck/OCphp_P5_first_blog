@@ -137,7 +137,7 @@ try {
                 if (Server::requestMethod() === 'POST') {
                     $input = PostGlobal::getAllPostVars();
                 }
-                (new EditPost())->execute($identifier, $input);
+                (new EditPost($session, $files))->execute($identifier, $input);
             } else {
                     throw new Exception('aucun identifiant envoyé');
             }

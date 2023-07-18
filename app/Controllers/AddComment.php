@@ -63,7 +63,7 @@ class AddComment
                 /* Check if the CSRF token is valid */
                 if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                     throw new \Exception("Erreur : Jeton CSRF invalide.");
-                } else{
+                } else {
                     $commentContent = strip_tags($this->postGlobal->get('commentContent'));
                 }
             } catch (Exception $e) {
