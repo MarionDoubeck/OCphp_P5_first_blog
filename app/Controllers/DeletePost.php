@@ -85,7 +85,6 @@ class DeletePost
                     <?php
                 }
             }
-
         }
 
     }//end execute()

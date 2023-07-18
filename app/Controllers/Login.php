@@ -103,7 +103,6 @@ class Login
                     <?php
                 }
             }
-
         }
         $helper->renderView('app/views/login.php',[]);
 
