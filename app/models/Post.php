@@ -122,7 +122,7 @@ class Post
     /**
      * Method to retrieve data from a single article according to its id
      *
-     * @param int $identifier
+     * @param int $postId PostId
      *
      * @return int
      */
@@ -205,10 +205,10 @@ class Post
     /**
      * Method to add data of a new post
      *
-     * @param string $title Title
-     * @param string $content Content
-     * @param string $chapo Chapo
-     * @param int    $user_id Author ID
+     * @param string      $title Title
+     * @param string      $content Content
+     * @param string      $chapo Chapo
+     * @param int         $user_id Author ID
      * @param string|null $image_data Image data
      * @param string|null $image_type Image type
      *
@@ -234,12 +234,12 @@ class Post
     /**
      * Method to edit data of a new post
      *
-     * @param int $postId PostID
-     * @param string $title
-     * @param string $content
-     * @param string $chapo
-     * @param string|null $image_data
-     * @param string|null $image_type
+     * @param int         $postId PostID
+     * @param string      $title Title
+     * @param string      $content Content
+     * @param string      $chapo Chapo
+     * @param string|null $image_data Image Data
+     * @param string|null $image_type Image Type
      *
      * @return boolean
      */
@@ -262,7 +262,7 @@ class Post
     /**
      * Method to delete data of a post
      *
-     * @param int $identifier
+     * @param int $identifier PostId
      * 
      * @return void
      */
@@ -290,7 +290,7 @@ class Post
     /**
      * Set post title
      *
-     * @param string $title post title
+     * @param string $title Post title
      *
      * @return self
      */

@@ -18,8 +18,8 @@ class EditPost
     /**
      * Method to modify a post
      *
-     * @param int $identifier Post Id
-     * @param array|null $input Original post data
+     * @param int             $identifier Post Id
+     * @param array|null      $input Original post data
      *
      * @return void
      */
