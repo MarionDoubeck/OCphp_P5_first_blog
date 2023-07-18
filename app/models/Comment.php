@@ -213,7 +213,7 @@ class Comment
 
     /**
      * Set the value of frenchCreationDate
-     * 
+     *
      * @param string $frenchCreationDate CreationDate
      *
      * @return self
@@ -269,7 +269,7 @@ class Comment
      * Set the value of comment Id
      *
      * @return self
-     */ 
+     */
     public function setIdentifier($identifier)
     {
         $this->identifier = $identifier;
@@ -356,4 +356,4 @@ class Comment
     }//end setUsername()
 
 
-}
+}//end class

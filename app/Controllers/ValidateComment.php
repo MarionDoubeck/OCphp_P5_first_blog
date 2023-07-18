@@ -26,7 +26,7 @@ class ValidateComment
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
-        
+
         $postRepository = new Comment();
         $postRepository->connection = new DatabaseConnection();
         $success = $postRepository->validateComment($identifier);
@@ -43,4 +43,4 @@ class ValidateComment
     }//end execute()
 
 
-}//end execute()
+}//end class

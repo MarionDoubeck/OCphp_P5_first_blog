@@ -166,7 +166,7 @@ class Post
 
             $posts[] = $post;
         }
-        
+
         return $posts;
     }//end getPosts()
 
@@ -397,7 +397,7 @@ class Post
      * @param string $frenchCreationDate post date
      *
      * @return self
-     */ 
+     */
     public function setFrenchCreationDate(string $frenchCreationDate)
     {
         $this->frenchCreationDate = $frenchCreationDate;
@@ -509,7 +509,7 @@ class Post
 
     /**
      * Get the value of firstname
-     * 
+     *
      * @return string
      */ 
     public function getFirstname()
@@ -547,4 +547,4 @@ class Post
     }//end setUsername()
 
   
-}
+}//end class

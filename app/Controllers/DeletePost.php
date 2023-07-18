@@ -90,4 +90,4 @@ class DeletePost
     }//end execute()
 
 
-}//end execute()
+}//end class

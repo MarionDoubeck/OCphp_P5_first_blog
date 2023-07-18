@@ -26,7 +26,7 @@ class DeleteComment
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
-        
+
         $postRepository = new Comment();
         $postRepository->connection = new DatabaseConnection();
         $success = $postRepository->deleteComment($identifier);
@@ -43,4 +43,4 @@ class DeleteComment
     }//end execute()
 
 
-}//end execute()
+}//end class

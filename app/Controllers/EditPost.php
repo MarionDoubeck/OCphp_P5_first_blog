@@ -120,7 +120,7 @@ class EditPost
         $content = $post->getContent();
         $imageData = $post->getImageData();
         $imageType = $post->getImageType();
-        
+
         $helper->renderView('app/views/admin/edit-post.php', [
                                                              'title' => $title,
                                                              'chapo' => $chapo,
@@ -133,4 +133,4 @@ class EditPost
     }//end execute()
 
 
-}//end execute()
+}//end class

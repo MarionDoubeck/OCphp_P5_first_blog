@@ -25,7 +25,7 @@ class AdminAllUsers
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
-        
+
         $repository = new User();
         $repository->connection = new DatabaseConnection();
         $users = $repository->getUsers();
@@ -36,4 +36,4 @@ class AdminAllUsers
     }//end execute()
 
 
-}//end execute()
+}//end class

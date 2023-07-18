@@ -173,7 +173,7 @@ class User
      * Set the value of role
      *
      * @param string $role Role
-     * 
+     *
      * @return self
      */
     public function setRole($role)
@@ -201,7 +201,7 @@ class User
      * @param string $password Password
      *
      * @return self
-     */ 
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -314,4 +314,4 @@ class User
     }
 
 
-}
+}//end class
