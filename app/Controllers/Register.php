@@ -43,7 +43,7 @@ class Register
         $this->postGlobal = $postGlobal;
 
     }//end __construct()
-    
+
 
     /**
      * Method to do the checks and to secure the entrances
@@ -106,7 +106,7 @@ class Register
 
     /**
      * Method to check if form is correctly field by user
-     * 
+     *
      * @return void
      */
     public function checkIfFormIsCorrect()
@@ -178,4 +178,4 @@ class Register
     }//end checkIfAlreadyInDB()
 
 
-}//end execute()
+}//end class

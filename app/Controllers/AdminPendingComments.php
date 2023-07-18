@@ -53,4 +53,4 @@ class AdminPendingComments
     }//end execute()
 
 
-}//end execute()
+}//end class

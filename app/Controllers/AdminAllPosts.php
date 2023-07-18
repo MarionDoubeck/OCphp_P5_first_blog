@@ -25,7 +25,7 @@ class AdminAllPosts
         if ($role !== 'admin') {
             $helper->renderView('app/views/404.php',[]);
         }
-        
+ 
         $repository = new Post();
         $repository->connection = new DatabaseConnection();
         $posts = $repository->getPosts();
@@ -38,4 +38,4 @@ class AdminAllPosts
     }//end execute()
 
 
-}//end execute()
+}//end class

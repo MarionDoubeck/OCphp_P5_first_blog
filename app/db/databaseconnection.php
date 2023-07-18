@@ -36,4 +36,4 @@ class DatabaseConnection
     }//end getConnection()
 
 
-}
+}//end class

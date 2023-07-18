@@ -10,7 +10,7 @@ use App\services\Session;
 class Logout
 {
 
-    
+
     /**
      * Method to user logout
      *
@@ -29,4 +29,4 @@ class Logout
     }//end execute()
 
 
-}//end execute()
+}//end class
