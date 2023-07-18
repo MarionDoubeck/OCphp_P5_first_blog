@@ -77,6 +77,7 @@ class User
         }
 
         return $users;
+
     }//end getUsers()
 
 
@@ -107,6 +108,7 @@ class User
             $user->setRole($row['role']);
             $user->setEmail($row['email']);
         return $user;
+
     }//end checkUserUsername()
 
 
@@ -130,6 +132,7 @@ class User
             return null;
         }
         return $row;
+
     }//end checkUserEmail()
 
 
@@ -150,6 +153,7 @@ class User
         $affectedLines = $statement->execute([$username, $password, $email, 'user']);
 
         return($affectedLines > 0);
+
     }//end addUser()
 
 
@@ -161,6 +165,7 @@ class User
     public function getRole()
     {
         return $this->role;
+
     }
 
 
@@ -279,6 +284,7 @@ class User
         }
 
         return $this;
+
     }
 
 
@@ -290,6 +296,7 @@ class User
     public function getUsername()
     {
         return $this->username;
+
     }
 
 
@@ -303,6 +310,7 @@ class User
         $this->username = $username;
 
         return $this;
+
     }
 
 
