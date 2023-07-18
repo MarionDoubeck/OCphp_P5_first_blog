@@ -45,13 +45,15 @@ if (null !==PostGlobal::get('firstname') && null !==PostGlobal::get('name') && n
         ?>
         <script language="javascript"> 
         alert("Merci de m\'avoir contactée. Je vous répondrai très bientôt.");
-        document.location.href = '../../';</script>
+        window.location.reload();
+        </script>
         <?php
     }
 } else {
     ?>
     <script language="javascript"> 
     alert("Merci de remplir tous les champs !");
-    document.location.href = '../../';</script>
+    window.location.reload();
+    </script>
     <?php
 }

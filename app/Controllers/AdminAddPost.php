@@ -28,7 +28,7 @@ class AdminAddPost {
         $chapo = null;
 
         if ($role !='admin') {
-            throw new \Exception('Page résevée à l\'administration !');
+            $helper->renderView('app/views/404.php',[]);
         }
         if (Server::requestMethod() === 'POST')  {
             if ($helper->validateCsrfToken(PostGlobal::get('csrf_token')) === FALSE) {

@@ -21,7 +21,7 @@ class AdminAllUsers
     {
         $role = Session::get('role');
         if ($role !== 'admin') {
-            throw new \Exception('Page résevée à l\'administration !');
+            $helper->renderView('app/views/404.php',[]);
         }
         $repository = new User();
         $repository->connection = new DatabaseConnection();
