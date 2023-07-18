@@ -9,7 +9,7 @@ use App\services\Env;
  */
 class DatabaseConnection
 {
-    
+
     /**
      * PHP Data Object
      *
