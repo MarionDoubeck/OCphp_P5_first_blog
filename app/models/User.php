@@ -133,9 +133,9 @@ class User
     /**
      * Method to add data of a new user
      *
-     * @param string $username Username
-     * @param string $password Password
-     * @param string $email Email
+     * @param string    $username Username
+     * @param string    $password Password
+     * @param string    $email Email
      * 
      * @return boolean
      */
@@ -186,6 +186,8 @@ class User
 
     /**
      * Set the value of password
+     * 
+     * @param string $password Password
      *
      * @return self
      */ 

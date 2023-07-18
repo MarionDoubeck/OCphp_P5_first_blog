@@ -14,7 +14,7 @@ class ValidateComment
     /**
      * Method to validate a comment
      *
-     * @param int $identifier
+     * @param int $identifier CommentId
      *
      * @return void
      */

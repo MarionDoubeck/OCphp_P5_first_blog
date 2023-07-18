@@ -90,7 +90,7 @@ class Comment
     /**
      * Method to add a new comment
      *
-     * @param int $postId The post to comment 
+     * @param int    $postId The post to comment 
      * @param int    $user_id The author's user Id
      * @param string $comment The content of the comment
      *
@@ -126,7 +126,7 @@ class Comment
     /**
      * Method to delete all  comments of a post
      *
-     * @param int $identifier
+     * @param int $postId PostID
      *
      * @return boolean
      */
@@ -142,7 +142,7 @@ class Comment
     /**
      * Method to validate a comment
      *
-     * @param int $identifier
+     * @param int $identifier CommentId
      *
      * @return boolean
      */
@@ -203,6 +203,8 @@ class Comment
 
     /**
      * Set the value of frenchCreationDate
+     * 
+     * @param string $frenchCreationDate CreationDate
      *
      * @return self
      */
