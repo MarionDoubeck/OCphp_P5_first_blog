@@ -44,15 +44,16 @@ class SinglePost
 
         $helper = new Helpers;
         $helper->renderView('app/views/single-post.php',array(
-            'comments' =>$comments,
-            'post' =>$post,
-            'title' =>$title,
-            'author' =>$author,
-            'created_at' =>$created_at,
-            'chapo' =>$chapo,
-            'content' =>$content,
-            'imageData' =>$imageData,
-            'imageType' =>$imageType
-        ));
+                                                            'comments' =>$comments,
+                                                            'post' =>$post,
+                                                            'title' =>$title,
+                                                            'author' =>$author,
+                                                            'created_at' =>$created_at,
+                                                            'chapo' =>$chapo,
+                                                            'content' =>$content,
+                                                            'imageData' =>$imageData,
+                                                            'imageType' =>$imageType
+                                                        )
+        );
     }
 }
