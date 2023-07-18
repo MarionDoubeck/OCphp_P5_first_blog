@@ -30,7 +30,7 @@ class Register
 
 
     /**
-     * Constructor that inject dependencies to avoid static access to classes like PostGlobal::get()
+     * Constructor that inject dependencies to avoid static access to classes like $this->postGlobal->get()
      *
      * @param Session    $session    Session
      * @param PostGlobal $postGlobal PostGlobal
@@ -46,8 +46,7 @@ class Register
 
 
     /**
-     * Method to do the checks and to secure the entrances
-     * and to add a new user.
+     * Method to add a new user.
      *
      * @return void
      */
@@ -55,19 +54,19 @@ class Register
     {
         $helper = new Helpers;
         $errors = [];
+
         if (empty($this->postGlobal->getAllPostVars()) === FALSE) {
             if ($helper->validateCsrfToken($this->postGlobal->get('csrf_token')) === FALSE) {
                 $errors[] = "Erreur : Jeton CSRF invalide.";
             } else {
-                if ($this->postGlobal->isParamSet('username') === TRUE && $this->postGlobal->isParamSet('password') === TRUE
-                    && empty($this->postGlobal->get('username')) === FALSE && empty($this->postGlobal->get('password')) === FALSE
-                ) {
+                if ($this->postGlobal->isParamSet('username') === TRUE && $this->postGlobal->isParamSet('password') === TRUE && empty($this->postGlobal->get('username')) === FALSE && empty($this->postGlobal->get('password')) === FALSE) {
+
                     $this->checkIfFormIsCorrect();
 
                     $username = strip_tags(trim($this->postGlobal->get('username')));
                     $email = $this->postGlobal->get('email');
 
-                    // We hash password for security issues.
+                    // We hash password for security issues
                     $passtest = $this->postGlobal->get('password');
                     $pass = password_hash($this->postGlobal->get('password'), PASSWORD_DEFAULT);
 
@@ -95,18 +94,19 @@ class Register
                     }
                 } else {
                     $errors[] = "Toutes les informations doivent être complétées";
-                }//end if
-            }//end if
-        }//end if
+                }
+            }
+        }
 
-        $data = [ 'errors' => $errors ];
+        $data = [
+            'errors' => $errors,
+        ];
         $helper->renderView('app/views/register.php', $data);
-
-    }//end execute()
+    }
 
 
     /**
-     * Method to check if form is correctly field by user
+     * Method to do the checks and to secure the entrances
      *
      * @return void
      */
@@ -138,45 +138,28 @@ class Register
             $errors[] = 'Le mot de passe doit contenir au moins 1 minuscule';
         }
 
-        checkIfAlreadyInDB($errors);
-
-        if (empty($errors) === FALSE) {
-            $data = [ 'errors' => $errors ];
-            $helper = new Helpers;
-            $helper->renderView('app/views/register.php', $data);
-        }
-
-    }//end checkIfFormIsCorrect()
-
-
-    /**
-     * Method to check if usernanme or password is already used
-     *
-     * @param array $errors Array of errors
-     *
-     * @return array
-     */
-    public function checkIfAlreadyInDB($errors)
-    {
         // We check that the nickname is unique.
         $usernameCheck = new User();
         $usernameCheck->connection = new DatabaseConnection();
         $result1 = $usernameCheck->checkUserUsername(strip_tags(trim($this->postGlobal->get('username'))));
-        if ($result1 !== null) {
+        if ($result1) {
             $errors[] = 'Nom d\'utilisateur déjà existant';
         }
-
         // We check that the email is unique.
         $userMailCheck = new User();
         $userMailCheck->connection = new DatabaseConnection();
         $result2 = $userMailCheck->checkUserEmail($this->postGlobal->get('email'));
-        if ($result2 !== null) {
+        if ($result2) {
             $errors[] = 'Email déjà existant';
         }
 
-        return $errors;
-
-    }//end checkIfAlreadyInDB()
-
-
-}//end class
+        if (!empty($errors)) {
+            $data = [
+                'errors' => $errors,
+            ];
+            $helper = new Helpers;
+            $helper->renderView('app/views/register.php', $data);
+            exit;
+        }
+    }
+}
