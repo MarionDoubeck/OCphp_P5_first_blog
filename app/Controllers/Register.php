@@ -104,7 +104,7 @@ class Register
         ];
         $helper->renderView('app/views/register.php', $data);
 
-    }// end execute()
+    }//end execute()
 
 
     /**
