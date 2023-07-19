@@ -265,7 +265,7 @@ class User
 
     /**
      * Get the value of user's nb of comments
-     * 
+     *
      * @return string
      */
     public function getCommentCount()
@@ -309,7 +309,7 @@ class User
 
     /**
      * Get the value of username
-     * 
+     *
      * @return string
      */
     public function getUsername()
