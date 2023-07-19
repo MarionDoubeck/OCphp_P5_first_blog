@@ -76,7 +76,7 @@ class User
 
         $users = [];
 
-        while (($row = $statement->fetch())) {
+        while (($row = $statement->fetch()) !== FALSE) {
             $user = new User();
             $user->setUsername($row['username']);
             $user->setEmail($row['email']);
