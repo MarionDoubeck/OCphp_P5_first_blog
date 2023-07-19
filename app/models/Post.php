@@ -153,7 +153,7 @@ class Post
 
         $posts = [];
 
-        while (($row = $statement->fetch())) {
+        while (($row = $statement->fetch()) !== FALSE) {
             $post = new Post();
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);
@@ -185,7 +185,7 @@ class Post
 
         $posts = [];
 
-        while ($row = $statement->fetch()) {
+        while (($row = $statement->fetch()) !== FALSE) {
             $post = new Post();
             $post->setTitle($row['title']);
             $post->setFrenchCreationDate($row['created_at']);

@@ -78,7 +78,7 @@ class Comment
         $statement->execute([$postId]);
 
         $comments = [];
-        while (($row = $statement->fetch())) {
+        while (($row = $statement->fetch()) !== FALSE) {
             $comment = new Comment();
             $comment->setUsername($row['username']);
             $comment->setFrenchCreationDate($row['creation_date']);
@@ -191,7 +191,7 @@ class Comment
         $statement->execute();
 
         $comments = [];
-        while (($row = $statement->fetch())) {
+        while (($row = $statement->fetch()) !== FALSE) {
             $comment = new Comment();
             $comment->setFrenchCreationDate($row['creation_date']);
             $comment->setComment($row['content']);
@@ -345,7 +345,7 @@ class Comment
 
     /**
      * Get the value of username
-     * 
+     *
      * @return string
      */
     public function getUsername()
