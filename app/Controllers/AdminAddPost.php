@@ -61,7 +61,7 @@ class AdminAddPost
         $this->server = $server;
         $this->files = $files;
 
-    }// end __construct()
+    }//end __construct()
 
 
     /**

@@ -485,7 +485,7 @@ class Post
      * Get post id
      *
      * @return int
-     */ 
+     */
     public function getIdentifier()
     {
         return $this->identifier;
@@ -499,7 +499,7 @@ class Post
      * @param int $identifier post id
      *
      * @return self
-     */ 
+     */
     public function setIdentifier(string $identifier)
     {
         $this->identifier = $identifier;
@@ -513,7 +513,7 @@ class Post
      * Get the value of firstname
      *
      * @return string
-     */ 
+     */
     public function getFirstname()
     {
         return $this->firstname;
@@ -525,7 +525,7 @@ class Post
      * Get user's nickname
      *
      * @return string
-     */ 
+     */
     public function getUsername()
     {
         return $this->username;
@@ -539,7 +539,7 @@ class Post
      * @param string $username user's nickname
      *
      * @return self
-     */ 
+     */
     public function setUsername(string $username)
     {
         $this->username = $username;

@@ -104,7 +104,7 @@ class Register
         ];
         $helper->renderView('app/views/register.php', $data);
 
-    }// end execute()
+    }//end execute()
 
 
     /**
@@ -184,4 +184,4 @@ class Register
     }//end checkIfAlreadyInDb()
 
 
-}
+}//end class

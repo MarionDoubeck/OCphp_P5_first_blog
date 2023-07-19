@@ -347,7 +347,7 @@ class Comment
      * Get the value of username
      * 
      * @return string
-     */ 
+     */
     public function getUsername()
     {
         return $this->username;
@@ -359,7 +359,7 @@ class Comment
      * Set the value of username
      *
      * @return self
-     */ 
+     */
     public function setUsername($username)
     {
         $this->username = $username;
