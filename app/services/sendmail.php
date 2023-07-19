@@ -45,7 +45,7 @@ if (null !==PostGlobal::get('firstname') && null !==PostGlobal::get('name') && n
         ?>
         <script language="javascript"> 
         alert("Merci de m\'avoir contactée. Je vous répondrai très bientôt.");
-        window.location.reload();
+        document.location.href = '../../index.php?';
         </script>
         <?php
     }
@@ -53,7 +53,7 @@ if (null !==PostGlobal::get('firstname') && null !==PostGlobal::get('name') && n
     ?>
     <script language="javascript"> 
     alert("Merci de remplir tous les champs !");
-    window.location.reload();
+    document.location.href = '../../index.php?';
     </script>
     <?php
 }
