@@ -184,4 +184,4 @@ class Register
     }//end checkIfAlreadyInDb()
 
 
-}
+}//end class

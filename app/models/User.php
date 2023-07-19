@@ -293,7 +293,7 @@ class User
      * Set the user's number of comments
      *
      * @return self
-     */ 
+     */
     public function setCommentCount($commentCount)
     {
         if ($commentCount === null) {
@@ -311,7 +311,7 @@ class User
      * Get the value of username
      * 
      * @return string
-     */ 
+     */
     public function getUsername()
     {
         return $this->username;
@@ -323,7 +323,7 @@ class User
      * Set the value of username
      *
      * @return self
-     */ 
+     */
     public function setUsername($username)
     {
         $this->username = $username;
