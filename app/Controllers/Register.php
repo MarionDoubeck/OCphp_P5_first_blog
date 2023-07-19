@@ -128,15 +128,15 @@ class Register
             $errors[] = 'Le mot de passe trop court, il doit faire au moins 8 caractères';
         }
 
-        if (!preg_match("#[0-9]+#", $this->postGlobal->get('password'))) {
+        if (preg_match("#[0-9]+#", $this->postGlobal->get('password')) === 0) {
             $errors[] = 'Le mot de passe doit contenir au moins 1 chiffre';
         }
 
-        if (!preg_match("#[A-Z]+#", $this->postGlobal->get('password'))) {
+        if (preg_match("#[A-Z]+#", $this->postGlobal->get('password')) === 0) {
             $errors[] = 'Le mot de passe doit contenir au moins 1 majuscule';
         }
 
-        if (!preg_match("#[a-z]+#", $this->postGlobal->get('password'))) {
+        if (preg_match("#[a-z]+#", $this->postGlobal->get('password')) === 0) {
             $errors[] = 'Le mot de passe doit contenir au moins 1 minuscule';
         }
 
