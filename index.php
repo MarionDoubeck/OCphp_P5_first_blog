@@ -145,11 +145,11 @@ try {
             break;
         default:
             $helper->renderView('app/views/404.php',[]);
-        }//end switch
+        }// end switch
     } else {
         (new HomePosts())->execute();
     }// end if
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     echo htmlspecialchars($errorMessage);
-}//end try
+}// end try
