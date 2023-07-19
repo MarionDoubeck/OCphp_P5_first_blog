@@ -3,7 +3,8 @@ use App\services\Session;
 use App\services\Helpers;
 
 $helper = new Helpers;
-$helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
+$pageTitle = "Les commentaires publiés";
+$helper->renderView('app/views/admin/dashboard-header-and-menu.php',['pageTitle' => $pageTitle]);
 ?>
 
 

@@ -120,7 +120,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Titre dynamique</h1>
+            <h1><?= $pageTitle ?></h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->

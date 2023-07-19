@@ -2,7 +2,8 @@
 use App\services\Helpers;
 
 $helper = new Helpers;
-$helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
+$pageTitle = "Dashboard";
+$helper->renderView('app/views/admin/dashboard-header-and-menu.php',['pageTitle' => $pageTitle]);
 ?>
 
 <!-- Main content -->
