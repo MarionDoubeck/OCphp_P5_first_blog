@@ -62,7 +62,7 @@ class Register
                 if ($this->postGlobal->isParamSet('username') === TRUE && $this->postGlobal->isParamSet('password') === TRUE && empty($this->postGlobal->get('username')) === FALSE && empty($this->postGlobal->get('password')) === FALSE) {
                     // Check form entries.
                     $formErrors = $this->checkIfFormIsCorrect();
-                    if(empty($formErrors) === TRUE) {
+                    if (empty($formErrors) === TRUE) {
                         $username = strip_tags(trim($this->postGlobal->get('username')));
                         $email = $this->postGlobal->get('email');
 
@@ -93,7 +93,6 @@ class Register
                             return;
                         }// end if
                     }// end if
-
                 } else {
                     $errors[] = "Toutes les informations doivent être complétées";
                 }// end if
@@ -105,7 +104,7 @@ class Register
         ];
         $helper->renderView('app/views/register.php', $data);
 
-    }
+    }// end execute()
 
 
     /**
@@ -151,7 +150,7 @@ class Register
      * Method to do the checks and to secure the entrances
      *
      * @param array $errors Errors
-     * 
+     *
      * @return array $errors Errors
      */
     public function checkIfAlreadyInDb($errors)
@@ -179,6 +178,7 @@ class Register
             $helper = new Helpers;
             $helper->renderView('app/views/register.php', $data);
         }
+
         return $errors;
 
     }//end checkIfAlreadyInDb()

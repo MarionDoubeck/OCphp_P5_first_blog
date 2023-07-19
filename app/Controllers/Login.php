@@ -102,7 +102,7 @@ class Login
                             </script>
                             <?php
                         }
-                    }//'endif'
+                    }// end if
                 } else {?>
                     <script language="javascript"> 
                     alert("Vous devez remplir tous les champs");

@@ -42,7 +42,7 @@ class AddComment
         $this->session = $session;
         $this->postGlobal = $postGlobal;
 
-    }//end __construct()
+    }// end __construct()
 
 
     /**
@@ -95,7 +95,7 @@ class AddComment
             <?php
         }
 
-    }//end execute()
+    }// end execute()
 
 
-}//end class
+}// end class

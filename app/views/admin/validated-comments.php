@@ -52,7 +52,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                             </form>
                         </td>
                   </tr>
-                  <?php endforeach ; ?>
+                  <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

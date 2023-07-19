@@ -471,7 +471,7 @@ class Post
      * @param string $chapo post chapo
      *
      * @return self
-     */ 
+     */
     public function setChapo(string $chapo)
     {
         $this->chapo = $chapo;
@@ -548,5 +548,5 @@ class Post
 
     }//end setUsername()
 
-  
+
 }//end class

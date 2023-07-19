@@ -36,7 +36,7 @@ $helper->renderView('app/views/admin/dashboard-header-and-menu.php',[]);
                         <td><?= htmlspecialchars($commentCount) ?></td>
                         <td><?= htmlspecialchars($email) ?></td>
                   </tr>
-                  <?php endforeach ; ?>
+                  <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

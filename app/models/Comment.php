@@ -293,7 +293,7 @@ class Comment
 
     /**
      * Get the value of postId
-     * 
+     *
      * @return int
      */
     public function getPost()
@@ -333,7 +333,7 @@ class Comment
      * Set the value of post title
      *
      * @return self
-     */ 
+     */
     public function setPostTitle($postTitle)
     {
         $this->postTitle = $postTitle;

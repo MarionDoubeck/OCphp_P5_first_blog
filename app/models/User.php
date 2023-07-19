@@ -253,7 +253,7 @@ class User
 
     /**
      * Get the value of email
-     * 
+     *
      * @return string
      */
     public function getEmail()
@@ -267,7 +267,7 @@ class User
      * Get the value of user's nb of comments
      * 
      * @return string
-     */ 
+     */
     public function getCommentCount()
     {
         return $this->commentCount;
@@ -279,7 +279,7 @@ class User
      * Set the value of email
      *
      * @return self
-     */ 
+     */
     public function setEmail($email)
     {
         $this->email = $email;
