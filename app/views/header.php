@@ -40,7 +40,8 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="page-heading">
                             <span >Marion Doubeck</span>
-                            <h1>Programmeuse</h1>
+                            <h1>Développpeuse full stack</h1>
+                            <span class="subheading">JS React, Php Symfony, création de thèmes et plugins Wordpress</span>
                             <span class="subheading">Spécialisée en numérique responsable et éco-conception</span>
                         </div>
                     </div>
